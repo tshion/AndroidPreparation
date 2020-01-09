@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    buildToolsVersion build_tools_version
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    compileSdkVersion compile_sdk_version
+    defaultConfig {
+        applicationId "work.shion.androidpreparation"
+        minSdkVersion 21
+        targetSdkVersion compile_sdk_version
+        versionCode 1
+        versionName "1.0.0"
+    }
+}
+
+dependencies {
+    implementation baseLibrary
+    implementation baseUiLibrary
+}
