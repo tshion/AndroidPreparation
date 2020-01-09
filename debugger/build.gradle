@@ -8,8 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 // バージョン
 def appver_major = 0
-def appver_minor = 0
-def appver_revision = 1
+def appver_minor = 1
+def appver_revision = 0
 def appver_name = "${appver_major}.${appver_minor}.${appver_revision}"
 
 // ライブラリ情報
@@ -58,6 +58,9 @@ bintray {
 dependencies {
     implementation baseLibrary
     implementation baseUiLibrary
+
+    // LeakCanary
+    api "com.squareup.leakcanary:leakcanary-android:2.1"
 }
 
 install {
