@@ -26,6 +26,9 @@ android {
 }
 
 dependencies {
+    // Local Project
+    debugImplementation project(":debugger")
+
     implementation baseLibrary
     implementation baseUiLibrary
 }

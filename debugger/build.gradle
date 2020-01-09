@@ -1,0 +1,85 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+// バージョン
+def appver_major = 0
+def appver_minor = 0
+def appver_revision = 1
+def appver_name = "${appver_major}.${appver_minor}.${appver_revision}"
+
+// ライブラリ情報
+def library_name = "debugger"
+
+
+android {
+    buildToolsVersion build_tools_version
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    compileSdkVersion compile_sdk_version
+    defaultConfig {
+        consumerProguardFiles 'consumer-rules.pro'
+        minSdkVersion 21
+        targetSdkVersion compile_sdk_version
+        versionCode 10000 * appver_major + 100 * appver_minor + appver_revision
+        versionName appver_name
+    }
+}
+
+bintray {
+    configurations = ['archives']
+    key = project.hasProperty('bintray_key') ? bintray_key : ''
+    pkg {
+        repo = projectMeta.repository
+        name = "${projectMeta.groupId}.${library_name}"
+        licenses = ['MIT']
+        websiteUrl = projectMeta.githubUrl
+        vcsUrl = "${projectMeta.githubUrl}.git"
+        publicDownloadNumbers = true
+        version {
+            name = appver_name
+        }
+    }
+    user = project.hasProperty('bintray_user') ? bintray_user : ''
+}
+
+dependencies {
+    implementation baseLibrary
+    implementation baseUiLibrary
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            artifactId library_name
+            groupId projectMeta.groupId
+            licenses {
+                license {
+                    name 'The MIT License'
+                    url 'https://opensource.org/licenses/MIT'
+                    distribution 'repo'
+                }
+            }
+            name library_name
+            packaging 'aar'
+            scm {
+                connection "${projectMeta.githubUrl}.git"
+                url projectMeta.githubUrl
+            }
+            url projectMeta.githubUrl
+            version appver_name
+        }
+    }
+}
