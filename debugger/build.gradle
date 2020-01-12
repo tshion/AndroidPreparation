@@ -59,6 +59,20 @@ dependencies {
     implementation baseLibrary
     implementation baseUiLibrary
 
+    // Hyperion
+    def hyperionVersion = "0.9.27"
+    implementation "com.willowtreeapps.hyperion:hyperion-attr:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-build-config:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-core:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-crash:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-disk:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-geiger-counter:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-measurement:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-phoenix:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-recorder:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-shared-preferences:${hyperionVersion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-timber:${hyperionVersion}"
+
     // LeakCanary
     api "com.squareup.leakcanary:leakcanary-android:2.1"
 
