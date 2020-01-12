@@ -61,6 +61,10 @@ dependencies {
 
     // LeakCanary
     api "com.squareup.leakcanary:leakcanary-android:2.1"
+
+    // Stetho
+    def stetho_version = "1.5.1"
+    implementation "com.facebook.stetho:stetho:${stetho_version}"
 }
 
 install {

@@ -1,9 +1,10 @@
 package work.shion.androidpreparation
 
+import work.shion.androidpreparation.debugger.IStethoAttacher
 import work.shion.androidpreparation.debugger.IStrictModeAttacher
 
 class DebugApplication : MainApplication(),
-    IStrictModeAttacher {
+    IStethoAttacher, IStrictModeAttacher {
 
     override fun onCreate() {
         super.onCreate()
@@ -11,5 +12,8 @@ class DebugApplication : MainApplication(),
         // StrictMode の設定
         setupThreadPolicy()
         setupVmPolicy()
+
+        // Stetho の設定
+        super<IStethoAttacher>.setup(applicationContext)
     }
 }
