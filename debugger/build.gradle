@@ -3,17 +3,18 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 
 // バージョン
 def appver_major = 0
 def appver_minor = 1
 def appver_revision = 0
-def appver_name = "${appver_major}.${appver_minor}.${appver_revision}"
+def appver_suffix = ".alpha-0"
+version = "${appver_major}.${appver_minor}.${appver_revision}${appver_suffix}"
 
 // ライブラリ情報
-def library_name = "debugger"
+archivesBaseName = "debugger"
+group "work.shion.androidpreparation"
 
 
 android {
@@ -34,7 +35,7 @@ android {
         minSdkVersion 21
         targetSdkVersion compile_sdk_version
         versionCode 10000 * appver_major + 100 * appver_minor + appver_revision
-        versionName appver_name
+        versionName version
     }
 }
 
@@ -42,14 +43,14 @@ bintray {
     configurations = ['archives']
     key = project.hasProperty('bintray_key') ? bintray_key : ''
     pkg {
-        repo = projectMeta.repository
-        name = "${projectMeta.groupId}.${library_name}"
+        repo = meta_repository
+        name = "${project.group}.${archivesBaseName}"
         licenses = ['MIT']
-        websiteUrl = projectMeta.githubUrl
-        vcsUrl = "${projectMeta.githubUrl}.git"
+        websiteUrl = meta_github_url
+        vcsUrl = "${meta_github_url}.git"
         publicDownloadNumbers = true
         version {
-            name = appver_name
+            name = project.version
         }
     }
     user = project.hasProperty('bintray_user') ? bintray_user : ''
@@ -84,8 +85,8 @@ dependencies {
 install {
     repositories.mavenInstaller {
         pom.project {
-            artifactId library_name
-            groupId projectMeta.groupId
+            artifactId archivesBaseName
+            groupId project.group
             licenses {
                 license {
                     name 'The MIT License'
@@ -93,14 +94,14 @@ install {
                     distribution 'repo'
                 }
             }
-            name library_name
+            name archivesBaseName
             packaging 'aar'
             scm {
-                connection "${projectMeta.githubUrl}.git"
-                url projectMeta.githubUrl
+                connection "${meta_github_url}.git"
+                url meta_github_url
             }
-            url projectMeta.githubUrl
-            version appver_name
+            url meta_github_url
+            version version
         }
     }
 }
