@@ -8,8 +8,8 @@ apply plugin: 'kotlin-android-extensions'
 // バージョン
 def appver_major = 0
 def appver_minor = 1
-def appver_revision = 0
-def appver_suffix = ".alpha-0"
+def appver_revision = 1
+def appver_suffix = ".alpha"
 version = "${appver_major}.${appver_minor}.${appver_revision}${appver_suffix}"
 
 // ライブラリ情報
@@ -21,7 +21,7 @@ android {
     buildToolsVersion build_tools_version
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
