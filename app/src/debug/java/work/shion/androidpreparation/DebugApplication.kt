@@ -1,5 +1,6 @@
 package work.shion.androidpreparation
 
+import work.shion.androidpreparation.baser.MainApplication
 import work.shion.androidpreparation.debugger.IStethoAttacher
 import work.shion.androidpreparation.debugger.IStrictModeAttacher
 

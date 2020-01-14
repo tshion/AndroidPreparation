@@ -1,4 +1,4 @@
-package work.shion.androidpreparation
+package work.shion.androidpreparation.baser
 
 import android.app.Application
 
