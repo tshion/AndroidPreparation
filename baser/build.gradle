@@ -1,0 +1,91 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+
+// バージョン
+def appver_major = 0
+def appver_minor = 1
+def appver_revision = 1
+def appver_suffix = ".alpha"
+version = "${appver_major}.${appver_minor}.${appver_revision}${appver_suffix}"
+
+// ライブラリ情報
+archivesBaseName = "baser"
+group "work.shion.androidpreparation"
+
+
+android {
+    buildToolsVersion build_tools_version
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    compileSdkVersion compile_sdk_version
+    defaultConfig {
+        consumerProguardFiles 'consumer-rules.pro'
+        minSdkVersion 21
+        targetSdkVersion compile_sdk_version
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode 10000 * appver_major + 100 * appver_minor + appver_revision
+        versionName version
+    }
+}
+
+bintray {
+    configurations = ['archives']
+    key = project.hasProperty('bintray_key') ? bintray_key : ''
+    pkg {
+        repo = meta_repository
+        name = "${project.group}.${archivesBaseName}"
+        licenses = ['MIT']
+        websiteUrl = meta_github_url
+        vcsUrl = "${meta_github_url}.git"
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+        }
+    }
+    user = project.hasProperty('bintray_user') ? bintray_user : ''
+}
+
+dependencies {
+    implementation baseLibrary
+    implementation baseUiLibrary
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.12'
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            artifactId archivesBaseName
+            groupId project.group
+            licenses {
+                license {
+                    name 'The MIT License'
+                    url 'https://opensource.org/licenses/MIT'
+                    distribution 'repo'
+                }
+            }
+            name archivesBaseName
+            packaging 'aar'
+            scm {
+                connection "${meta_github_url}.git"
+                url meta_github_url
+            }
+            url meta_github_url
+            version version
+        }
+    }
+}

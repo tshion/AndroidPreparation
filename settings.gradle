@@ -1,2 +1,2 @@
-include ':app', ':debugger'
+include ':app', ':baser', ':debugger'
 rootProject.name='AndroidPreparation'
