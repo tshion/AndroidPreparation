@@ -8,7 +8,7 @@ Android 開発で使う下ごしらえ集
 
 
 ## ライブラリ構成
-![ライブラリ構成](https://tentashion.github.io/AndroidPreparation/uml/ライブラリ構成.png)
+![ライブラリ構成](https://tentashion.github.io/AndroidPreparation/uml/%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E6%A7%8B%E6%88%90.png)
 
 
 ## 参考文献
