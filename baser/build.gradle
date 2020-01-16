@@ -7,8 +7,8 @@ apply plugin: 'kotlin-android-extensions'
 
 // バージョン
 def appver_major = 0
-def appver_minor = 1
-def appver_revision = 1
+def appver_minor = 2
+def appver_revision = 0
 def appver_suffix = ".alpha"
 version = "${appver_major}.${appver_minor}.${appver_revision}${appver_suffix}"
 
