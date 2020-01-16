@@ -29,6 +29,7 @@ dependencies {
     // Local Project
     debugImplementation project(":debugger")
     implementation project(":baser")
+    implementation project(":views")
 
     implementation baseLibrary
     implementation baseUiLibrary

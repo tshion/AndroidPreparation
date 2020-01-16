@@ -6,6 +6,7 @@ Android 開発で使う下ごしらえ集
 --- | --- | --- | ---
 [Baser](./baser/README.md) |  |  | 共通機能の整備
 [Debugger](./debugger/README.md) |  | [maven][maven_debugger] | デバッグ支援モジュール
+[Views](./views/README.md) |  |  | UI パーツなどの表示関連
 
 
 ## ライブラリ構成
