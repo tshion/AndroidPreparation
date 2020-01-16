@@ -3,9 +3,10 @@ package work.shion.androidpreparation
 import work.shion.androidpreparation.baser.MainApplication
 import work.shion.androidpreparation.debugger.IStethoAttacher
 import work.shion.androidpreparation.debugger.IStrictModeAttacher
+import work.shion.androidpreparation.debugger.IWebViewAttacher
 
 class DebugApplication : MainApplication(),
-    IStethoAttacher, IStrictModeAttacher {
+    IStethoAttacher, IStrictModeAttacher, IWebViewAttacher {
 
     override fun onCreate() {
         super.onCreate()
@@ -16,5 +17,8 @@ class DebugApplication : MainApplication(),
 
         // Stetho の設定
         setupStetho(applicationContext)
+
+        // WebView の設定
+        setupWebDebugger()
     }
 }
