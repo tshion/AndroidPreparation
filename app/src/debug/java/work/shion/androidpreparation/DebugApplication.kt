@@ -15,6 +15,6 @@ class DebugApplication : MainApplication(),
         setupVmPolicy()
 
         // Stetho の設定
-        super<IStethoAttacher>.setup(applicationContext)
+        setupStetho(applicationContext)
     }
 }

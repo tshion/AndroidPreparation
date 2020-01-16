@@ -18,14 +18,14 @@ interface IStethoAttacher {
      * class DebugApplication : Application(), IStethoAttacher {
      *      override fun onCreate() {
      *          super.onCreate()
-     *          setup(applicationContext)
+     *          setupStetho(applicationContext)
      *      }
      * }
      * ```
      *
      * @param appContext アプリケーションコンテキスト
      */
-    fun setup(appContext: Context) {
+    fun setupStetho(appContext: Context) {
         Thread {
             Stetho.newInitializerBuilder(appContext)
                 .enableDumpapp(Stetho.defaultDumperPluginsProvider(appContext))
