@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- HTML カラーネームの定義 -->
+<!-- 参考文献：https://www.w3schools.com/colors/colors_names.asp (161210) -->
+<resources>
+    <color name="html_aliceblue">#F0F8FF</color>
+    <color name="html_antiquewhite">#FAEBD7</color>
+    <color name="html_aqua">#00FFFF</color>
+    <color name="html_aquamarine">#7FFFD4</color>
+    <color name="html_azure">#F0FFFF</color>
+
+    <color name="html_beige">#F5F5DC</color>
+    <color name="html_bisque">#FFE4C4</color>
+    <color name="html_black">#000000</color>
+    <color name="html_blanchedalmond">#FFEBCD</color>
+    <color name="html_blue">#0000FF</color>
+    <color name="html_blueviolet">#8A2BE2</color>
+    <color name="html_brown">#A52A2A</color>
+    <color name="html_burlywood">#DEB887</color>
+
+    <color name="html_cadetblue">#5F9EA0</color>
+    <color name="html_chartreuse">#7FFF00</color>
+    <color name="html_chocolate">#D2691E</color>
+    <color name="html_coral">#FF7F50</color>
+    <color name="html_cornflowerblue">#6495ED</color>
+    <color name="html_cornsilk">#FFF8DC</color>
+    <color name="html_crimson">#DC143C</color>
+    <color name="html_cyan">#00FFFF</color>
+
+    <color name="html_darkblue">#00008B</color>
+    <color name="html_darkcyan">#008B8B</color>
+    <color name="html_darkgoldenrod">#B8860B</color>
+    <color name="html_darkgray">#A9A9A9</color>
+    <color name="html_darkgrey">@color/html_darkgray</color>
+    <color name="html_darkgreen">#006400</color>
+    <color name="html_darkkhaki">#BDB76B</color>
+    <color name="html_darkmagenta">#8B008B</color>
+    <color name="html_darkolivegreen">#556B2F</color>
+    <color name="html_darkorange">#FF8C00</color>
+    <color name="html_darkorchid">#9932CC</color>
+    <color name="html_darkred">#8B0000</color>
+    <color name="html_darksalmon">#E9967A</color>
+    <color name="html_darkseagreen">#8FBC8F</color>
+    <color name="html_darkslateblue">#483D8B</color>
+    <color name="html_darkslategray">#2F4F4F</color>
+    <color name="html_darkslategrey">@color/html_darkslategray</color>
+    <color name="html_darkturquoise">#00CED1</color>
+    <color name="html_darkviolet">#9400D3</color>
+    <color name="html_deeppink">#FF1493</color>
+    <color name="html_deepskyblue">#00BFFF</color>
+    <color name="html_dimgray">#696969</color>
+    <color name="html_dimgrey">@color/html_dimgray</color>
+    <color name="html_dodgerblue">#1E90FF</color>
+
+    <color name="html_firebrick">#B22222</color>
+    <color name="html_floralwhite">#FFFAF0</color>
+    <color name="html_forestgreen">#228B22</color>
+    <color name="html_fuchsia">#FF00FF</color>
+
+    <color name="html_gainsboro">#DCDCDC</color>
+    <color name="html_ghostwhite">#F8F8FF</color>
+    <color name="html_gold">#FFD700</color>
+    <color name="html_goldenrod">#DAA520</color>
+    <color name="html_gray">#808080</color>
+    <color name="html_grey">@color/html_gray</color>
+    <color name="html_green">#008000</color>
+    <color name="html_greenyellow">#ADFF2F</color>
+
+    <color name="html_honeydew">#F0FFF0</color>
+    <color name="html_hotpink">#FF69B4</color>
+
+    <color name="html_indianred">#CD5C5C</color>
+    <color name="html_indigo">#4B0082</color>
+    <color name="html_ivory">#FFFFF0</color>
+
+    <color name="html_khaki">#F0E68C</color>
+
+    <color name="html_lavender">#E6E6FA</color>
+    <color name="html_lavenderblush">#FFF0F5</color>
+    <color name="html_lawngreen">#7CFC00</color>
+    <color name="html_lemonchiffon">#FFFACD</color>
+    <color name="html_lightblue">#ADD8E6</color>
+    <color name="html_lightcoral">#F08080</color>
+    <color name="html_lightcyan">#E0FFFF</color>
+    <color name="html_lightgoldenrodyellow">#FAFAD2</color>
+    <color name="html_lightgray">#D3D3D3</color>
+    <color name="html_lightgrey">@color/html_lightgray</color>
+    <color name="html_lightgreen">#90EE90</color>
+    <color name="html_lightpink">#FFB6C1</color>
+    <color name="html_lightsalmon">#FFA07A</color>
+    <color name="html_lightseagreen">#20B2AA</color>
+    <color name="html_lightskyblue">#87CEFA</color>
+    <color name="html_lightslategray">#778899</color>
+    <color name="html_lightslategrey">@color/html_lightslategray</color>
+    <color name="html_lightsteelblue">#B0C4DE</color>
+    <color name="html_lightyellow">#FFFFE0</color>
+    <color name="html_lime">#00FF00</color>
+    <color name="html_limegreen">#32CD32</color>
+    <color name="html_linen">#FAF0E6</color>
+
+    <color name="html_magenta">#FF00FF</color>
+    <color name="html_maroon">#800000</color>
+    <color name="html_mediumaquamarine">#66CDAA</color>
+    <color name="html_mediumblue">#0000CD</color>
+    <color name="html_mediumorchid">#BA55D3</color>
+    <color name="html_mediumpurple">#9370DB</color>
+    <color name="html_mediumseagreen">#3CB371</color>
+    <color name="html_mediumslateblue">#7B68EE</color>
+    <color name="html_mediumspringgreen">#00FA9A</color>
+    <color name="html_mediumturquoise">#48D1CC</color>
+    <color name="html_mediumvioletred">#C71585</color>
+    <color name="html_midnightblue">#191970</color>
+    <color name="html_mintcream">#F5FFFA</color>
+    <color name="html_mistyrose">#FFE4E1</color>
+    <color name="html_moccasin">#FFE4B5</color>
+
+    <color name="html_navajowhite">#FFDEAD</color>
+    <color name="html_navy">#000080</color>
+
+    <color name="html_oldlace">#FDF5E6</color>
+    <color name="html_olive">#808000</color>
+    <color name="html_orivedrab">#6B8E23</color>
+    <color name="html_orange">#FFA500</color>
+    <color name="html_orangered">#FF4500</color>
+    <color name="html_orchid">#DA70D6</color>
+
+    <color name="html_palegoldenrod">#EEE8AA</color>
+    <color name="html_palegreen">#98FB98</color>
+    <color name="html_paleturquoise">#AFEEEE</color>
+    <color name="html_palevioletred">#DB7093</color>
+    <color name="html_papayawhip">#FFEFD5</color>
+    <color name="html_peachpuff">#FFDAB9</color>
+    <color name="html_peru">#CD853F</color>
+    <color name="html_pink">#FFC0CB</color>
+    <color name="html_plum">#DDA0DD</color>
+    <color name="html_powderblue">#B0E0E6</color>
+    <color name="html_puple">#800080</color>
+
+    <color name="html_rebeccapurple">#663399</color>
+    <color name="html_red">#FF0000</color>
+    <color name="html_rosybrown">#BC8F8F</color>
+    <color name="html_royalblue">#4169E1</color>
+
+    <color name="html_saddlebrown">#8B4513</color>
+    <color name="html_salmon">#FA8072</color>
+    <color name="html_sandybrown">#F4A460</color>
+    <color name="html_seagreen">#2E8B57</color>
+    <color name="html_seashell">#FFF5EE</color>
+    <color name="html_sienna">#A0522D</color>
+    <color name="html_silver">#C0C0C0</color>
+    <color name="html_skyblue">#87CEEB</color>
+    <color name="html_slateblue">#6A5ACD</color>
+    <color name="html_slategray">#708090</color>
+    <color name="html_slategrey">@color/html_slategray</color>
+    <color name="html_snow">#FFFAFA</color>
+    <color name="html_springgreen">#00FF7F</color>
+    <color name="html_steelblue">#4682B4</color>
+
+    <color name="html_tan">#D2B48C</color>
+    <color name="html_teal">#008080</color>
+    <color name="html_thistle">#D8BFD8</color>
+    <color name="html_tomato">#FF6347</color>
+    <color name="html_turquoise">#40E0D0</color>
+
+    <color name="html_violet">#EE82EE</color>
+
+    <color name="html_wheat">#F5DEB3</color>
+    <color name="html_white">#FFFFFF</color>
+    <color name="html_whitesmoke">#F5F5F5</color>
+
+    <color name="html_yellow">#FFFF00</color>
+    <color name="html_yellowgreen">#9ACD32</color>
+</resources>
