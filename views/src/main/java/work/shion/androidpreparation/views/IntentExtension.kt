@@ -1,8 +1,8 @@
 package work.shion.androidpreparation.views
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 /**
@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
  * }
  * ```
  */
-fun AppCompatActivity?.openExtraBrowser(uri: Uri) {
+fun Activity?.launchBrowser(uri: Uri) {
     this ?: return
     Intent(Intent.ACTION_VIEW, uri).also { startActivity(it) }
 }
@@ -23,4 +23,4 @@ fun AppCompatActivity?.openExtraBrowser(uri: Uri) {
 /**
  * アプリ外ブラウザの起動
  */
-fun Fragment?.openExtraBrowser(uri: Uri) = (this?.activity as? AppCompatActivity)?.openExtraBrowser(uri)
+fun Fragment?.launchBrowser(uri: Uri) = (this?.activity as? Activity)?.launchBrowser(uri)
