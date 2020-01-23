@@ -60,8 +60,10 @@ bintray {
 }
 
 dependencies {
-    implementation baseLibrary
-    implementation baseUiLibrary
+
+    // AndroidX
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.core:core-ktx:1.1.0"
 
     // Google
     kapt "com.google.auto.service:auto-service:1.0-rc6"
@@ -80,6 +82,10 @@ dependencies {
     implementation "com.willowtreeapps.hyperion:hyperion-recorder:${hyperionVersion}"
     implementation "com.willowtreeapps.hyperion:hyperion-shared-preferences:${hyperionVersion}"
     implementation "com.willowtreeapps.hyperion:hyperion-timber:${hyperionVersion}"
+
+    // Kotlin
+    implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
     // LeakCanary
     api "com.squareup.leakcanary:leakcanary-android:2.1"
