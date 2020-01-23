@@ -1,8 +1,9 @@
-package work.shion.androidpreparation.debugger
+package work.shion.androidpreparation.debugger.android
 
 import android.os.Handler
 import android.os.Looper
 import android.webkit.WebView
+import work.shion.androidpreparation.debugger.BuildConfig
 
 /**
  * WebView の機能付与

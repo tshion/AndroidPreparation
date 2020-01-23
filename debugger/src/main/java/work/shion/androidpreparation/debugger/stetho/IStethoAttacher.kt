@@ -1,4 +1,4 @@
-package work.shion.androidpreparation.debugger
+package work.shion.androidpreparation.debugger.stetho
 
 import android.content.Context
 import com.facebook.stetho.Stetho

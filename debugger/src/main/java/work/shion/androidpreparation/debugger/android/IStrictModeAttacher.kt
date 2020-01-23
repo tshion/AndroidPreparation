@@ -1,4 +1,4 @@
-package work.shion.androidpreparation.debugger
+package work.shion.androidpreparation.debugger.android
 
 import android.os.StrictMode
 
