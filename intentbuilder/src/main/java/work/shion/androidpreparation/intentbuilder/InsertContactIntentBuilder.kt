@@ -56,7 +56,7 @@ class InsertContactIntentBuilder : IntentBuilder<ConsumerIntent>() {
     override fun build(): ConsumerIntent? {
         uri ?: return null
         val intent = ConsumerIntent().apply {
-            action = Intent.ACTION_EDIT
+            action = Intent.ACTION_INSERT
             data = uri
         }
         company?.also { intent.putExtra(ContactsContract.Intents.Insert.COMPANY, it) }
