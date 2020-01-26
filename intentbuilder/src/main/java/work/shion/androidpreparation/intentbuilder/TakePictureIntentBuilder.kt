@@ -10,7 +10,7 @@ import android.provider.MediaStore
  * ``` kotlin
  * TakePictureIntentBuilder().apply {
  *     setDestination(uri)
- * }.build()?.launch(activity!!)
+ * }.build()?.launch(activity!!, REQUEST_CODE)
  * ```
  *
  * ### 参考文献

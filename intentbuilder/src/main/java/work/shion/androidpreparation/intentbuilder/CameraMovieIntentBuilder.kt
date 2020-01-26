@@ -8,7 +8,7 @@ import android.provider.MediaStore
  * ### 実装例
  * ``` kotlin
  * CameraMovieIntentBuilder().apply {
- * }.build()?.launch(activity!!)
+ * }.build()?.launch(activity!!, REQUEST_CODE)
  * ```
  *
  * ### 参考文献
