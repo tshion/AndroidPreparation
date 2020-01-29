@@ -10,7 +10,6 @@ import android.webkit.URLUtil
  * ### 実装例
  * ``` kotlin
  * WebIntentBuilder().apply {
- *    setTextHtml()
  *    trySetUri("https://mokumokulog.netlify.com/")
  * }.build()?.launch(activity!!)
  * ```
@@ -24,27 +23,29 @@ class BrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
     private var uri: Uri? = null
 
 
-    fun setTextHtml() {
-        mimeType = "text/html"
-    }
+//    fun clearType() {
+//        mimeType = null
+//    }
 
-    fun setTextPlain() {
-        mimeType = "text/plain"
-    }
+//    fun setTextHtml() {
+//        mimeType = "text/html"
+//    }
 
-    fun setXHtml() {
-        mimeType = "application/xhtml+xml"
-    }
+//    fun setTextPlain() {
+//        mimeType = "text/plain"
+//    }
 
-    fun setXHtmlMobile() {
-        mimeType = "application/vnd.wap.xhtml+xml"
-    }
+//    fun setXHtml() {
+//        mimeType = "application/xhtml+xml"
+//    }
+
+//    fun setXHtmlMobile() {
+//        mimeType = "application/vnd.wap.xhtml+xml"
+//    }
 
     fun trySetUri(uri: String): Boolean {
         val isValid = URLUtil.isNetworkUrl(uri)
-        if (isValid) {
-            this.uri = Uri.parse(uri)
-        }
+        if (isValid) this.uri = Uri.parse(uri)
         return isValid
     }
 
@@ -54,7 +55,6 @@ class BrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
      */
     override fun build(): ConsumerIntent? {
         uri ?: return null
-
         val intent = ConsumerIntent().apply {
             action = Intent.ACTION_VIEW
             data = uri
