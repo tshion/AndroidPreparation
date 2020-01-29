@@ -2,11 +2,13 @@
 Android 開発で使う下ごしらえ集
 
 ## ライブラリ一覧
-ライブラリ | jCenter | maven | 用途
---- | --- | --- | ---
-[Baser](./baser/README.md) |  |  | 共通機能の整備
-[Debugger](./debugger/README.md) |  | [maven][maven_debugger] | デバッグ支援モジュール
-[Views](./views/README.md) |  |  | UI パーツなどの表示関連
+ライブラリ | レベル | jCenter | maven | 用途
+--- | --- | --- | --- | ---
+[Baser](./baser/README.md) | templates |  |  | 共通機能の整備
+[Debugger](./debugger/README.md) | organisms |  | [maven][maven_debugger] | デバッグ支援モジュール
+IntentBuilder | atoms |  | [maven][maven_intentbuilder] | Intent の組み立て
+[Views](./views/README.md) | organisms |  |  | UI パーツなどの表示関連
+WebViewBuilder | atoms or molecules |  |  | WebView の組み立て、破棄
 
 
 ## ライブラリ構成
@@ -18,3 +20,4 @@ Android 開発で使う下ごしらえ集
 
 
 [maven_debugger]: https://bintray.com/shion/maven/work.shion.androidpreparation.debugger
+[maven_intentbuilder]: https://bintray.com/shion/maven/work.shion.androidpreparation.intentbuilder
