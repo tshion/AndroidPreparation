@@ -40,50 +40,58 @@ class BrowserSample : Activity() {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
                     trySetUri(uriFailure)
-                }.build()?.launch(this@BrowserSample)
+                }.build() ?: throw Error()
             }
             text = buttonEmptyUri
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-//        root.addView(Button(this).apply {
-//            setOnClickListener {
-//                BrowserIntentBuilder().apply {
-//                    setTextHtml()
-//                    trySetUri(url)
-//                }.build()?.launch(this@BrowserSample)
-//            }
-//            text = buttonHtml
-//        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        root.addView(Button(this).apply {
+            setOnClickListener {
+                BrowserIntentBuilder().apply {
+                    setTextHtml()
+                    trySetUri(url)
+                }.build()?.launch(this@BrowserSample) {
+                    throw NotImplementedError()
+                }
+            }
+            text = buttonHtml
+        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-//        root.addView(Button(this).apply {
-//            setOnClickListener {
-//                BrowserIntentBuilder().apply {
-//                    setTextPlain()
-//                    trySetUri(url)
-//                }.build()?.launch(this@BrowserSample)
-//            }
-//            text = buttonPlain
-//        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        root.addView(Button(this).apply {
+            setOnClickListener {
+                BrowserIntentBuilder().apply {
+                    setTextPlain()
+                    trySetUri(url)
+                }.build()?.launch(this@BrowserSample) {
+                    throw NotImplementedError()
+                }
+            }
+            text = buttonPlain
+        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-//        root.addView(Button(this).apply {
-//            setOnClickListener {
-//                BrowserIntentBuilder().apply {
-//                    setXHtml()
-//                    trySetUri(url)
-//                }.build()?.launch(this@BrowserSample)
-//            }
-//            text = buttonXHtml
-//        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        root.addView(Button(this).apply {
+            setOnClickListener {
+                BrowserIntentBuilder().apply {
+                    setXHtml()
+                    trySetUri(url)
+                }.build()?.launch(this@BrowserSample) {
+                    throw NotImplementedError()
+                }
+            }
+            text = buttonXHtml
+        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-//        root.addView(Button(this).apply {
-//            setOnClickListener {
-//                BrowserIntentBuilder().apply {
-//                    setXHtmlMobile()
-//                    trySetUri(url)
-//                }.build()?.launch(this@BrowserSample)
-//            }
-//            text = buttonXHtmlMobile
-//        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        root.addView(Button(this).apply {
+            setOnClickListener {
+                BrowserIntentBuilder().apply {
+                    setXHtmlMobile()
+                    trySetUri(url)
+                }.build()?.launch(this@BrowserSample) {
+                    throw NotImplementedError()
+                }
+            }
+            text = buttonXHtmlMobile
+        }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
         setContentView(root)
     }

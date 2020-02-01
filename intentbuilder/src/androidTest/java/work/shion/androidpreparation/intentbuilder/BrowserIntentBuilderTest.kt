@@ -42,48 +42,28 @@ class BrowserIntentBuilderTest {
         ))
     }
 
-    @Test
+    @Test(expected = Error::class)
     fun testEmptyUri() {
         onView(withText(BrowserSample.buttonEmptyUri)).perform(click())
     }
 
-//    @Test
-//    fun testHtml() {
-//        onView(withText(BrowserSample.buttonHtml)).perform(click())
-//        intended(allOf(
-//                hasAction(Intent.ACTION_VIEW),
-//                hasData(Uri.parse(BrowserSample.url)),
-//                hasType("text/html")
-//        ))
-//    }
+    @Test(expected = NotImplementedError::class)
+    fun testHtml() {
+        onView(withText(BrowserSample.buttonHtml)).perform(click())
+    }
 
-//    @Test
-//    fun testPlain() {
-//        onView(withText(BrowserSample.buttonPlain)).perform(click())
-//        intended(allOf(
-//                hasAction(Intent.ACTION_VIEW),
-//                hasData(Uri.parse(BrowserSample.url)),
-//                hasType("text/plain")
-//        ))
-//    }
+    @Test(expected = NotImplementedError::class)
+    fun testPlain() {
+        onView(withText(BrowserSample.buttonPlain)).perform(click())
+    }
 
-//    @Test
-//    fun testXHtml() {
-//        onView(withText(BrowserSample.buttonXHtml)).perform(click())
-//        intended(allOf(
-//                hasAction(Intent.ACTION_VIEW),
-//                hasData(Uri.parse(BrowserSample.url)),
-//                hasType("application/xhtml+xml")
-//        ))
-//    }
+    @Test(expected = NotImplementedError::class)
+    fun testXHtml() {
+        onView(withText(BrowserSample.buttonXHtml)).perform(click())
+    }
 
-//    @Test
-//    fun testXHtmlMobile() {
-//        onView(withText(BrowserSample.buttonXHtmlMobile)).perform(click())
-//        intended(allOf(
-//                hasAction(Intent.ACTION_VIEW),
-//                hasData(Uri.parse(BrowserSample.url)),
-//                hasType("application/vnd.wap.xhtml+xml")
-//        ))
-//    }
+    @Test(expected = NotImplementedError::class)
+    fun testXHtmlMobile() {
+        onView(withText(BrowserSample.buttonXHtmlMobile)).perform(click())
+    }
 }

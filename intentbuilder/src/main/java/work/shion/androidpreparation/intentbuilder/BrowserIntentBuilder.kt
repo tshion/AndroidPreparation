@@ -23,25 +23,25 @@ class BrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
     private var uri: Uri? = null
 
 
-//    fun clearType() {
-//        mimeType = null
-//    }
+    fun clearType() {
+        mimeType = null
+    }
 
-//    fun setTextHtml() {
-//        mimeType = "text/html"
-//    }
+    fun setTextHtml() {
+        mimeType = "text/html"
+    }
 
-//    fun setTextPlain() {
-//        mimeType = "text/plain"
-//    }
+    fun setTextPlain() {
+        mimeType = "text/plain"
+    }
 
-//    fun setXHtml() {
-//        mimeType = "application/xhtml+xml"
-//    }
+    fun setXHtml() {
+        mimeType = "application/xhtml+xml"
+    }
 
-//    fun setXHtmlMobile() {
-//        mimeType = "application/vnd.wap.xhtml+xml"
-//    }
+    fun setXHtmlMobile() {
+        mimeType = "application/vnd.wap.xhtml+xml"
+    }
 
     fun trySetUri(uri: String): Boolean {
         val isValid = URLUtil.isNetworkUrl(uri)
