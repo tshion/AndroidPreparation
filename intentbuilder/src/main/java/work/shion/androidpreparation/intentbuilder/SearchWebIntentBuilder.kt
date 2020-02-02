@@ -10,7 +10,7 @@ import android.content.Intent
  * ``` kotlin
  * SearchWebIntentBuilder().apply {
  *     query = "Android"
- * }.build()?.launch(this)
+ * }.build().launch(this)
  * ```
  *
  * ### 参考文献
@@ -25,14 +25,8 @@ class SearchWebIntentBuilder : IntentBuilder<ConsumerIntent>() {
     /**
      * 与えられた設定からIntent を生成する
      */
-    override fun build(): ConsumerIntent? {
-        return if (!query.isNullOrBlank()) {
-            ConsumerIntent().apply {
-                action = Intent.ACTION_WEB_SEARCH
-                putExtra(SearchManager.QUERY, query)
-            }
-        } else {
-            null
-        }
+    override fun build() = ConsumerIntent().apply {
+        action = Intent.ACTION_WEB_SEARCH
+        putExtra(SearchManager.QUERY, query)
     }
 }
