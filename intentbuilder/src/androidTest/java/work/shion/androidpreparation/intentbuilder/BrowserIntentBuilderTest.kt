@@ -18,6 +18,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import work.shion.androidpreparation.intentbuilder.BrowserSample.Companion.decorateText
 
 @RunWith(AndroidJUnit4::class)
 class BrowserIntentBuilderTest {
@@ -35,35 +36,41 @@ class BrowserIntentBuilderTest {
 
     @Test
     fun testEmpty() {
-        onView(withText(BrowserSample.buttonEmpty)).perform(click())
+        val target = BrowserSample.test
+        onView(withText(decorateText(target))).perform(click())
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
-                hasData(Uri.parse(BrowserSample.url))
+                hasData(Uri.parse(target.second))
         ))
     }
 
     @Test(expected = Error::class)
     fun testEmptyUri() {
-        onView(withText(BrowserSample.buttonEmptyUri)).perform(click())
+        val target = BrowserSample.testFailure
+        onView(withText(decorateText(target))).perform(click())
     }
 
     @Test(expected = NotImplementedError::class)
     fun testHtml() {
-        onView(withText(BrowserSample.buttonHtml)).perform(click())
+        val target = BrowserSample.testHTML
+        onView(withText(decorateText(target))).perform(click())
     }
 
     @Test(expected = NotImplementedError::class)
     fun testPlain() {
-        onView(withText(BrowserSample.buttonPlain)).perform(click())
+        val target = BrowserSample.testPlain
+        onView(withText(decorateText(target))).perform(click())
     }
 
     @Test(expected = NotImplementedError::class)
     fun testXHtml() {
-        onView(withText(BrowserSample.buttonXHtml)).perform(click())
+        val target = BrowserSample.testXHtml
+        onView(withText(decorateText(target))).perform(click())
     }
 
     @Test(expected = NotImplementedError::class)
     fun testXHtmlMobile() {
-        onView(withText(BrowserSample.buttonXHtmlMobile)).perform(click())
+        val target = BrowserSample.testXHtmlMobile
+        onView(withText(decorateText(target))).perform(click())
     }
 }

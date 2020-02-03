@@ -9,8 +9,8 @@ import android.webkit.URLUtil
  *
  * ### 実装例
  * ``` kotlin
- * WebIntentBuilder().apply {
- *    trySetUri("https://mokumokulog.netlify.com/")
+ * BrowserIntentBuilder().apply {
+ *     trySetUri("https://mokumokulog.netlify.com/")
  * }.build()?.launch(activity!!)
  * ```
  *

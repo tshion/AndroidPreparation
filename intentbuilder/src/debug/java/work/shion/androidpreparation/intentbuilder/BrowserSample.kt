@@ -9,14 +9,15 @@ import android.widget.LinearLayout
 class BrowserSample : Activity() {
 
     companion object {
-        const val buttonEmpty = "empty"
-        const val buttonEmptyUri = "empty uri"
-        const val buttonHtml = "text/html"
-        const val buttonPlain = "text/plain"
-        const val buttonXHtml = "application/xhtml+xml"
-        const val buttonXHtmlMobile = "application/vnd.wap.xhtml+xml"
-        const val url = "https://mokumokulog.netlify.com/"
-        const val uriFailure = "hoge://mokumokulog.netlify.com/"
+        val test = Pair("", "https://mokumokulog.netlify.com/")
+        val testFailure = Pair("", "hoge://mokumokulog.netlify.com/")
+        val testHTML = Pair("text/html", "https://mokumokulog.netlify.com/")
+        val testPlain = Pair("text/plain", "https://mokumokulog.netlify.com/")
+        val testXHtml = Pair("application/xhtml+xml", "https://mokumokulog.netlify.com/")
+        val testXHtmlMobile = Pair("application/vnd.wap.xhtml+xml", "https://mokumokulog.netlify.com/")
+
+
+        fun decorateText(pair: Pair<String, String>) = "MIME: ${pair.first}\nURL: ${pair.second}"
     }
 
 
@@ -30,67 +31,67 @@ class BrowserSample : Activity() {
         root.addView(Button(this).apply {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
-                    trySetUri(url)
+                    trySetUri(test.second)
                 }.build()?.launch(this@BrowserSample)
             }
-            text = buttonEmpty
+            text = decorateText(test)
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
         root.addView(Button(this).apply {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
-                    trySetUri(uriFailure)
+                    trySetUri(testFailure.second)
                 }.build() ?: throw Error()
             }
-            text = buttonEmptyUri
+            text = decorateText(testFailure)
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
         root.addView(Button(this).apply {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
                     setTextHtml()
-                    trySetUri(url)
+                    trySetUri(testHTML.second)
                 }.build()?.launch(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }
-            text = buttonHtml
+            text = decorateText(testHTML)
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
         root.addView(Button(this).apply {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
                     setTextPlain()
-                    trySetUri(url)
+                    trySetUri(testPlain.second)
                 }.build()?.launch(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }
-            text = buttonPlain
+            text = decorateText(testPlain)
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
         root.addView(Button(this).apply {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
                     setXHtml()
-                    trySetUri(url)
+                    trySetUri(testXHtml.second)
                 }.build()?.launch(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }
-            text = buttonXHtml
+            text = decorateText(testXHtml)
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
         root.addView(Button(this).apply {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
                     setXHtmlMobile()
-                    trySetUri(url)
+                    trySetUri(testXHtmlMobile.second)
                 }.build()?.launch(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }
-            text = buttonXHtmlMobile
+            text = decorateText(testXHtmlMobile)
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
         setContentView(root)
