@@ -32,8 +32,17 @@ class CalendarEventIntentBuilderTest {
     }
 
     @Test
-    fun test() {
+    fun testEmpty() {
         onView(withText(CalendarEventSample.paramEmpty)).perform(click())
+        intended(CoreMatchers.allOf(
+                IntentMatchers.hasAction(Intent.ACTION_INSERT),
+                IntentMatchers.hasData(Events.CONTENT_URI)
+        ))
+    }
+
+    @Test
+    fun testFull() {
+        onView(withText(CalendarEventSample.paramFull)).perform(click())
         intended(CoreMatchers.allOf(
                 IntentMatchers.hasAction(Intent.ACTION_INSERT),
                 IntentMatchers.hasData(Events.CONTENT_URI)

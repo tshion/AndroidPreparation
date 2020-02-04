@@ -62,14 +62,14 @@ class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
      * イベントの開始時間の設定
      */
     fun setBeginTime(input: Date) {
-        beginTime = input.time * 1000
+        beginTime = input.time
     }
 
     /**
      * イベントの終了時間の設定
      */
     fun setEndTime(input: Date) {
-        endTime = input.time * 1000
+        endTime = input.time
     }
 
 
