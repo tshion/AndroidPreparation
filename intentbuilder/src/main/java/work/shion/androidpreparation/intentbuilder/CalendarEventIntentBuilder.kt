@@ -18,7 +18,7 @@ import java.util.*
  * ```
  *
  * ### 参考文献
- * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#Clock)
+ * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#AddEvent)
  */
 class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
@@ -76,9 +76,7 @@ class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
     /**
      * 与えられた設定からIntent を生成する
      */
-    override fun build(): ConsumerIntent? {
-        beginTime ?: endTime ?: return null
-
+    override fun build(): ConsumerIntent {
         val intent = ConsumerIntent().apply {
             action = Intent.ACTION_INSERT
             data = Events.CONTENT_URI

@@ -21,8 +21,8 @@ class CalendarEventSample : Activity() {
 
         root.addView(Button(this).apply {
             setOnClickListener {
-                CalendarEventIntentBuilder().apply {
-                }.build()?.launch(this@CalendarEventSample)
+                CalendarEventIntentBuilder().build()
+                        .launch(this@CalendarEventSample)
             }
             text = paramEmpty
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
