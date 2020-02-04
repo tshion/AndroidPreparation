@@ -1,7 +1,7 @@
 package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
-import android.provider.CalendarContract
+import android.provider.CalendarContract.*
 import java.util.*
 
 /**
@@ -81,15 +81,15 @@ class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
         val intent = ConsumerIntent().apply {
             action = Intent.ACTION_INSERT
-            data = CalendarContract.Events.CONTENT_URI
+            data = Events.CONTENT_URI
         }
-        beginTime?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, it) }
-        description?.also { intent.putExtra(CalendarContract.Events.DESCRIPTION, it) }
+        beginTime?.also { intent.putExtra(EXTRA_EVENT_BEGIN_TIME, it) }
+        description?.also { intent.putExtra(Events.DESCRIPTION, it) }
         email?.also { intent.putExtra(Intent.EXTRA_EMAIL, it) }
-        endTime?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, it) }
-        isAllDay?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, it) }
-        location?.also { intent.putExtra(CalendarContract.Events.EVENT_LOCATION, it) }
-        title?.also { intent.putExtra(CalendarContract.Events.TITLE, it) }
+        endTime?.also { intent.putExtra(EXTRA_EVENT_END_TIME, it) }
+        isAllDay?.also { intent.putExtra(EXTRA_EVENT_ALL_DAY, it) }
+        location?.also { intent.putExtra(Events.EVENT_LOCATION, it) }
+        title?.also { intent.putExtra(Events.TITLE, it) }
         return intent
     }
 }
