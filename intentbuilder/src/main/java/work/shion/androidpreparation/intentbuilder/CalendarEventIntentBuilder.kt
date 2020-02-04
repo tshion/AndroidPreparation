@@ -10,11 +10,16 @@ import java.util.*
  * ### 実装例
  * ``` kotlin
  * CalendarEventIntentBuilder().apply {
- *     setBeginTime(begin)
- *     setEndTime(end)
- *     setLocation(location)
- *     setTitle(title)
- * }.build()?.launch(activity!!)
+ *     setBeginTime(start)
+ *     description = "テスト用の説明"
+ *     emailList.add("1234@intent.test")
+ *     emailList.add("1234@intent.test")
+ *     emailList.add("5678@intent.test")
+ *     setEndTime(finish)
+ *     isAllDay = true
+ *     location = "テスト用の場所"
+ *     title = "テスト用のタイトル"
+ * }.build().launch(activity!!)
  * ```
  *
  * ### 参考文献
