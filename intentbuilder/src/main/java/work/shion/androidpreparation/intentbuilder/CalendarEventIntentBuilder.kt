@@ -1,8 +1,8 @@
 package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
-import android.provider.CalendarContract
-
+import android.provider.CalendarContract.*
+import java.util.*
 
 /**
  * カレンダーイベントの設定ビルダー
@@ -10,93 +10,89 @@ import android.provider.CalendarContract
  * ### 実装例
  * ``` kotlin
  * CalendarEventIntentBuilder().apply {
- *     setBeginTime(begin)
- *     setEndTime(end)
- *     setLocation(location)
- *     setTitle(title)
- * }.build()?.launch(activity!!)
+ *     setBeginTime(start)
+ *     description = "テスト用の説明"
+ *     emailList.add("1234@intent.test")
+ *     emailList.add("1234@intent.test")
+ *     emailList.add("5678@intent.test")
+ *     setEndTime(finish)
+ *     isAllDay = true
+ *     location = "テスト用の場所"
+ *     title = "テスト用のタイトル"
+ * }.build().launch(activity!!)
  * ```
  *
  * ### 参考文献
- * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#Clock)
+ * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#AddEvent)
  */
 class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
-
-    private var beginTime: Long? = null
-    private var description: String? = null
-    private var email: String? = null
-    private var endTime: Long? = null
-    private var isAllDay: Boolean? = null
-    private var location: String? = null
-    private var title: String? = null
-
-
-    /**
-     * 終日のイベントかどうかを示すブール値。
-     */
-    fun setAllDay(input: Boolean) {
-        isAllDay = input
-    }
 
     /**
      * イベントの開始時間（エポックからのミリ秒単位）。
      */
-    fun setBeginTime(input: Long) {
-        beginTime = input
-    }
+    var beginTime: Long? = null
 
     /**
      * イベントの説明。
      */
-    fun setDescription(input: String) {
-        description = input
-    }
+    var description: String? = null
 
     /**
-     * 参加者のメールアドレスのコンマ区切りリスト。
+     * 参加者のメールアドレス
      */
-    fun setEmail(input: String) {
-        email = input
-    }
+    val emailList: MutableSet<String> = mutableSetOf()
 
     /**
      * イベントの終了時間（エポックからのミリ秒単位）。
      */
-    fun setEndTime(input: Long) {
-        endTime = input
-    }
+    var endTime: Long? = null
+
+    /**
+     * 終日のイベントかどうかを示すブール値。
+     */
+    var isAllDay: Boolean? = null
 
     /**
      * イベントの場所。
      */
-    fun setLocation(input: String) {
-        location = input
-    }
+    var location: String? = null
 
     /**
      * イベントのタイトル。
      */
-    fun setTitle(input: String) {
-        title = input
+    var title: String? = null
+
+
+    /**
+     * イベントの開始時間の設定
+     */
+    fun setBeginTime(input: Date) {
+        beginTime = input.time
+    }
+
+    /**
+     * イベントの終了時間の設定
+     */
+    fun setEndTime(input: Date) {
+        endTime = input.time
     }
 
 
     /**
      * 与えられた設定からIntent を生成する
      */
-    override fun build(): ConsumerIntent? {
-        beginTime ?: endTime ?: return null
-
+    override fun build(): ConsumerIntent {
         val intent = ConsumerIntent().apply {
             action = Intent.ACTION_INSERT
-            data = CalendarContract.Events.CONTENT_URI
+            data = Events.CONTENT_URI
         }
-        beginTime?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, it) }
-        description?.also { intent.putExtra(CalendarContract.Events.DESCRIPTION, it) }
-        email?.also { intent.putExtra(Intent.EXTRA_EMAIL, it) }
-        endTime?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, it) }
-        isAllDay?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, it) }
-        title?.also { intent.putExtra(CalendarContract.Events.TITLE, it) }
+        beginTime?.also { intent.putExtra(EXTRA_EVENT_BEGIN_TIME, it) }
+        description?.also { intent.putExtra(Events.DESCRIPTION, it) }
+        if (emailList.isNotEmpty()) intent.putExtra(Intent.EXTRA_EMAIL, emailList.joinToString(","))
+        endTime?.also { intent.putExtra(EXTRA_EVENT_END_TIME, it) }
+        isAllDay?.also { intent.putExtra(EXTRA_EVENT_ALL_DAY, it) }
+        location?.also { intent.putExtra(Events.EVENT_LOCATION, it) }
+        title?.also { intent.putExtra(Events.TITLE, it) }
         return intent
     }
 }
