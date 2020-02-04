@@ -2,7 +2,7 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
 import android.provider.CalendarContract
-
+import java.util.*
 
 /**
  * カレンダーイベントの設定ビルダー
@@ -22,62 +22,54 @@ import android.provider.CalendarContract
  */
 class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
-    private var beginTime: Long? = null
-    private var description: String? = null
-    private var email: String? = null
-    private var endTime: Long? = null
-    private var isAllDay: Boolean? = null
-    private var location: String? = null
-    private var title: String? = null
-
-
-    /**
-     * 終日のイベントかどうかを示すブール値。
-     */
-    fun setAllDay(input: Boolean) {
-        isAllDay = input
-    }
-
     /**
      * イベントの開始時間（エポックからのミリ秒単位）。
      */
-    fun setBeginTime(input: Long) {
-        beginTime = input
-    }
+    var beginTime: Long? = null
 
     /**
      * イベントの説明。
      */
-    fun setDescription(input: String) {
-        description = input
-    }
+    var description: String? = null
 
     /**
      * 参加者のメールアドレスのコンマ区切りリスト。
      */
-    fun setEmail(input: String) {
-        email = input
-    }
+    var email: String? = null
 
     /**
      * イベントの終了時間（エポックからのミリ秒単位）。
      */
-    fun setEndTime(input: Long) {
-        endTime = input
-    }
+    var endTime: Long? = null
+
+    /**
+     * 終日のイベントかどうかを示すブール値。
+     */
+    var isAllDay: Boolean? = null
 
     /**
      * イベントの場所。
      */
-    fun setLocation(input: String) {
-        location = input
-    }
+    var location: String? = null
 
     /**
      * イベントのタイトル。
      */
-    fun setTitle(input: String) {
-        title = input
+    var title: String? = null
+
+
+    /**
+     * イベントの開始時間の設定
+     */
+    fun setBeginTime(input: Date) {
+        beginTime = input.time * 1000
+    }
+
+    /**
+     * イベントの終了時間の設定
+     */
+    fun setEndTime(input: Date) {
+        endTime = input.time * 1000
     }
 
 
@@ -96,6 +88,7 @@ class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
         email?.also { intent.putExtra(Intent.EXTRA_EMAIL, it) }
         endTime?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, it) }
         isAllDay?.also { intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, it) }
+        location?.also { intent.putExtra(CalendarContract.Events.EVENT_LOCATION, it) }
         title?.also { intent.putExtra(CalendarContract.Events.TITLE, it) }
         return intent
     }
