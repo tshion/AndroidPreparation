@@ -33,9 +33,9 @@ class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
     var description: String? = null
 
     /**
-     * 参加者のメールアドレスのコンマ区切りリスト。
+     * 参加者のメールアドレス
      */
-    var email: String? = null
+    val emailList: MutableSet<String> = mutableSetOf()
 
     /**
      * イベントの終了時間（エポックからのミリ秒単位）。
@@ -83,7 +83,7 @@ class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
         }
         beginTime?.also { intent.putExtra(EXTRA_EVENT_BEGIN_TIME, it) }
         description?.also { intent.putExtra(Events.DESCRIPTION, it) }
-        email?.also { intent.putExtra(Intent.EXTRA_EMAIL, it) }
+        if (emailList.isNotEmpty()) intent.putExtra(Intent.EXTRA_EMAIL, emailList.joinToString(","))
         endTime?.also { intent.putExtra(EXTRA_EVENT_END_TIME, it) }
         isAllDay?.also { intent.putExtra(EXTRA_EVENT_ALL_DAY, it) }
         location?.also { intent.putExtra(Events.EVENT_LOCATION, it) }
