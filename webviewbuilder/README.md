@@ -31,7 +31,7 @@ If you want to know a library version, please check [Bintray site][maven_webview
 Now, you wrote like this at layout xml file.
 
 ``` xml
-<FrameLayout>
+<FrameLayout ......>
     <WebView
         android:id="@+id/webview_target"
         android:layout_width="match_parent"
@@ -59,7 +59,7 @@ WebViewBuilder()
     .setGeolocationEnabled(true)
     .setJavaScriptEnabled(true)
     .setWebChromeClient(chromeClient)
-    .into(webview)
+    .into(webview_target)
     .loadUrl("https://mokumokulog.netlify.com/")
 ```
 
