@@ -27,6 +27,42 @@ If you want to know a library version, please check [Bintray site][maven_webview
 
 ※Be careful, I publish a beta-release by Maven, a product-release by jCenter.
 
+### How to use
+Now, you wrote like this at layout xml file.
+
+``` xml
+<FrameLayout>
+    <WebView
+        android:id="@+id/webview_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <requestFocus />
+    </WebView>
+</FrameLayout>
+```
+
+If you set these properties, you can write like this.
+
+* running javascript
+* using geolocation(if permitted)
+
+``` kotlin
+val chromeClient = WebChromeClientBuilder()
+    .setOnGeolocationPermissionsShowPrompt { origin, callback ->
+        callback?.invoke(origin, true, false)
+    }
+    .build()
+WebViewBuilder()
+    .setGeolocationEnabled(true)
+    .setJavaScriptEnabled(true)
+    .setWebChromeClient(chromeClient)
+    .into(webview)
+    .loadUrl("https://mokumokulog.netlify.com/")
+```
+
 
 
 ## Links
