@@ -1,40 +1,38 @@
 @startuml ライブラリ構成
 
-frame アプリ {
-    [app1]
-    [app2]
-    [app3]
-}
-note right of アプリ
-    各アプリ固有ロジック
+actor "Your App" as apps
+
+node "Templates(Lv4)" as lv4
+note bottom of lv4
+    * Baser
 end note
 
-frame テンプレート {
-    [baser]
-}
-note right of テンプレート
-    各アプリ共通で使える骨組み
+node "Organisms(Lv3)" as lv3
+note bottom of lv3
+    * Debugger
+    * Views
 end note
 
-frame ライブラリ {
-    [debugger]
-    note bottom of [debugger]
-        デバッグ支援機能
-    end note
+node "Molecules(Lv2)" as lv2
+note bottom of lv2
+    (Now thinking)
+end note
 
-    [views]
-    note bottom of [views]
-        UI 関連機能
-    end note
-}
+node "Atoms(Lv1)" as lv1
+note bottom of lv1
+    * IntentBuilder
+    * WebViewBuilder
+end note
 
 
-[app1] <-- [baser]
-[app2] <-- [baser]
-[app3] <-- [debugger]
-[app3] <-- [views]
 
-[baser] <-- [debugger]
-[baser] <-- [views]
+lv4 -> lv3
+lv3 -> lv2
+lv2 -> lv1
+
+apps --> lv4
+apps --> lv3
+apps --> lv2
+apps --> lv1
 
 @enduml
