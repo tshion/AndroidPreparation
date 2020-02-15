@@ -2,7 +2,8 @@
 Helper for setting parameters of webview.
 
 ## Quick Start
-You can get a product version by writing to build.gradle dependencies of a module.
+### How to get
+You write like this at build.gradle of a module.
 
 ``` gradle
 dependencies {
@@ -11,7 +12,7 @@ dependencies {
 }
 ```
 
-If you want to get a beta version, please write it at build.gradle of a project.
+If you want to get a beta-release, please add like this at build.gradle of a project.
 
 ``` gradle
 repositories {
@@ -22,12 +23,58 @@ repositories {
 }
 ```
 
+If you want to know a library version, please check [Bintray site][maven_webviewbuilder].
+
+※Be careful, I publish a beta-release by Maven, a product-release by jCenter.
+
+### How to use
+Now, you wrote like this at layout xml file.
+
+``` xml
+<FrameLayout>
+    <WebView
+        android:id="@+id/webview_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <requestFocus />
+    </WebView>
+</FrameLayout>
+```
+
+If you set these properties, you can write like this.
+
+* running javascript
+* using geolocation(if permitted)
+
+``` kotlin
+val chromeClient = WebChromeClientBuilder()
+    .setOnGeolocationPermissionsShowPrompt { origin, callback ->
+        callback?.invoke(origin, true, false)
+    }
+    .build()
+WebViewBuilder()
+    .setGeolocationEnabled(true)
+    .setJavaScriptEnabled(true)
+    .setWebChromeClient(chromeClient)
+    .into(webview)
+    .loadUrl("https://mokumokulog.netlify.com/")
+```
+
+
+
 ## Links
 ### Products
 * [GitHub][gh_webviewbuilder]
 * [Maven][maven_webviewbuilder]
 
 ### References
+* [WebChromeClient | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebChromeClient)
+* [WebSettings | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebSettings)
+* [WebView | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebView)
+* [WebViewClient | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebViewClient)
 
 
 
