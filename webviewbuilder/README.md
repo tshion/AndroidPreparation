@@ -2,7 +2,8 @@
 Helper for setting parameters of webview.
 
 ## Quick Start
-You can get a product version by writing to build.gradle dependencies of a module.
+### How to get
+You write like this at build.gradle of a module.
 
 ``` gradle
 dependencies {
@@ -11,7 +12,7 @@ dependencies {
 }
 ```
 
-If you want to get a beta version, please write it at build.gradle of a project.
+If you want to get a beta-release, please add like this at build.gradle of a project.
 
 ``` gradle
 repositories {
@@ -21,6 +22,12 @@ repositories {
     }
 }
 ```
+
+If you want to know a library version, please check [Bintray site][maven_webviewbuilder].
+
+※Be careful, I publish a beta-release by Maven, a product-release by jCenter.
+
+
 
 ## Links
 ### Products
