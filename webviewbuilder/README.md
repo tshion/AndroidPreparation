@@ -28,6 +28,10 @@ repositories {
 * [Maven][maven_webviewbuilder]
 
 ### References
+* [WebChromeClient | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebChromeClient)
+* [WebSettings | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebSettings)
+* [WebView | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebView)
+* [WebViewClient | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebViewClient)
 
 
 
