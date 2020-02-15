@@ -4,11 +4,11 @@ It's too complex to handle all in one library, so I divide partially.
 
 Module Level(※1) | Library | Beta(※2) | Product(※3) | note
 :---: | --- | --- | --- | ---
-atoms | [IntentBuilder](./intentbuilder/README.md) | [Maven][maven_intentbuilder] |  | Helper for implicit intent
+atoms | [IntentBuilder](./intentbuilder) | [Maven][maven_intentbuilder] |  | Helper for implicit intent
 atoms | [WebViewBuilder](./webviewbuilder/) | [Maven][maven_webviewbuilder] |  | Helper for setting parameters of webview
-organisms | [Debugger](./debugger/README.md) | [Maven][maven_debugger] |  | Assemble tools for debug
-organisms | [Views](./views/README.md) | [Maven][maven_views] |  | UI parts
-templates | [Baser](./baser/README.md) | [Maven][maven_baser] |  | (Now thinking)
+organisms | [Debugger](./debugger) | [Maven][maven_debugger] |  | Assemble tools for debug
+organisms | [Views](./views) | [Maven][maven_views] |  | UI parts
+templates | [Baser](./baser) | [Maven][maven_baser] |  | (Now thinking)
 
 ※1: I judge module level by rule like atomic design.<br />
 ※2: I publish a prerelease library to maven by bintray.<br />
