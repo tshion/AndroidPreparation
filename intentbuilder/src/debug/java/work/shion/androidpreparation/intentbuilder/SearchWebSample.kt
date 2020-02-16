@@ -1,12 +1,10 @@
 package work.shion.androidpreparation.intentbuilder
 
-import android.app.Activity
-import android.os.Bundle
+import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
-import android.widget.LinearLayout
 
-class SearchWebSample : Activity() {
+class SearchWebSample : BaseActivity() {
 
     companion object {
         const val queryEmpty = ""
@@ -17,13 +15,7 @@ class SearchWebSample : Activity() {
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val root = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-        }
-
+    override fun setupUI(root: ViewGroup): ViewGroup {
         root.addView(Button(this).apply {
             setOnClickListener {
                 SearchWebIntentBuilder().apply {
@@ -60,6 +52,6 @@ class SearchWebSample : Activity() {
             text = queryNullTitle
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-        setContentView(root)
+        return root
     }
 }

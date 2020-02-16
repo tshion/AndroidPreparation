@@ -1,30 +1,23 @@
 package work.shion.androidpreparation.intentbuilder
 
-import android.app.Activity
-import android.os.Bundle
+import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
-import android.widget.LinearLayout
 import java.util.*
 
-class CalendarEventSample : Activity() {
+class CalendarEventSample : BaseActivity() {
 
     companion object {
         const val paramEmpty = "empty"
         const val paramFull = "full"
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        val root = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-        }
-
+    override fun setupUI(root: ViewGroup): ViewGroup {
         root.addView(Button(this).apply {
             setOnClickListener {
                 CalendarEventIntentBuilder().build()
-                        .launch(this@CalendarEventSample)
+                    .launch(this@CalendarEventSample)
             }
             text = paramEmpty
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -52,6 +45,6 @@ class CalendarEventSample : Activity() {
             text = paramFull
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-        setContentView(root)
+        return root
     }
 }
