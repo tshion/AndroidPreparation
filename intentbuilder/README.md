@@ -10,6 +10,12 @@ You can get a product version by writing to build.gradle dependencies of a modul
 If you want to get a beta version, please write it at build.gradle of a project.
 
 ``` gradle
+repositories {
+    ......
+    maven {
+        url 'https://dl.bintray.com/shion/maven'
+    }
+}
 ```
 
 
