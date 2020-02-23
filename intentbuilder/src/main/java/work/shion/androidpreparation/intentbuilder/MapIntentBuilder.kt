@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
 import android.net.Uri
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
  * 地図上の場所を表示する設定ビルダー
@@ -16,6 +18,7 @@ import android.net.Uri
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#ViewMap)
  */
+@Deprecated("In development")
 class MapIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     private val label: MutableSet<String> = mutableSetOf()

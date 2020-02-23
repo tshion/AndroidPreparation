@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.provider.AlarmClock
 import android.webkit.URLUtil
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 import java.util.*
 
 /**
@@ -19,6 +21,7 @@ import java.util.*
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#Clock)
  */
+@Deprecated("In development")
 class AlarmIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     private var canSkip: Boolean? = null

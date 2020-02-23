@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 
+@Deprecated("In development")
 class BrowserSample : BaseActivity() {
 
     companion object {
@@ -24,7 +25,7 @@ class BrowserSample : BaseActivity() {
             setOnClickListener {
                 BrowserIntentBuilder().apply {
                     trySetUri(test.second)
-                }.build()?.launch(this@BrowserSample)
+                }.build()?.start(this@BrowserSample)
             }
             text = decorateText(test)
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -43,7 +44,7 @@ class BrowserSample : BaseActivity() {
                 BrowserIntentBuilder().apply {
                     setTextHtml()
                     trySetUri(testHTML.second)
-                }.build()?.launch(this@BrowserSample) {
+                }.build()?.start(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }
@@ -55,7 +56,7 @@ class BrowserSample : BaseActivity() {
                 BrowserIntentBuilder().apply {
                     setTextPlain()
                     trySetUri(testPlain.second)
-                }.build()?.launch(this@BrowserSample) {
+                }.build()?.start(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }
@@ -67,7 +68,7 @@ class BrowserSample : BaseActivity() {
                 BrowserIntentBuilder().apply {
                     setXHtml()
                     trySetUri(testXHtml.second)
-                }.build()?.launch(this@BrowserSample) {
+                }.build()?.start(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }
@@ -79,7 +80,7 @@ class BrowserSample : BaseActivity() {
                 BrowserIntentBuilder().apply {
                     setXHtmlMobile()
                     trySetUri(testXHtmlMobile.second)
-                }.build()?.launch(this@BrowserSample) {
+                }.build()?.start(this@BrowserSample) {
                     throw NotImplementedError()
                 }
             }

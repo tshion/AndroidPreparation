@@ -5,6 +5,7 @@ import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 import java.util.*
 
+@Deprecated("In development")
 class CalendarEventSample : BaseActivity() {
 
     companion object {
@@ -17,7 +18,7 @@ class CalendarEventSample : BaseActivity() {
         root.addView(Button(this).apply {
             setOnClickListener {
                 CalendarEventIntentBuilder().build()
-                    .launch(this@CalendarEventSample)
+                    .start(this@CalendarEventSample)
             }
             text = paramEmpty
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -40,7 +41,7 @@ class CalendarEventSample : BaseActivity() {
                     isAllDay = true
                     location = "テスト用の場所"
                     title = "テスト用のタイトル"
-                }.build().launch(this@CalendarEventSample)
+                }.build().start(this@CalendarEventSample)
             }
             text = paramFull
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)

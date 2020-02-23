@@ -3,6 +3,8 @@ package work.shion.androidpreparation.intentbuilder
 import android.content.Intent
 import android.net.Uri
 import android.webkit.URLUtil
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
  * 連絡先を表示する設定ビルダー
@@ -17,6 +19,7 @@ import android.webkit.URLUtil
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#ViewContact)
  */
+@Deprecated("In development")
 class ShowContactIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     private var uri: Uri? = null
