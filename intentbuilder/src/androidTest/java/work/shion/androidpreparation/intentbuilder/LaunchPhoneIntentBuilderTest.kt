@@ -48,4 +48,13 @@ class LaunchPhoneIntentBuilderTest {
                 hasData(Uri.parse("tel:${LaunchPhoneSample.test1.second}"))
         ))
     }
+
+    @Test
+    fun test2() {
+        Espresso.onView(ViewMatchers.withText(LaunchPhoneSample.test2.first)).perform(ViewActions.click())
+        Intents.intended(CoreMatchers.allOf(
+                hasAction(Intent.ACTION_DIAL),
+                hasData(Uri.parse("tel:${LaunchPhoneSample.test2.second}"))
+        ))
+    }
 }

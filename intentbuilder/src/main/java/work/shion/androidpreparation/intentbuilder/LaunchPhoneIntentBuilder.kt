@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
+import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 
 /**
  * Launch a phone app
@@ -11,24 +12,24 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  * ### Example
  * ``` kotlin
  * LaunchPhoneIntentBuilder().apply {
- *     setPhoneNumber("phone number")
+ *     phoneNumber = "phone number"
  * }.build().start(from)
  * ```
  *
  * ### References
  * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#DialPhone)
  */
-class LaunchPhoneIntentBuilder : IntentBuilder<ConsumerIntent>() {
+class LaunchPhoneIntentBuilder : IntentBuilder<ConsumerIntent>(), PhoneNumberContract {
 
-    private var phoneNumber: Uri? = null
+    override var phoneNumber: String? = null
+        get() = super.phoneNumber
+        set(value) {
+            phoneUri = Uri.parse("tel:${value}")
+            field = value
+        }
 
-
-    fun getPhoneNumber() = phoneNumber.toString()
-            .replace(phoneNumber?.scheme ?: "", "")
-
-    fun setPhoneNumber(phoneNumber: String) {
-        this.phoneNumber = Uri.parse("tel:${phoneNumber}")
-    }
+    override var phoneUri: Uri? = null
+        private set
 
 
     /**
@@ -36,8 +37,8 @@ class LaunchPhoneIntentBuilder : IntentBuilder<ConsumerIntent>() {
      */
     override fun build() = ConsumerIntent().apply {
         action = Intent.ACTION_DIAL
-        if (phoneNumber != null) {
-            data = phoneNumber
+        if (phoneUri != null) {
+            data = phoneUri
         }
     }
 }
