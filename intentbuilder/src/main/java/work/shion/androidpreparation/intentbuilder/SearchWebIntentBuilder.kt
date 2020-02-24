@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.app.SearchManager
 import android.content.Intent
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
  * ウェブ検索の設定ビルダー
@@ -16,6 +18,7 @@ import android.content.Intent
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#SearchWeb)
  */
+@Deprecated("In development")
 class SearchWebIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     /** 検索文字列 */

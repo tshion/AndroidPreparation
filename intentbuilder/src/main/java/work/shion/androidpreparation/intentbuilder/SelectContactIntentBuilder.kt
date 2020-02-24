@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
 import android.provider.ContactsContract
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
+import work.shion.androidpreparation.intentbuilder.basis.SupplierIntent
 
 /**
  * 連絡先を選択する設定ビルダー
@@ -16,6 +18,7 @@ import android.provider.ContactsContract
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#PickContact)
  */
+@Deprecated("In development")
 class SelectContactIntentBuilder : IntentBuilder<SupplierIntent>() {
 
     private var mime: String? = null

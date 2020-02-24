@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
 import android.net.Uri
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
  * メールの設定ビルダー
@@ -15,6 +17,7 @@ import android.net.Uri
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#Email)
  */
+@Deprecated("In development")
 class MailIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     private var bcc: MutableSet<String> = mutableSetOf()

@@ -1,6 +1,8 @@
 package work.shion.androidpreparation.intentbuilder
 
 import android.provider.MediaStore
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
+import work.shion.androidpreparation.intentbuilder.basis.SupplierIntent
 
 /**
  * 動画モードでカメラアプリ起動の設定ビルダー
@@ -14,6 +16,7 @@ import android.provider.MediaStore
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#CameraVideo)
  */
+@Deprecated("In development")
 class CameraMovieIntentBuilder : IntentBuilder<SupplierIntent>() {
 
     /**

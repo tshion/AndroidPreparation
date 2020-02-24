@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.net.Uri
 import android.provider.MediaStore
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
+import work.shion.androidpreparation.intentbuilder.basis.SupplierIntent
 
 /**
  * 動画を撮影して返す設定ビルダー
@@ -16,6 +18,7 @@ import android.provider.MediaStore
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common#ImageCapture)
  */
+@Deprecated("In development")
 class TakeVideoIntentBuilder : IntentBuilder<SupplierIntent>() {
 
     private var uri: Uri? = null

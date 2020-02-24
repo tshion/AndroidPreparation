@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
 import android.webkit.URLUtil
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
  * 既存の連絡先を編集する設定ビルダー
@@ -18,6 +20,7 @@ import android.webkit.URLUtil
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#EditContact)
  */
+@Deprecated("In development")
 class EditContactIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     private var company: String? = null

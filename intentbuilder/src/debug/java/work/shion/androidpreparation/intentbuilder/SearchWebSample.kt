@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 
+@Deprecated("In development")
 class SearchWebSample : BaseActivity() {
 
     companion object {
@@ -20,7 +21,7 @@ class SearchWebSample : BaseActivity() {
             setOnClickListener {
                 SearchWebIntentBuilder().apply {
                     query = queryEmpty
-                }.build().launch(this@SearchWebSample)
+                }.build().start(this@SearchWebSample)
             }
             text = queryEmpty
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -29,7 +30,7 @@ class SearchWebSample : BaseActivity() {
             setOnClickListener {
                 SearchWebIntentBuilder().apply {
                     query = queryEnglish
-                }.build().launch(this@SearchWebSample)
+                }.build().start(this@SearchWebSample)
             }
             text = queryEnglish
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -38,7 +39,7 @@ class SearchWebSample : BaseActivity() {
             setOnClickListener {
                 SearchWebIntentBuilder().apply {
                     query = queryJapanese
-                }.build().launch(this@SearchWebSample)
+                }.build().start(this@SearchWebSample)
             }
             text = queryJapanese
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -47,7 +48,7 @@ class SearchWebSample : BaseActivity() {
             setOnClickListener {
                 SearchWebIntentBuilder().apply {
                     query = queryNull
-                }.build().launch(this@SearchWebSample)
+                }.build().start(this@SearchWebSample)
             }
             text = queryNullTitle
         }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)

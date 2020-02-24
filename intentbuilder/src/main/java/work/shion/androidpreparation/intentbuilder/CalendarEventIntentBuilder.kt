@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
 import android.provider.CalendarContract.*
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 import java.util.*
 
 /**
@@ -25,6 +27,7 @@ import java.util.*
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#AddEvent)
  */
+@Deprecated("In development")
 class CalendarEventIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     /**

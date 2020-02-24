@@ -1,6 +1,8 @@
 package work.shion.androidpreparation.intentbuilder
 
 import android.provider.AlarmClock
+import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
+import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
  * タイマーの設定ビルダー
@@ -20,6 +22,7 @@ import android.provider.AlarmClock
  * ### 参考文献
  * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common#CreateTimer)
  */
+@Deprecated("In development")
 class TimerIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     private var canSkip: Boolean? = null
