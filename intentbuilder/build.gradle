@@ -3,6 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 
 // バージョン
@@ -77,6 +78,11 @@ dependencies {
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+
+    // PermissionsDispathcer
+    def permissions_dispatcher_version = "4.3.0"
+    implementation "org.permissionsdispatcher:permissionsdispatcher:${permissions_dispatcher_version}"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:${permissions_dispatcher_version}"
 }
 
 install {
