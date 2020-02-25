@@ -24,7 +24,7 @@ class LaunchPhoneIntentBuilder : IntentBuilder<ConsumerIntent>(), PhoneNumberCon
     override var phoneNumber: String? = null
         get() = super.phoneNumber
         set(value) {
-            phoneUri = Uri.parse("tel:${value}")
+            phoneUri = if (!value.isNullOrBlank()) Uri.parse("tel:$value") else null
             field = value
         }
 
@@ -37,8 +37,6 @@ class LaunchPhoneIntentBuilder : IntentBuilder<ConsumerIntent>(), PhoneNumberCon
      */
     override fun build() = ConsumerIntent().apply {
         action = Intent.ACTION_DIAL
-        if (phoneUri != null) {
-            data = phoneUri
-        }
+        phoneUri?.also { data = it }
     }
 }

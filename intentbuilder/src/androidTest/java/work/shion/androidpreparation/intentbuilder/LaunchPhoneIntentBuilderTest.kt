@@ -33,28 +33,43 @@ class LaunchPhoneIntentBuilderTest {
 
 
     @Test
-    fun testEmpty() {
-        Espresso.onView(ViewMatchers.withText(LaunchPhoneSample.testEmpty.first)).perform(ViewActions.click())
+    fun empty() {
+        val data = "Empty".let { it to LaunchPhoneSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(data.first)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_DIAL)
         ))
     }
 
     @Test
-    fun test1() {
-        Espresso.onView(ViewMatchers.withText(LaunchPhoneSample.test1.first)).perform(ViewActions.click())
+    fun success1() {
+        val data = "Success1".let { it to LaunchPhoneSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(data.first)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_DIAL),
-                hasData(Uri.parse("tel:${LaunchPhoneSample.test1.second}"))
+                hasData(Uri.parse("tel:${data.second}"))
         ))
     }
 
     @Test
-    fun test2() {
-        Espresso.onView(ViewMatchers.withText(LaunchPhoneSample.test2.first)).perform(ViewActions.click())
+    fun success2() {
+        val data = "Success2".let { it to LaunchPhoneSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(data.first)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_DIAL),
-                hasData(Uri.parse("tel:${LaunchPhoneSample.test2.second}"))
+                hasData(Uri.parse("tel:${data.second}"))
         ))
+    }
+
+    @Test
+    fun unknown1() {
+        val data = "Unknown1".let { it to LaunchPhoneSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(data.first)).perform(ViewActions.click())
+    }
+
+    @Test
+    fun unknown2() {
+        val data = "Unknown2".let { it to LaunchPhoneSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(data.first)).perform(ViewActions.click())
     }
 }
