@@ -81,7 +81,7 @@ dependencies {
 
     // PermissionsDispathcer
     def permissions_dispatcher_version = "4.3.0"
-    implementation "org.permissionsdispatcher:permissionsdispatcher:${permissions_dispatcher_version}"
+    debugImplementation "org.permissionsdispatcher:permissionsdispatcher:${permissions_dispatcher_version}"
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:${permissions_dispatcher_version}"
 }
 
