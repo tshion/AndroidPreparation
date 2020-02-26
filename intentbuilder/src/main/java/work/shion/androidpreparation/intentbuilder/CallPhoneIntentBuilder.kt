@@ -16,7 +16,7 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
  * }.build()
  *
  * val checkResult = ContextCompat.checkSelfPermission(from, Manifest.permission.CALL_PHONE)
- * if (checkResult != PackageManager.PERMISSION_GRANTED) {
+ * if (checkResult == PackageManager.PERMISSION_GRANTED) {
  *     intent.start(from)
  * }
  * ```
