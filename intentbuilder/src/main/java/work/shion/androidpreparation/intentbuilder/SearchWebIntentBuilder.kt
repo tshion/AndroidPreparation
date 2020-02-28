@@ -6,27 +6,24 @@ import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
- * ウェブ検索の設定ビルダー
+ * To initiate a web search
  *
- * ### 実装例
+ * ### Example
  * ``` kotlin
  * SearchWebIntentBuilder().apply {
  *     query = "Android"
- * }.build().launch(this)
+ * }.build().start(from)
  * ```
  *
- * ### 参考文献
- * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common?hl=ja#SearchWeb)
+ * ### References
+ * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#SearchWeb)
  */
-@Deprecated("In development")
 class SearchWebIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
-    /** 検索文字列 */
     var query: String? = null
 
-
     /**
-     * 与えられた設定からIntent を生成する
+     * Generate an intent by builder's settings.
      */
     override fun build() = ConsumerIntent().apply {
         action = Intent.ACTION_WEB_SEARCH
