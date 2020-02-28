@@ -7,23 +7,25 @@ import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
 /**
- * アプリ外ブラウザ起動用の設定ビルダー
+ * To open a web page
  *
- * ### 実装例
+ * ### Example
  * ``` kotlin
  * BrowserIntentBuilder().apply {
  *     trySetUri("https://mokumokulog.netlify.com/")
- * }.build()?.launch(activity!!)
+ * }.build()?.start(from)
  * ```
  *
- * ### 参考文献
- * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common#Browser)
+ * ### References
+ * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#Browser)
  */
-@Deprecated("In development")
 class BrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
-    private var mimeType: String? = null
-    private var uri: Uri? = null
+    var mimeType: String? = null
+        private set
+
+    var uri: Uri? = null
+        private set
 
 
     fun clearType() {
@@ -54,15 +56,13 @@ class BrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
 
     /**
-     * 与えられた設定からIntent を生成する
+     * Generate an intent by builder's settings.
      */
-    override fun build(): ConsumerIntent? {
-        uri ?: return null
-        val intent = ConsumerIntent().apply {
+    override fun build() = uri?.let {
+        ConsumerIntent().apply {
             action = Intent.ACTION_VIEW
             data = uri
+            if (mimeType != null) type = mimeType
         }
-        mimeType?.also { intent.type = it }
-        return intent
     }
 }
