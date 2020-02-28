@@ -21,10 +21,10 @@ import org.junit.runner.RunWith
 import java.net.URLEncoder
 
 @RunWith(AndroidJUnit4::class)
-class LaunchMapIntentBuilderTest {
+class OpenMapIntentBuilderTest {
 
     @get:Rule
-    val testRule = IntentsTestRule(LaunchMapSample::class.java)
+    val testRule = IntentsTestRule(OpenMapSample::class.java)
 
     @Before
     fun setUp() {
@@ -35,7 +35,7 @@ class LaunchMapIntentBuilderTest {
 
     @Test
     fun empty() {
-        val (key, _) = "Empty".let { it to LaunchMapSample.testData[it] }
+        val (key, _) = "Empty".let { it to OpenMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW)
@@ -44,7 +44,7 @@ class LaunchMapIntentBuilderTest {
 
     @Test
     fun example1() {
-        val (key, data) = "Example1".let { it to LaunchMapSample.testData[it] }
+        val (key, data) = "Example1".let { it to OpenMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),
@@ -54,7 +54,7 @@ class LaunchMapIntentBuilderTest {
 
     @Test
     fun example2() {
-        val (key, data) = "Example2".let { it to LaunchMapSample.testData[it] }
+        val (key, data) = "Example2".let { it to OpenMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),
@@ -64,7 +64,7 @@ class LaunchMapIntentBuilderTest {
 
     @Test
     fun example3() {
-        val (key, data) = "Example3".let { it to LaunchMapSample.testData[it] }
+        val (key, data) = "Example3".let { it to OpenMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),
@@ -74,7 +74,7 @@ class LaunchMapIntentBuilderTest {
 
     @Test
     fun example3a() {
-        val (key, data) = "Example3a".let { it to LaunchMapSample.testData[it] }
+        val (key, data) = "Example3a".let { it to OpenMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),
@@ -84,7 +84,7 @@ class LaunchMapIntentBuilderTest {
 
     @Test
     fun example4() {
-        val (key, data) = "Example4".let { it to LaunchMapSample.testData[it] }
+        val (key, data) = "Example4".let { it to OpenMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),
@@ -94,7 +94,7 @@ class LaunchMapIntentBuilderTest {
 
     @Test
     fun example4a() {
-        val (key, data) = "Example4a".let { it to LaunchMapSample.testData[it] }
+        val (key, data) = "Example4a".let { it to OpenMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),

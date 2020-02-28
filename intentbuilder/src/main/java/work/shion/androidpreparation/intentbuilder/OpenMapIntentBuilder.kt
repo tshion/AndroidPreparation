@@ -11,7 +11,7 @@ import java.net.URLEncoder
  *
  * ### Example
  * ``` kotlin
- * LaunchMapIntentBuilder().apply {
+ * OpenMapIntentBuilder().apply {
  *     appendLabel(34.99, -106.61, "Treasure")
  *     latitude = 0.0
  *     longitude = 0.0
@@ -22,7 +22,7 @@ import java.net.URLEncoder
  * ### References
  * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#ViewMap)
  */
-class LaunchMapIntentBuilder : IntentBuilder<ConsumerIntent>() {
+class OpenMapIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     val label: MutableSet<String> = mutableSetOf()
     var latitude: Double? = null

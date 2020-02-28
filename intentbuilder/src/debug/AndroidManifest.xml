@@ -5,7 +5,7 @@
 
         <activity android:name=".BrowserSample" />
         <activity android:name=".CalendarEventSample" />
-        <activity android:name=".LaunchMapSample" />
+        <activity android:name=".OpenMapSample" />
         <activity android:name=".SearchWebSample" />
     </application>
 </manifest>

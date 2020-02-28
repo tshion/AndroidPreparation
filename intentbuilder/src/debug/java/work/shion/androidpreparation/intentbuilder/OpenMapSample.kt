@@ -4,36 +4,36 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 
-class LaunchMapSample : BaseActivity() {
+class OpenMapSample : BaseActivity() {
 
     companion object {
         val testData = mapOf(
-                "Empty" to LaunchMapIntentBuilder(),
-                "Example1" to LaunchMapIntentBuilder().apply {
+                "Empty" to OpenMapIntentBuilder(),
+                "Example1" to OpenMapIntentBuilder().apply {
                     latitude = 47.6
                     longitude = -122.3
                 },
-                "Example2" to LaunchMapIntentBuilder().apply {
+                "Example2" to OpenMapIntentBuilder().apply {
                     latitude = 47.6
                     longitude = -122.3
                     trySetZoom(11)
                 },
-                "Example3" to LaunchMapIntentBuilder().apply {
+                "Example3" to OpenMapIntentBuilder().apply {
                     appendLabel(34.99, -106.61, "Treasure")
                     latitude = 0.0
                     longitude = 0.0
                 },
-                "Example3a" to LaunchMapIntentBuilder().apply {
+                "Example3a" to OpenMapIntentBuilder().apply {
                     appendLabel(35.681236, 139.767125, "東京駅")
                     latitude = 0.0
                     longitude = 0.0
                 },
-                "Example4" to LaunchMapIntentBuilder().apply {
+                "Example4" to OpenMapIntentBuilder().apply {
                     label.add("my street address")
                     latitude = 0.0
                     longitude = 0.0
                 },
-                "Example4a" to LaunchMapIntentBuilder().apply {
+                "Example4a" to OpenMapIntentBuilder().apply {
                     label.add("東京駅 ランチ")
                     latitude = 0.0
                     longitude = 0.0
@@ -44,7 +44,7 @@ class LaunchMapSample : BaseActivity() {
 
     override fun setupUI(root: ViewGroup): ViewGroup {
         testData.forEach { (key, value) ->
-            val from = this@LaunchMapSample
+            val from = this@OpenMapSample
             root.addView(Button(from).apply {
                 setOnClickListener { value.build().start(from) }
                 text = key
