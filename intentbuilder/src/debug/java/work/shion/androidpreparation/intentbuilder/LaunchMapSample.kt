@@ -23,8 +23,18 @@ class LaunchMapSample : BaseActivity() {
                     latitude = 0.0
                     longitude = 0.0
                 },
+                "Example3a" to LaunchMapIntentBuilder().apply {
+                    appendLabel(35.681236, 139.767125, "東京駅")
+                    latitude = 0.0
+                    longitude = 0.0
+                },
                 "Example4" to LaunchMapIntentBuilder().apply {
                     label.add("my street address")
+                    latitude = 0.0
+                    longitude = 0.0
+                },
+                "Example4a" to LaunchMapIntentBuilder().apply {
+                    label.add("東京駅 ランチ")
                     latitude = 0.0
                     longitude = 0.0
                 }

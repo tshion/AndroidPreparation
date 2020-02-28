@@ -12,8 +12,9 @@ import java.net.URLEncoder
  * ### Example
  * ``` kotlin
  * LaunchMapIntentBuilder().apply {
- *     latitude = 47.6
- *     longitude = -122.3
+ *     appendLabel(34.99, -106.61, "Treasure")
+ *     latitude = 0.0
+ *     longitude = 0.0
  *     trySetZoom(11)
  * }.build().start(from)
  * ```

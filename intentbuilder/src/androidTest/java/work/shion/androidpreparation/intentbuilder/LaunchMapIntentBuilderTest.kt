@@ -73,8 +73,28 @@ class LaunchMapIntentBuilderTest {
     }
 
     @Test
+    fun example3a() {
+        val (key, data) = "Example3a".let { it to LaunchMapSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
+        Intents.intended(CoreMatchers.allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(Uri.parse("geo:${data?.latitude},${data?.longitude}?q=${URLEncoder.encode(data?.label?.first(), "UTF-8")}"))
+        ))
+    }
+
+    @Test
     fun example4() {
         val (key, data) = "Example4".let { it to LaunchMapSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
+        Intents.intended(CoreMatchers.allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(Uri.parse("geo:${data?.latitude},${data?.longitude}?q=${URLEncoder.encode(data?.label?.first(), "UTF-8")}"))
+        ))
+    }
+
+    @Test
+    fun example4a() {
+        val (key, data) = "Example4a".let { it to LaunchMapSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),
