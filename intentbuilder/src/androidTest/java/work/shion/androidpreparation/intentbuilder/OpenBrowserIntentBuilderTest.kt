@@ -20,10 +20,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class BrowserIntentBuilderTest {
+class OpenBrowserIntentBuilderTest {
 
     @get:Rule
-    val testRule = IntentsTestRule(BrowserSample::class.java)
+    val testRule = IntentsTestRule(OpenBrowserSample::class.java)
 
 
     @Before
@@ -35,7 +35,7 @@ class BrowserIntentBuilderTest {
 
     @Test(expected = Error::class)
     fun empty() {
-        val (key, _) = "Empty".let { it to BrowserSample.testData[it] }
+        val (key, _) = "Empty".let { it to OpenBrowserSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW)
@@ -44,7 +44,7 @@ class BrowserIntentBuilderTest {
 
     @Test(expected = Error::class)
     fun failure() {
-        val (key, _) = "Failure".let { it to BrowserSample.testData[it] }
+        val (key, _) = "Failure".let { it to OpenBrowserSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW)
@@ -53,7 +53,7 @@ class BrowserIntentBuilderTest {
 
     @Test
     fun success() {
-        val (key, data) = "Success".let { it to BrowserSample.testData[it] }
+        val (key, data) = "Success".let { it to OpenBrowserSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_VIEW),

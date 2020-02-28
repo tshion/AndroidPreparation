@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 
-class BrowserSample : BaseActivity() {
+class OpenBrowserSample : BaseActivity() {
 
     companion object {
         val testData = mapOf(
@@ -17,10 +17,10 @@ class BrowserSample : BaseActivity() {
 
     override fun setupUI(root: ViewGroup): ViewGroup {
         testData.forEach { (key, value) ->
-            val from = this@BrowserSample
+            val from = this@OpenBrowserSample
             root.addView(Button(from).apply {
                 setOnClickListener {
-                    BrowserIntentBuilder().apply {
+                    OpenBrowserIntentBuilder().apply {
                         trySetUri(value)
                     }.build()?.start(from) ?: throw Error()
                 }

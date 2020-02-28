@@ -11,7 +11,7 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  *
  * ### Example
  * ``` kotlin
- * BrowserIntentBuilder().apply {
+ * OpenBrowserIntentBuilder().apply {
  *     trySetUri("https://mokumokulog.netlify.com/")
  * }.build()?.start(from)
  * ```
@@ -19,7 +19,7 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  * ### References
  * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#Browser)
  */
-class BrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
+class OpenBrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     var mimeType: String? = null
         private set

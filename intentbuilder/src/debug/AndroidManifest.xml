@@ -3,8 +3,8 @@
 
     <application>
 
-        <activity android:name=".BrowserSample" />
         <activity android:name=".CalendarEventSample" />
+        <activity android:name=".OpenBrowserSample" />
         <activity android:name=".SearchWebSample" />
     </application>
 </manifest>
