@@ -5,6 +5,7 @@
 
         <activity android:name=".BrowserSample" />
         <activity android:name=".CalendarEventSample" />
+        <activity android:name=".OpenMailerSample" />
         <activity android:name=".SearchWebSample" />
     </application>
 </manifest>
