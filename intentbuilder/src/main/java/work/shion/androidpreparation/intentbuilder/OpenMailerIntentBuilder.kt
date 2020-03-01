@@ -10,7 +10,7 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  *
  * ### Example
  * ``` kotlin
- * LaunchMailIntentBuilder().apply {
+ * OpenMailerIntentBuilder().apply {
  *     attachmentUris.add(uri)
  *     bcc.add("test2@example.test")
  *     cc.add("test3@example.test")
@@ -23,7 +23,7 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  * ### References
  * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#Email)
  */
-class LaunchMailIntentBuilder : IntentBuilder<ConsumerIntent>() {
+class OpenMailerIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     val attachmentUris: MutableSet<Uri> = mutableSetOf()
     val bcc: MutableSet<String> = mutableSetOf()
