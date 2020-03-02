@@ -41,8 +41,7 @@ class OpenMailerIntentBuilderTest {
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_SENDTO),
-                hasData(Uri.parse("mailto:")),
-                hasType("*/*")
+                hasData(Uri.parse("mailto:"))
         ))
     }
 
@@ -57,8 +56,7 @@ class OpenMailerIntentBuilderTest {
                 hasExtra(Intent.EXTRA_CC, data?.cc?.toTypedArray()),
                 hasExtra(Intent.EXTRA_EMAIL, data?.to?.toTypedArray()),
                 hasExtra(Intent.EXTRA_SUBJECT, data?.subject),
-                hasExtra(Intent.EXTRA_TEXT, data?.text),
-                hasType("*/*")
+                hasExtra(Intent.EXTRA_TEXT, data?.text)
         ))
     }
 }

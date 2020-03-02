@@ -25,7 +25,9 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  */
 class OpenMailerIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
+    @Deprecated("In development")
     val attachmentUris: MutableSet<Uri> = mutableSetOf()
+
     val bcc: MutableSet<String> = mutableSetOf()
     val cc: MutableSet<String> = mutableSetOf()
     var subject: String? = null
@@ -37,18 +39,20 @@ class OpenMailerIntentBuilder : IntentBuilder<ConsumerIntent>() {
      * Generate an intent by builder's settings.
      */
     override fun build() = ConsumerIntent().apply {
-        data = Uri.parse("mailto:")
-        type = "*/*"
-
         when (attachmentUris.count()) {
-            0 -> action = Intent.ACTION_SENDTO
+            0 -> {
+                action = Intent.ACTION_SENDTO
+                data = Uri.parse("mailto:")
+            }
             1 -> {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_STREAM, attachmentUris.first())
+                type = "*/*"
             }
             else -> {
                 action = Intent.ACTION_SEND_MULTIPLE
                 putExtra(Intent.EXTRA_STREAM, ArrayList(attachmentUris))
+                type = "*/*"
             }
         }
         if (bcc.isNotEmpty()) putExtra(Intent.EXTRA_BCC, bcc.toTypedArray())
