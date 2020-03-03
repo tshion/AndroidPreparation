@@ -21,6 +21,7 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  */
 class OpenBrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
+    @Deprecated("In development")
     var mimeType: String? = null
         private set
 
@@ -28,22 +29,27 @@ class OpenBrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
         private set
 
 
+    @Deprecated("In development")
     fun clearType() {
         mimeType = null
     }
 
+    @Deprecated("In development")
     fun setTextHtml() {
         mimeType = "text/html"
     }
 
+    @Deprecated("In development")
     fun setTextPlain() {
         mimeType = "text/plain"
     }
 
+    @Deprecated("In development")
     fun setXHtml() {
         mimeType = "application/xhtml+xml"
     }
 
+    @Deprecated("In development")
     fun setXHtmlMobile() {
         mimeType = "application/vnd.wap.xhtml+xml"
     }
