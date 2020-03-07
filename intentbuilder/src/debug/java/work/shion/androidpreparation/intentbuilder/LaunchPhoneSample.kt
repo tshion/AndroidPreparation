@@ -4,26 +4,28 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 
-class SearchWebSample : BaseActivity() {
+class LaunchPhoneSample : BaseActivity() {
 
     companion object {
         val testData = mapOf(
                 "Empty" to "",
-                "English" to "Android",
-                "Japanese" to "アンドロイド",
-                "Null" to null
+                "Success1" to "2125551212",
+                "Success2" to "(212) 555 1212",
+                "Unknown1" to "abcdef",
+                "Unknown2" to "あいうえお"
         )
     }
 
 
     override fun setupUI(root: ViewGroup): ViewGroup {
         testData.forEach { (key, value) ->
-            val from = this@SearchWebSample
+            val from = this@LaunchPhoneSample
             root.addView(Button(from).apply {
                 setOnClickListener {
-                    SearchWebIntentBuilder().apply {
-                        query = value
-                    }.build().start(from)
+                    val intent = LaunchPhoneIntentBuilder().apply {
+                        phoneNumber = value
+                    }.build()
+                    intent.start(from)
                 }
                 text = key
             }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
