@@ -34,38 +34,42 @@ class SearchWebIntentBuilderTest {
 
 
     @Test
-    fun testEmpty() {
-        Espresso.onView(ViewMatchers.withText(SearchWebSample.queryEmpty)).perform(ViewActions.click())
+    fun empty() {
+        val (key, data) = "Empty".let { it to SearchWebSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_WEB_SEARCH),
-                hasExtra(SearchManager.QUERY, SearchWebSample.queryEmpty)
+                hasExtra(SearchManager.QUERY, data)
         ))
     }
 
     @Test
-    fun testEnglish() {
-        Espresso.onView(ViewMatchers.withText(SearchWebSample.queryEnglish)).perform(ViewActions.click())
+    fun english() {
+        val (key, data) = "English".let { it to SearchWebSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_WEB_SEARCH),
-                hasExtra(SearchManager.QUERY, SearchWebSample.queryEnglish)
+                hasExtra(SearchManager.QUERY, data)
         ))
     }
 
     @Test
-    fun testJapanese() {
-        Espresso.onView(ViewMatchers.withText(SearchWebSample.queryJapanese)).perform(ViewActions.click())
+    fun japanese() {
+        val (key, data) = "Japanese".let { it to SearchWebSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_WEB_SEARCH),
-                hasExtra(SearchManager.QUERY, SearchWebSample.queryJapanese)
+                hasExtra(SearchManager.QUERY, data)
         ))
     }
 
     @Test
-    fun testNull() {
-        Espresso.onView(ViewMatchers.withText(SearchWebSample.queryNullTitle)).perform(ViewActions.click())
+    fun nullPointer() {
+        val (key, data) = "Null".let { it to SearchWebSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_WEB_SEARCH),
-                hasExtra(SearchManager.QUERY, SearchWebSample.queryNull)
+                hasExtra(SearchManager.QUERY, data)
         ))
     }
 }

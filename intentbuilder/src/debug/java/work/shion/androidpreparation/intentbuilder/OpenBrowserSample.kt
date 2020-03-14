@@ -4,26 +4,25 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 
-class SearchWebSample : BaseActivity() {
+class OpenBrowserSample : BaseActivity() {
 
     companion object {
         val testData = mapOf(
                 "Empty" to "",
-                "English" to "Android",
-                "Japanese" to "アンドロイド",
-                "Null" to null
+                "Failure" to "hoge://mokumokulog.netlify.com/",
+                "Success" to "https://mokumokulog.netlify.com/"
         )
     }
 
 
     override fun setupUI(root: ViewGroup): ViewGroup {
         testData.forEach { (key, value) ->
-            val from = this@SearchWebSample
+            val from = this@OpenBrowserSample
             root.addView(Button(from).apply {
                 setOnClickListener {
-                    SearchWebIntentBuilder().apply {
-                        query = value
-                    }.build().start(from)
+                    OpenBrowserIntentBuilder().apply {
+                        trySetUri(value)
+                    }.build()?.start(from) ?: throw Error()
                 }
                 text = key
             }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
