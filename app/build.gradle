@@ -31,6 +31,11 @@ dependencies {
     implementation project(":baser")
     implementation project(":views")
 
-    implementation baseLibrary
-    implementation baseUiLibrary
+    // AndroidX
+    implementation "androidx.appcompat:appcompat:${ver_droidx_appcompat}"
+    implementation "androidx.core:core-ktx:${ver_droidx_core}"
+
+    // Kotlin
+    implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 }

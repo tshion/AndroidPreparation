@@ -62,8 +62,8 @@ bintray {
 dependencies {
 
     // AndroidX
-    implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "androidx.appcompat:appcompat:${ver_droidx_appcompat}"
+    implementation "androidx.core:core-ktx:${ver_droidx_core}"
 
     // Google
     kapt "com.google.auto.service:auto-service:1.0-rc6"

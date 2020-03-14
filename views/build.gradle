@@ -58,12 +58,14 @@ bintray {
 }
 
 dependencies {
-    implementation baseLibrary
-    implementation baseUiLibrary
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // AndroidX
+    implementation "androidx.appcompat:appcompat:${ver_droidx_appcompat}"
+    implementation "androidx.core:core-ktx:${ver_droidx_core}"
+
+    // Kotlin
+    implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 }
 
 install {

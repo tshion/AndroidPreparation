@@ -61,7 +61,7 @@ bintray {
 dependencies {
 
     // AndroidX
-    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.annotation:annotation:${ver_droidx_annotation}"
 
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
