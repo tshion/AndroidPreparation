@@ -3,6 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 
 // バージョン
@@ -62,7 +63,7 @@ bintray {
 dependencies {
 
     // AndroidX
-    implementation "androidx.fragment:fragment:1.2.0"
+    implementation "androidx.fragment:fragment:1.2.2"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
     androidTestImplementation "androidx.test.ext:junit-ktx:1.1.1"
@@ -77,6 +78,11 @@ dependencies {
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+
+    // PermissionsDispathcer
+    def permissions_dispatcher_version = "4.3.0"
+    debugImplementation "org.permissionsdispatcher:permissionsdispatcher:${permissions_dispatcher_version}"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:${permissions_dispatcher_version}"
 }
 
 install {

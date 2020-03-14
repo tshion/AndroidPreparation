@@ -1,11 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="work.shion.androidpreparation.intentbuilder">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application>
 
-        <activity android:name=".BrowserSample" />
         <activity android:name=".CalendarEventSample" />
+        <activity android:name=".CallPhoneSample" />
+        <activity android:name=".CallVoiceMailSample" />
+        <activity android:name=".LaunchPhoneSample" />
+        <activity android:name=".OpenBrowserSample" />
         <activity android:name=".OpenMailerSample" />
+        <activity android:name=".OpenMapSample" />
+        <activity android:name=".OpenVoiceMailSample" />
         <activity android:name=".SearchWebSample" />
     </application>
 </manifest>
