@@ -1,1 +1,5 @@
-<manifest package="work.shion.androidpreparation.webviewbuilder" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="work.shion.androidpreparation.webviewbuilder">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
