@@ -6,9 +6,9 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebSettings.*
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.annotation.IntDef
 import androidx.annotation.RequiresApi
+import androidx.webkit.WebViewClientCompat
 
 
 /**
@@ -73,7 +73,7 @@ class WebViewBuilder {
     private var mUserAgentString: String? = null
     private var mUseWideViewPort: Boolean? = null
     private var mWebChromeClient: WebChromeClient? = null
-    private var mWebViewClient: WebViewClient? = null
+    private var mWebViewClient: WebViewClientCompat? = null
 
 
     /**
@@ -403,5 +403,5 @@ class WebViewBuilder {
      * @see android.webkit.WebView.setWebViewClient
      * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebView#setWebViewClient">Android Developers</a>
      */
-    fun setWebViewClient(client: WebViewClient?) = this.apply { mWebViewClient = client }
+    fun setWebViewClient(client: WebViewClientCompat?) = this.apply { mWebViewClient = client }
 }
