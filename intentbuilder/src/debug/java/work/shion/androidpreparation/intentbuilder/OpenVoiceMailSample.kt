@@ -22,9 +22,9 @@ class OpenVoiceMailSample : BaseActivity() {
             val from = this@OpenVoiceMailSample
             root.addView(Button(from).apply {
                 setOnClickListener {
-                    val intent = OpenVoiceMailIntentBuilder().apply {
-                        phoneNumber = value
-                    }.build()
+                    val intent = OpenVoiceMailIntentBuilder()
+                            .phoneNumber(value)
+                            .build()
                     intent.start(from)
                 }
                 text = key

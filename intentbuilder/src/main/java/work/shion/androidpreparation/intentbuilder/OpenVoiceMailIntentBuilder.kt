@@ -9,11 +9,19 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 /**
  * Launch a phone app and show voice mail
  *
- * ### Example
+ * ### Example1
  * ``` kotlin
  * OpenVoiceMailIntentBuilder().apply {
  *     phoneNumber = "phone number"
  * }.build().start(from)
+ * ```
+ *
+ * ### Example2
+ * ``` kotlin
+ * OpenVoiceMailIntentBuilder()
+ *     .phoneNumber("phone number")
+ *     .build()
+ *     .start(from)
  * ```
  *
  * ### References
@@ -30,6 +38,9 @@ class OpenVoiceMailIntentBuilder : IntentBuilder<ConsumerIntent>(), PhoneNumberC
 
     override var phoneUri: Uri? = null
         private set
+
+
+    fun phoneNumber(input: String?) = apply { phoneNumber = input }
 
 
     /**
