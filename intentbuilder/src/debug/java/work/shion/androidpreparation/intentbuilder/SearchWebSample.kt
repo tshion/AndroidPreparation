@@ -21,9 +21,10 @@ class SearchWebSample : BaseActivity() {
             val from = this@SearchWebSample
             root.addView(Button(from).apply {
                 setOnClickListener {
-                    SearchWebIntentBuilder().apply {
-                        query = value
-                    }.build().start(from)
+                    SearchWebIntentBuilder()
+                            .query(value)
+                            .build()
+                            .start(from)
                 }
                 text = key
             }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)

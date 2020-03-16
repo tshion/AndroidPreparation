@@ -8,11 +8,19 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 /**
  * To initiate a web search
  *
- * ### Example
+ * ### Example1
  * ``` kotlin
  * SearchWebIntentBuilder().apply {
  *     query = "Android"
  * }.build().start(from)
+ * ```
+ *
+ * ### Example2
+ * ``` kotlin
+ * SearchWebIntentBuilder()
+ *     .query("Android")
+ *     .build()
+ *     .start(from)
  * ```
  *
  * ### References
@@ -21,6 +29,10 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 class SearchWebIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     var query: String? = null
+
+
+    fun query(input: String?) = apply { query = input }
+
 
     /**
      * Generate an intent by builder's settings.
