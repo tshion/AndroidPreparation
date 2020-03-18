@@ -45,9 +45,9 @@ class CallVoiceMailSample : BaseActivity() {
     @NeedsPermission(Manifest.permission.CALL_PHONE)
     @SuppressLint("MissingPermission")
     fun launch(from: Activity, value: String) {
-        val intent = CallVoiceMailIntentBuilder().apply {
-            phoneNumber = value
-        }.build()
+        val intent = CallVoiceMailIntentBuilder()
+                .phoneNumber(value)
+                .build()
         intent.start(from)
     }
 }

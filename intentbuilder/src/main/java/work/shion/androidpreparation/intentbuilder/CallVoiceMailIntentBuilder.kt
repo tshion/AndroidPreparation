@@ -9,11 +9,23 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 /**
  * Call voice mail directly
  *
- * ### Example
+ * ### Example1
  * ``` kotlin
  * val intent = CallVoiceMailIntentBuilder().apply {
  *     phoneNumber = "phone number"
  * }.build()
+ *
+ * val checkResult = ContextCompat.checkSelfPermission(from, Manifest.permission.CALL_PHONE)
+ * if (checkResult == PackageManager.PERMISSION_GRANTED) {
+ *     intent.start(from)
+ * }
+ * ```
+ *
+ * ### Example2
+ * ``` kotlin
+ * val intent = CallVoiceMailIntentBuilder()
+ *     .phoneNumber("phone number")
+ *     .build()
  *
  * val checkResult = ContextCompat.checkSelfPermission(from, Manifest.permission.CALL_PHONE)
  * if (checkResult == PackageManager.PERMISSION_GRANTED) {
@@ -27,7 +39,6 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 class CallVoiceMailIntentBuilder : IntentBuilder<CallIntent>(), PhoneNumberContract {
 
     override var phoneNumber: String? = null
-        get() = super.phoneNumber
         set(value) {
             phoneUri = if (!value.isNullOrBlank()) Uri.parse("voicemail:$value") else null
             field = value
@@ -35,6 +46,9 @@ class CallVoiceMailIntentBuilder : IntentBuilder<CallIntent>(), PhoneNumberContr
 
     override var phoneUri: Uri? = null
         private set
+
+
+    fun phoneNumber(input: String?) = apply { phoneNumber = input }
 
 
     /**

@@ -30,7 +30,6 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 class OpenVoiceMailIntentBuilder : IntentBuilder<ConsumerIntent>(), PhoneNumberContract {
 
     override var phoneNumber: String? = null
-        get() = super.phoneNumber
         set(value) {
             phoneUri = if (!value.isNullOrBlank()) Uri.parse("voicemail:$value") else null
             field = value

@@ -45,9 +45,9 @@ class CallPhoneSample : BaseActivity() {
     @NeedsPermission(Manifest.permission.CALL_PHONE)
     @SuppressLint("MissingPermission")
     fun launch(from: Activity, value: String) {
-        val intent = CallPhoneIntentBuilder().apply {
-            phoneNumber = value
-        }.build()
+        val intent = CallPhoneIntentBuilder()
+                .phoneNumber(value)
+                .build()
         intent.start(from)
     }
 }

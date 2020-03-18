@@ -9,11 +9,23 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 /**
  * Call directly
  *
- * ### Example
+ * ### Example1
  * ``` kotlin
  * val intent = CallPhoneIntentBuilder().apply {
  *     phoneNumber = "phone number"
  * }.build()
+ *
+ * val checkResult = ContextCompat.checkSelfPermission(from, Manifest.permission.CALL_PHONE)
+ * if (checkResult == PackageManager.PERMISSION_GRANTED) {
+ *     intent.start(from)
+ * }
+ * ```
+ *
+ * ### Example2
+ * ``` kotlin
+ * val intent = CallPhoneIntentBuilder()
+ *     .phoneNumber("phone number")
+ *     .build()
  *
  * val checkResult = ContextCompat.checkSelfPermission(from, Manifest.permission.CALL_PHONE)
  * if (checkResult == PackageManager.PERMISSION_GRANTED) {
@@ -27,7 +39,6 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 class CallPhoneIntentBuilder : IntentBuilder<CallIntent>(), PhoneNumberContract {
 
     override var phoneNumber: String? = null
-        get() = super.phoneNumber
         set(value) {
             phoneUri = if (!value.isNullOrBlank()) Uri.parse("tel:$value") else null
             field = value
@@ -35,6 +46,9 @@ class CallPhoneIntentBuilder : IntentBuilder<CallIntent>(), PhoneNumberContract 
 
     override var phoneUri: Uri? = null
         private set
+
+
+    fun phoneNumber(input: String?) = apply { phoneNumber = input }
 
 
     /**
