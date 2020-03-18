@@ -20,9 +20,10 @@ class OpenBrowserSample : BaseActivity() {
             val from = this@OpenBrowserSample
             root.addView(Button(from).apply {
                 setOnClickListener {
-                    OpenBrowserIntentBuilder().apply {
-                        trySetUri(value)
-                    }.build()?.start(from) ?: throw Error()
+                    OpenBrowserIntentBuilder()
+                            .uriString(value)
+                            .build()
+                            ?.start(from) ?: throw Error()
                 }
                 text = key
             }, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
