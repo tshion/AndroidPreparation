@@ -46,8 +46,23 @@ class OpenMailerIntentBuilderTest {
     }
 
     @Test
-    fun success1() {
-        val (key, data) = "Success1".let { it to OpenMailerSample.testData[it] }
+    fun success1a() {
+        val (key, data) = "Success1a".let { it to OpenMailerSample.testData[it] }
+        Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
+        Intents.intended(CoreMatchers.allOf(
+                hasAction(Intent.ACTION_SENDTO),
+                hasData(Uri.parse("mailto:")),
+                hasExtra(Intent.EXTRA_BCC, data?.bcc?.toTypedArray()),
+                hasExtra(Intent.EXTRA_CC, data?.cc?.toTypedArray()),
+                hasExtra(Intent.EXTRA_EMAIL, data?.to?.toTypedArray()),
+                hasExtra(Intent.EXTRA_SUBJECT, data?.subject),
+                hasExtra(Intent.EXTRA_TEXT, data?.text)
+        ))
+    }
+
+    @Test
+    fun success1b() {
+        val (key, data) = "Success1b".let { it to OpenMailerSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(key)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(Intent.ACTION_SENDTO),

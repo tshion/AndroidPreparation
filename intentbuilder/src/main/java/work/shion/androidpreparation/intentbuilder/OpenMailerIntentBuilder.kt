@@ -8,7 +8,7 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 /**
  * Launch a mail app
  *
- * ### Example
+ * ### Example1
  * ``` kotlin
  * OpenMailerIntentBuilder().apply {
  *     attachmentUris.add(uri)
@@ -18,6 +18,19 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  *     text = "mail body text"
  *     to.add("test1@example.test")
  * }.build().start(from)
+ * ```
+ *
+ * ### Example2
+ * ``` kotlin
+ * OpenMailerIntentBuilder()
+ *     .appendAttachmentUris(uri)
+ *     .appendBcc("test2@example.test")
+ *     .appendCc("test3@example.test")
+ *     .appendTo("test1@example.test")
+ *     .subject("subject")
+ *     .text("mail body text")
+ *     .build()
+ *     .start(from)
  * ```
  *
  * ### References
@@ -33,6 +46,27 @@ class OpenMailerIntentBuilder : IntentBuilder<ConsumerIntent>() {
     var subject: String? = null
     var text: String? = null
     val to: MutableSet<String> = mutableSetOf()
+
+
+    fun appendAttachmentUris(input: Uri) = apply { attachmentUris.add(input) }
+
+    fun appendBcc(input: String) = apply { bcc.add(input) }
+
+    fun appendCc(input: String) = apply { cc.add(input) }
+
+    fun appendTo(input: String) = apply { to.add(input) }
+
+    fun removeAttachmentUris(input: Uri) = apply { attachmentUris.remove(input) }
+
+    fun removeBcc(input: String) = apply { bcc.remove(input) }
+
+    fun removeCc(input: String) = apply { cc.remove(input) }
+
+    fun removeTo(input: String) = apply { to.remove(input) }
+
+    fun subject(input: String?) = apply { subject = input }
+
+    fun text(input: String?) = apply { text = input }
 
 
     /**
