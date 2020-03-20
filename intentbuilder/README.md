@@ -12,7 +12,7 @@ dependencies {
 }
 ```
 
-If you want to get a beta-release, please add like this at build.gradle of a project.
+If you want to get by maven, please add like this at build.gradle of a project.
 
 ``` gradle
 repositories {
@@ -25,16 +25,20 @@ repositories {
 
 If you want to know a library version, please check [Bintray site][maven_intentbuilder].
 
-※Be careful, I publish a beta-release by Maven, a product-release by jCenter.
-
 ### How to use
 Please create a builder you want, and then call ```start()```.
 For example, to open browser, like this.
 
 ``` kotlin
-OpenBrowserIntentBuilder().apply {
-    trySetUri("https://mokumokulog.netlify.com/")
-}.build()?.start(from)
+OpenMailerIntentBuilder()
+    .appendAttachmentUris(uri)
+    .appendBcc("test2@example.test")
+    .appendCc("test3@example.test")
+    .appendTo("test1@example.test")
+    .subject("subject")
+    .text("mail body text")
+    .build()
+    .start(from)
  ```
 
 Note: ```from``` is an activity or a fragment instance.
@@ -56,6 +60,9 @@ To open a web page | [OpenBrowserIntentBuilder](https://github.com/TentaShion/An
 
 
 ## Links
+### Blogs
+* [IntentBuilder 1.0.x のリリースノート](https://mokumokulog.netlify.com/tech/20200314120638)
+
 ### Products
 * [GitHub][gh_intentbuilder]
 * [Maven][maven_intentbuilder]
