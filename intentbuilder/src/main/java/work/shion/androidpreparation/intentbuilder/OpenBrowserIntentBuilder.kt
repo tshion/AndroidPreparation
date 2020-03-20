@@ -38,7 +38,7 @@ class OpenBrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     var uriString: String? = null
         set(value) {
-            if (URLUtil.isNetworkUrl(value ?: "https://a")) {
+            if (value == null || URLUtil.isNetworkUrl(value)) {
                 uri = value?.let { Uri.parse(it) }
                 field = value
             }

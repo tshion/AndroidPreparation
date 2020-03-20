@@ -62,7 +62,9 @@ class OpenMapIntentBuilder : IntentBuilder<ConsumerIntent>() {
      */
     var zoom: Int? = null
         set(@IntRange(from = ZOOM_MIN, to = ZOOM_MAX) value) {
-            if ((value?.toLong() ?: ZOOM_MIN) in ZOOM_MIN..ZOOM_MAX) field = value
+            if (value == null || value.toLong() in ZOOM_MIN..ZOOM_MAX) {
+                field = value
+            }
         }
 
 
