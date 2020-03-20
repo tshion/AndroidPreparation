@@ -38,10 +38,15 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
  */
 class CallPhoneIntentBuilder : IntentBuilder<CallIntent>(), PhoneNumberContract {
 
+    private val scheme = "tel"
+
+
     override var phoneNumber: String? = null
         set(value) {
-            phoneUri = if (!value.isNullOrBlank()) Uri.parse("tel:$value") else null
-            field = value
+            if (value == null || value.isNotBlank()) {
+                phoneUri = value?.let { Uri.parse("$scheme:$it") }
+                field = value
+            }
         }
 
     override var phoneUri: Uri? = null
