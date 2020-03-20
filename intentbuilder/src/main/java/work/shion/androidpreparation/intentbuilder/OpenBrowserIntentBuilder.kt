@@ -9,11 +9,19 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 /**
  * To open a web page
  *
- * ### Example
+ * ### Example1
  * ``` kotlin
  * OpenBrowserIntentBuilder().apply {
- *     trySetUri("https://mokumokulog.netlify.com/")
+ *     uriString = "https://mokumokulog.netlify.com/"
  * }.build()?.start(from)
+ * ```
+ *
+ * ### Example2
+ * ``` kotlin
+ * OpenBrowserIntentBuilder()
+ *     .uriString("https://mokumokulog.netlify.com/")
+ *     .build()
+ *     ?.start(from)
  * ```
  *
  * ### References
@@ -28,37 +36,38 @@ class OpenBrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
     var uri: Uri? = null
         private set
 
+    var uriString: String? = null
+        set(value) {
+            if (value == null || URLUtil.isNetworkUrl(value)) {
+                uri = value?.let { Uri.parse(it) }
+                field = value
+            }
+        }
+
 
     @Deprecated("In development")
-    fun clearType() {
-        mimeType = null
-    }
+    fun clearType() = apply { mimeType = null }
 
     @Deprecated("In development")
-    fun setTextHtml() {
-        mimeType = "text/html"
-    }
+    fun setTextHtml() = apply { mimeType = "text/html" }
 
     @Deprecated("In development")
-    fun setTextPlain() {
-        mimeType = "text/plain"
-    }
+    fun setTextPlain() = apply { mimeType = "text/plain" }
 
     @Deprecated("In development")
-    fun setXHtml() {
-        mimeType = "application/xhtml+xml"
-    }
+    fun setXHtml() = apply { mimeType = "application/xhtml+xml" }
 
     @Deprecated("In development")
-    fun setXHtmlMobile() {
-        mimeType = "application/vnd.wap.xhtml+xml"
-    }
+    fun setXHtmlMobile() = apply { mimeType = "application/vnd.wap.xhtml+xml" }
 
+    @Deprecated("Duplicate implementation")
     fun trySetUri(uri: String): Boolean {
         val isValid = URLUtil.isNetworkUrl(uri)
         if (isValid) this.uri = Uri.parse(uri)
         return isValid
     }
+
+    fun uriString(input: String?) = apply { uriString = input }
 
 
     /**
@@ -68,7 +77,7 @@ class OpenBrowserIntentBuilder : IntentBuilder<ConsumerIntent>() {
         ConsumerIntent().apply {
             action = Intent.ACTION_VIEW
             data = uri
-            if (mimeType != null) type = mimeType
+            mimeType?.also { type = it }
         }
     }
 }

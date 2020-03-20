@@ -9,11 +9,19 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
 /**
  * Launch a phone app
  *
- * ### Example
+ * ### Example1
  * ``` kotlin
  * LaunchPhoneIntentBuilder().apply {
  *     phoneNumber = "phone number"
  * }.build().start(from)
+ * ```
+ *
+ * ### Example2
+ * ``` kotlin
+ * LaunchPhoneIntentBuilder()
+ *     .phoneNumber("phone number")
+ *     .build()
+ *     .start(from)
  * ```
  *
  * ### References
@@ -21,15 +29,22 @@ import work.shion.androidpreparation.intentbuilder.basis.PhoneNumberContract
  */
 class LaunchPhoneIntentBuilder : IntentBuilder<ConsumerIntent>(), PhoneNumberContract {
 
+    private val scheme = "tel"
+
+
     override var phoneNumber: String? = null
-        get() = super.phoneNumber
         set(value) {
-            phoneUri = if (!value.isNullOrBlank()) Uri.parse("tel:$value") else null
-            field = value
+            if (value == null || value.isNotBlank()) {
+                phoneUri = value?.let { Uri.parse("$scheme:$it") }
+                field = value
+            }
         }
 
     override var phoneUri: Uri? = null
         private set
+
+
+    fun phoneNumber(input: String?) = apply { phoneNumber = input }
 
 
     /**

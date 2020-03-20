@@ -9,35 +9,29 @@ class OpenMapSample : BaseActivity() {
     companion object {
         val testData = mapOf(
                 "Empty" to OpenMapIntentBuilder(),
-                "Example1" to OpenMapIntentBuilder().apply {
-                    latitude = 47.6
-                    longitude = -122.3
-                },
-                "Example2" to OpenMapIntentBuilder().apply {
-                    latitude = 47.6
-                    longitude = -122.3
-                    trySetZoom(11)
-                },
-                "Example3" to OpenMapIntentBuilder().apply {
-                    appendLabel(34.99, -106.61, "Treasure")
-                    latitude = 0.0
-                    longitude = 0.0
-                },
-                "Example3a" to OpenMapIntentBuilder().apply {
-                    appendLabel(35.681236, 139.767125, "東京駅")
-                    latitude = 0.0
-                    longitude = 0.0
-                },
-                "Example4" to OpenMapIntentBuilder().apply {
-                    label.add("my street address")
-                    latitude = 0.0
-                    longitude = 0.0
-                },
-                "Example4a" to OpenMapIntentBuilder().apply {
-                    label.add("東京駅 ランチ")
-                    latitude = 0.0
-                    longitude = 0.0
-                }
+                "Example1" to OpenMapIntentBuilder()
+                        .latitude(47.6)
+                        .longitude(-122.3),
+                "Example2" to OpenMapIntentBuilder()
+                        .latitude(47.6)
+                        .longitude(-122.3)
+                        .zoom(11),
+                "Example3" to OpenMapIntentBuilder()
+                        .appendLabel(34.99, -106.61, "Treasure")
+                        .latitude(0.0)
+                        .longitude(0.0),
+                "Example3a" to OpenMapIntentBuilder()
+                        .appendLabel(35.681236, 139.767125, "東京駅")
+                        .latitude(0.0)
+                        .longitude(0.0),
+                "Example4" to OpenMapIntentBuilder()
+                        .appendLabel("my street address")
+                        .latitude(0.0)
+                        .longitude(0.0),
+                "Example4a" to OpenMapIntentBuilder()
+                        .appendLabel("東京駅 ランチ")
+                        .latitude(0.0)
+                        .longitude(0.0)
         )
     }
 

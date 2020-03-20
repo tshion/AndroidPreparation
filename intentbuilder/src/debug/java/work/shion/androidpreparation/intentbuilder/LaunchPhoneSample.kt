@@ -22,9 +22,9 @@ class LaunchPhoneSample : BaseActivity() {
             val from = this@LaunchPhoneSample
             root.addView(Button(from).apply {
                 setOnClickListener {
-                    val intent = LaunchPhoneIntentBuilder().apply {
-                        phoneNumber = value
-                    }.build()
+                    val intent = LaunchPhoneIntentBuilder()
+                            .phoneNumber(value)
+                            .build()
                     intent.start(from)
                 }
                 text = key
