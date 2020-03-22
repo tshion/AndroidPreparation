@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 
 // バージョン
 def appver_major = 0
-def appver_minor = 1
+def appver_minor = 2
 def appver_revision = 0
 version = "${appver_major}.${appver_minor}.${appver_revision}"
 

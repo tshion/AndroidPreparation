@@ -12,7 +12,7 @@ dependencies {
 }
 ```
 
-If you want to get a beta-release, please add like this at build.gradle of a project.
+If you want to get by maven, please add like this at build.gradle of a project.
 
 ``` gradle
 repositories {
@@ -24,8 +24,6 @@ repositories {
 ```
 
 If you want to know a library version, please check [Bintray site][maven_webviewbuilder].
-
-※Be careful, I publish a beta-release by Maven, a product-release by jCenter.
 
 ### How to use
 Now, you wrote like this at layout xml file.
