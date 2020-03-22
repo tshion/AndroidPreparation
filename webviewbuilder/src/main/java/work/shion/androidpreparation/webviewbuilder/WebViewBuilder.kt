@@ -1,14 +1,15 @@
 package work.shion.androidpreparation.webviewbuilder
 
 import android.annotation.TargetApi
-import android.os.Build
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebSettings.*
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.annotation.IntDef
 import androidx.annotation.RequiresApi
+import androidx.webkit.WebSettingsCompat
+import androidx.webkit.WebViewClientCompat
+import androidx.webkit.WebViewFeature
 
 
 /**
@@ -73,7 +74,7 @@ class WebViewBuilder {
     private var mUserAgentString: String? = null
     private var mUseWideViewPort: Boolean? = null
     private var mWebChromeClient: WebChromeClient? = null
-    private var mWebViewClient: WebViewClient? = null
+    private var mWebViewClient: WebViewClientCompat? = null
 
 
     /**
@@ -101,13 +102,24 @@ class WebViewBuilder {
             defaultFixedFontSize = mDefaultFixedFontSize ?: defaultFontSize
             defaultFontSize = mDefaultFontSize ?: defaultFontSize
             defaultTextEncodingName = mDefaultTextEncodingName ?: defaultTextEncodingName
-            if (24 <= Build.VERSION.SDK_INT) disabledActionModeMenuItems =
-                    mDisabledActionModeMenuItems ?: disabledActionModeMenuItems
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.DISABLED_ACTION_MODE_MENU_ITEMS)) {
+                val defaultValue = WebSettingsCompat.getDisabledActionModeMenuItems(settings)
+                WebSettingsCompat.setDisabledActionModeMenuItems(
+                        settings,
+                        mDisabledActionModeMenuItems ?: defaultValue
+                )
+            }
             displayZoomControls = mDisplayZoomControls ?: displayZoomControls
             domStorageEnabled = mDomStorageEnabled ?: domStorageEnabled
             fantasyFontFamily = mFantasyFontFamily ?: fantasyFontFamily
             fixedFontFamily = mFixedFontFamily ?: fixedFontFamily
-            if (29 <= Build.VERSION.SDK_INT) forceDark = mForceDark ?: forceDark
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                val defaultValue = WebSettingsCompat.getForceDark(settings)
+                WebSettingsCompat.setForceDark(
+                        settings,
+                        mForceDark ?: defaultValue
+                )
+            }
             if (mGeolocationEnabled != null) setGeolocationEnabled(mGeolocationEnabled!!)
             javaScriptCanOpenWindowsAutomatically =
                     mJavaScriptCanOpenWindowsAutomatically ?: javaScriptCanOpenWindowsAutomatically
@@ -121,10 +133,20 @@ class WebViewBuilder {
             minimumLogicalFontSize = mMinimumLogicalFontSize ?: minimumLogicalFontSize
             mixedContentMode = mMixedContentMode ?: mixedContentMode
             if (mNeedInitialFocus != null) setNeedInitialFocus(mNeedInitialFocus!!)
-            if (23 <= Build.VERSION.SDK_INT) offscreenPreRaster =
-                    mOffscreenPreRaster ?: offscreenPreRaster
-            if (26 <= Build.VERSION.SDK_INT) safeBrowsingEnabled =
-                    mSafeBrowsingEnabled ?: safeBrowsingEnabled
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.OFF_SCREEN_PRERASTER)) {
+                val defaultValue = WebSettingsCompat.getOffscreenPreRaster(settings)
+                WebSettingsCompat.setOffscreenPreRaster(
+                        settings,
+                        mOffscreenPreRaster ?: defaultValue
+                )
+            }
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
+                val defaultValue = WebSettingsCompat.getSafeBrowsingEnabled(settings)
+                WebSettingsCompat.setSafeBrowsingEnabled(
+                        settings,
+                        mSafeBrowsingEnabled ?: defaultValue
+                )
+            }
             sansSerifFontFamily = mSansSerifFontFamily ?: sansSerifFontFamily
             serifFontFamily = mSerifFontFamily ?: serifFontFamily
             standardFontFamily = mStandardFontFamily ?: standardFontFamily
@@ -403,5 +425,5 @@ class WebViewBuilder {
      * @see android.webkit.WebView.setWebViewClient
      * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebView#setWebViewClient">Android Developers</a>
      */
-    fun setWebViewClient(client: WebViewClient?) = this.apply { mWebViewClient = client }
+    fun setWebViewClient(client: WebViewClientCompat?) = this.apply { mWebViewClient = client }
 }

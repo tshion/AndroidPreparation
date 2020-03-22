@@ -2,12 +2,14 @@ package work.shion.androidpreparation.webviewbuilder
 
 import android.annotation.TargetApi
 import android.graphics.Bitmap
-import android.net.Uri
 import android.net.http.SslError
 import android.os.Message
 import android.view.KeyEvent
 import android.webkit.*
 import androidx.annotation.RequiresApi
+import androidx.webkit.SafeBrowsingResponseCompat
+import androidx.webkit.WebResourceErrorCompat
+import androidx.webkit.WebViewClientCompat
 
 
 /**
@@ -21,13 +23,13 @@ class WebViewClientBuilder {
     private var mOnPageFinished: ((view: WebView?, url: String?) -> Unit)? = null
     private var mOnPageStarted: ((view: WebView?, url: String?, favicon: Bitmap?) -> Unit)? = null
     private var mOnReceivedClientCertRequest: ((view: WebView?, request: ClientCertRequest?) -> Unit)? = null
-    private var mOnReceivedError: ((view: WebView?, errorCode: Int, description: String?, failingUrl: String?) -> Unit)? = null
+    private var mOnReceivedError: ((view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) -> Unit)? = null
     private var mOnReceivedHttpAuthRequest: ((view: WebView?, handler: HttpAuthHandler?, host: String?, realm: String?) -> Unit)? = null
     private var mOnReceivedHttpError: ((view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) -> Unit)? = null
     private var mOnReceivedLoginRequest: ((view: WebView?, realm: String?, account: String?, args: String?) -> Unit)? = null
     private var mOnReceivedSslError: ((view: WebView?, handler: SslErrorHandler?, error: SslError?) -> Unit)? = null
     private var mOnRenderProcessGone: ((view: WebView?, detail: RenderProcessGoneDetail?) -> Boolean)? = null
-    private var mOnSafeBrowsingHit: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponse?) -> Unit)? = null
+    private var mOnSafeBrowsingHit: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponseCompat) -> Unit)? = null
     private var mOnScaleChanged: ((view: WebView?, oldScale: Float, newScale: Float) -> Unit)? = null
     private var mShouldInterceptRequest: ((view: WebView?, request: WebResourceRequest?) -> WebResourceResponse?)? = null
     private var mShouldOverrideKeyEvent: ((view: WebView?, event: KeyEvent?) -> Boolean)? = null
@@ -37,7 +39,8 @@ class WebViewClientBuilder {
     /**
      * WebViewClient の生成
      */
-    fun build() = object : WebViewClient() {
+    fun build() = object : WebViewClientCompat() {
+
         override fun doUpdateVisitedHistory(view: WebView?, url: String?, isReload: Boolean) {
             mDoUpdateVisitedHistory?.invoke(view, url, isReload)
                     ?: super.doUpdateVisitedHistory(view, url, isReload)
@@ -52,8 +55,7 @@ class WebViewClientBuilder {
             mOnLoadResource?.invoke(view, url) ?: super.onLoadResource(view, url)
         }
 
-        @TargetApi(23)
-        override fun onPageCommitVisible(view: WebView?, url: String?) {
+        override fun onPageCommitVisible(view: WebView, url: String) {
             mOnPageCommitVisible?.invoke(view, url) ?: super.onPageCommitVisible(view, url)
         }
 
@@ -70,19 +72,9 @@ class WebViewClientBuilder {
                     ?: super.onReceivedClientCertRequest(view, request)
         }
 
-        override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
-            mOnReceivedError?.invoke(view, errorCode, description, failingUrl)
-                    ?: super.onReceivedError(view, errorCode, description, failingUrl)
-        }
-
-        @TargetApi(23)
-        override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-            mOnReceivedError?.invoke(
-                    view,
-                    error?.errorCode ?: 0,
-                    error?.description?.toString(),
-                    request?.url?.toString()
-            ) ?: super.onReceivedError(view, request, error)
+        override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) {
+            mOnReceivedError?.invoke(view, request, error)
+                    ?: super.onReceivedError(view, request, error)
         }
 
         override fun onReceivedHttpAuthRequest(view: WebView?, handler: HttpAuthHandler?, host: String?, realm: String?) {
@@ -90,8 +82,7 @@ class WebViewClientBuilder {
                     ?: super.onReceivedHttpAuthRequest(view, handler, host, realm)
         }
 
-        @TargetApi(23)
-        override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
+        override fun onReceivedHttpError(view: WebView, request: WebResourceRequest, errorResponse: WebResourceResponse) {
             mOnReceivedHttpError?.invoke(view, request, errorResponse)
                     ?: super.onReceivedHttpError(view, request, errorResponse)
         }
@@ -111,8 +102,7 @@ class WebViewClientBuilder {
                 mOnRenderProcessGone?.invoke(view, detail)
                         ?: super.onRenderProcessGone(view, detail)
 
-        @TargetApi(27)
-        override fun onSafeBrowsingHit(view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponse?) {
+        override fun onSafeBrowsingHit(view: WebView, request: WebResourceRequest, threatType: Int, callback: SafeBrowsingResponseCompat) {
             mOnSafeBrowsingHit?.invoke(view, request, threatType, callback)
                     ?: super.onSafeBrowsingHit(view, request, threatType, callback)
         }
@@ -130,12 +120,7 @@ class WebViewClientBuilder {
                 mShouldOverrideKeyEvent?.invoke(view, event)
                         ?: super.shouldOverrideKeyEvent(view, event)
 
-        override fun shouldOverrideUrlLoading(view: WebView?, url: String?) =
-                mShouldOverrideUrlLoading?.invoke(view, newWebResourceRequest(url))
-                        ?: super.shouldOverrideUrlLoading(view, url)
-
-        @TargetApi(24)
-        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?) =
+        override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest) =
                 mShouldOverrideUrlLoading?.invoke(view, request)
                         ?: super.shouldOverrideUrlLoading(view, request)
     }
@@ -187,7 +172,7 @@ class WebViewClientBuilder {
      * @see android.webkit.WebViewClient.onReceivedError
      * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebViewClient.html#onReceivedError">Android Developers</a>
      */
-    fun setOnReceivedError(fx: ((view: WebView?, errorCode: Int, description: String?, failingUrl: String?) -> Unit)?) = this.apply { mOnReceivedError = fx }
+    fun setOnReceivedError(fx: ((view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) -> Unit)?) = this.apply { mOnReceivedError = fx }
 
     /**
      * @see android.webkit.WebViewClient.onReceivedHttpAuthRequest
@@ -226,7 +211,7 @@ class WebViewClientBuilder {
      * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebViewClient.html#onSafeBrowsingHit">Android Developers</a>
      */
     @RequiresApi(27)
-    fun setOnSafeBrowsingHit(fx: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponse?) -> Unit)?) = this.apply { mOnSafeBrowsingHit = fx }
+    fun setOnSafeBrowsingHit(fx: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponseCompat) -> Unit)?) = this.apply { mOnSafeBrowsingHit = fx }
 
     /**
      * @see android.webkit.WebViewClient.onScaleChanged
@@ -251,17 +236,4 @@ class WebViewClientBuilder {
      * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebViewClient.html#shouldOverrideUrlLoading">Android Developers</a>
      */
     fun setShouldOverrideUrlLoading(fx: ((view: WebView?, request: WebResourceRequest?) -> Boolean)?) = this.apply { mShouldOverrideUrlLoading = fx }
-
-
-    /**
-     * WebResourceRequest の生成
-     */
-    private fun newWebResourceRequest(url: String?) = object : WebResourceRequest {
-        override fun getMethod() = ""
-        override fun getRequestHeaders() = mutableMapOf<String, String>()
-        override fun getUrl() = if (URLUtil.isValidUrl(url)) Uri.parse(url) else Uri.Builder().build()
-        override fun hasGesture() = false
-        override fun isForMainFrame() = false
-        override fun isRedirect() = false
-    }
 }

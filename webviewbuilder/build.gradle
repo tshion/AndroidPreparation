@@ -62,6 +62,7 @@ dependencies {
 
     // AndroidX
     implementation "androidx.annotation:annotation:${ver_droidx_annotation}"
+    implementation "androidx.webkit:webkit:${ver_droidx_webkit}"
 
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
