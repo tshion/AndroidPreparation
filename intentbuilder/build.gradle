@@ -62,6 +62,7 @@ bintray {
 dependencies {
 
     // AndroidX
+    implementation "androidx.collection:collection-ktx:${ver_droidx_collection}"
     implementation "androidx.fragment:fragment:${ver_droidx_fragment}"
     androidTestImplementation "androidx.test.espresso:espresso-intents:${ver_droidx_espresso}"
 
