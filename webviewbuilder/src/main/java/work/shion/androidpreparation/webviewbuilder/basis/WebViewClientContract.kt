@@ -66,56 +66,56 @@ interface WebViewClientContract {
 
 
     /** @see WebViewClient.doUpdateVisitedHistory */
-    fun doUpdateVisitedHistory(fx: ((view: WebView?, url: String?, isReload: Boolean) -> Unit)?): WebViewClientContract
+    fun doUpdateVisitedHistory(callback: ((view: WebView?, url: String?, isReload: Boolean) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onFormResubmission */
-    fun onFormResubmission(fx: ((view: WebView?, dontResend: Message?, resend: Message?) -> Unit)?): WebViewClientContract
+    fun onFormResubmission(callback: ((view: WebView?, dontResend: Message?, resend: Message?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onLoadResource */
-    fun onLoadResource(fx: ((view: WebView?, url: String?) -> Unit)?): WebViewClientContract
+    fun onLoadResource(callback: ((view: WebView?, url: String?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onPageCommitVisible */
-    fun onPageCommitVisible(fx: ((view: WebView?, url: String?) -> Unit)?): WebViewClientContract
+    fun onPageCommitVisible(callback: ((view: WebView?, url: String?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onPageFinished */
-    fun onPageFinished(fx: ((view: WebView?, url: String?) -> Unit)?): WebViewClientContract
+    fun onPageFinished(callback: ((view: WebView?, url: String?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onPageStarted */
-    fun onPageStarted(fx: ((view: WebView?, url: String?, favicon: Bitmap?) -> Unit)?): WebViewClientContract
+    fun onPageStarted(callback: ((view: WebView?, url: String?, favicon: Bitmap?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onReceivedClientCertRequest */
-    fun onReceivedClientCertRequest(fx: ((view: WebView?, request: ClientCertRequest?) -> Unit)?): WebViewClientContract
+    fun onReceivedClientCertRequest(callback: ((view: WebView?, request: ClientCertRequest?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onReceivedError */
-    fun onReceivedError(fx: ((view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) -> Unit)?): WebViewClientContract
+    fun onReceivedError(callback: ((view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onReceivedHttpAuthRequest */
-    fun onReceivedHttpAuthRequest(fx: ((view: WebView?, handler: HttpAuthHandler?, host: String?, realm: String?) -> Unit)?): WebViewClientContract
+    fun onReceivedHttpAuthRequest(callback: ((view: WebView?, handler: HttpAuthHandler?, host: String?, realm: String?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onReceivedHttpError */
-    fun onReceivedHttpError(fx: ((view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) -> Unit)?): WebViewClientContract
+    fun onReceivedHttpError(callback: ((view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onReceivedLoginRequest */
-    fun onReceivedLoginRequest(fx: ((view: WebView?, realm: String?, account: String?, args: String?) -> Unit)?): WebViewClientContract
+    fun onReceivedLoginRequest(callback: ((view: WebView?, realm: String?, account: String?, args: String?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onReceivedSslError */
-    fun onReceivedSslError(fx: ((view: WebView?, handler: SslErrorHandler?, error: SslError?) -> Unit)?): WebViewClientContract
+    fun onReceivedSslError(callback: ((view: WebView?, handler: SslErrorHandler?, error: SslError?) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onRenderProcessGone */
-    fun onRenderProcessGone(fx: ((view: WebView?, detail: RenderProcessGoneDetail?) -> Boolean)?): WebViewClientContract
+    fun onRenderProcessGone(callback: ((view: WebView?, detail: RenderProcessGoneDetail?) -> Boolean)?): WebViewClientContract
 
     /** @see WebViewClient.onSafeBrowsingHit */
-    fun onSafeBrowsingHit(fx: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponseCompat) -> Unit)?): WebViewClientContract
+    fun onSafeBrowsingHit(callback: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponseCompat) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.onScaleChanged */
-    fun onScaleChanged(fx: ((view: WebView?, oldScale: Float, newScale: Float) -> Unit)?): WebViewClientContract
+    fun onScaleChanged(callback: ((view: WebView?, oldScale: Float, newScale: Float) -> Unit)?): WebViewClientContract
 
     /** @see WebViewClient.shouldInterceptRequest */
-    fun shouldInterceptRequest(fx: ((view: WebView?, request: WebResourceRequest?) -> WebResourceResponse?)?): WebViewClientContract
+    fun shouldInterceptRequest(callback: ((view: WebView?, request: WebResourceRequest?) -> WebResourceResponse?)?): WebViewClientContract
 
     /** @see WebViewClient.shouldOverrideKeyEvent */
-    fun shouldOverrideKeyEvent(fx: ((view: WebView?, event: KeyEvent?) -> Boolean)?): WebViewClientContract
+    fun shouldOverrideKeyEvent(callback: ((view: WebView?, event: KeyEvent?) -> Boolean)?): WebViewClientContract
 
     /** @see WebViewClient.shouldOverrideUrlLoading */
-    fun shouldOverrideUrlLoading(fx: ((view: WebView?, request: WebResourceRequest?) -> Boolean)?): WebViewClientContract
+    fun shouldOverrideUrlLoading(callback: ((view: WebView?, request: WebResourceRequest?) -> Boolean)?): WebViewClientContract
 }
