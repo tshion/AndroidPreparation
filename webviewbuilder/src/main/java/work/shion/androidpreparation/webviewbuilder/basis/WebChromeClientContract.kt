@@ -142,4 +142,32 @@ interface WebChromeClientContract {
 
     /** @see WebChromeClient.onShowFileChooser */
     fun onShowFileChooser(callback: ((webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?) -> Boolean)?): WebChromeClientContract
+
+
+    /**
+     * Was set at least one
+     */
+    fun wasSet() = (getDefaultVideoPoster
+            ?: getVideoLoadingProgressView
+            ?: getVisitedHistory
+            ?: onCloseWindow
+            ?: onConsoleMessage
+            ?: onCreateWindow
+            ?: onGeolocationPermissionsHidePrompt
+            ?: onGeolocationPermissionsShowPrompt
+            ?: onHideCustomView
+            ?: onJsAlert
+            ?: onJsBeforeUnload
+            ?: onJsConfirm
+            ?: onJsPrompt
+            ?: onPermissionRequest
+            ?: onPermissionRequestCanceled
+            ?: onProgressChanged
+            ?: onReceivedIcon
+            ?: onReceivedTitle
+            ?: onReceivedTouchIconUrl
+            ?: onRequestFocus
+            ?: onShowCustomView
+            ?: onShowFileChooser
+            ) != null
 }
