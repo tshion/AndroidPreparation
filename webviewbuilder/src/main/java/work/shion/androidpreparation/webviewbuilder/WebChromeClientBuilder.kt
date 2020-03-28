@@ -10,6 +10,7 @@ import work.shion.androidpreparation.webviewbuilder.basis.WebChromeClientContrac
 /**
  * Builder for WebChromeClient
  */
+@Deprecated("Duplication")
 class WebChromeClientBuilder : WebChromeClientContract {
 
     /** @see WebChromeClient.getDefaultVideoPoster */

@@ -14,6 +14,7 @@ import work.shion.androidpreparation.webviewbuilder.basis.WebViewClientContract
 /**
  * Builder for WebViewClient
  */
+@Deprecated("Duplication")
 class WebViewClientBuilder : WebViewClientContract {
 
     /** @see WebViewClient.doUpdateVisitedHistory */

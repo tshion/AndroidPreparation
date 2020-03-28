@@ -1,18 +1,23 @@
 package work.shion.androidpreparation.webviewbuilder
 
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.webkit.WebSettingsCompat
-import androidx.webkit.WebViewFeature
+import android.annotation.TargetApi
+import android.graphics.Bitmap
+import android.net.Uri
+import android.net.http.SslError
+import android.os.Message
+import android.view.KeyEvent
+import android.view.View
+import android.webkit.*
+import androidx.webkit.*
+import work.shion.androidpreparation.webviewbuilder.basis.WebChromeClientContract
 import work.shion.androidpreparation.webviewbuilder.basis.WebSettingsContract
+import work.shion.androidpreparation.webviewbuilder.basis.WebViewClientContract
 import work.shion.androidpreparation.webviewbuilder.basis.WebViewContract
 
 /**
  * Builder for WebView
  */
-class WebViewBuilder : WebSettingsContract, WebViewContract {
+class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewContract, WebViewClientContract {
 
     /** @see WebSettings.setAllowContentAccess */
     override var allowContentAccess: Boolean? = null
@@ -68,6 +73,9 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
     /** @see WebSettings.setDomStorageEnabled */
     override var domStorageEnabled: Boolean? = null
 
+    /** @see WebViewClient.doUpdateVisitedHistory */
+    override var doUpdateVisitedHistory: ((view: WebView?, url: String?, isReload: Boolean) -> Unit)? = null
+
     /** @see WebSettings.setFantasyFontFamily */
     override var fantasyFontFamily: String? = null
 
@@ -79,6 +87,15 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
 
     /** @see WebSettings.setGeolocationEnabled */
     override var geolocationEnabled: Boolean? = null
+
+    /** @see WebChromeClient.getDefaultVideoPoster */
+    override var getDefaultVideoPoster: (() -> Bitmap?)? = null
+
+    /** @see WebChromeClient.getVideoLoadingProgressView */
+    override var getVideoLoadingProgressView: (() -> View?)? = null
+
+    /** @see WebChromeClient.getVisitedHistory */
+    override var getVisitedHistory: ((callback: ValueCallback<Array<String>>?) -> Unit)? = null
 
     /** @see WebSettings.setJavaScriptCanOpenWindowsAutomatically */
     override var javaScriptCanOpenWindowsAutomatically: Boolean? = null
@@ -113,6 +130,110 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
     /** @see WebSettings.setOffscreenPreRaster */
     override var offscreenPreRaster: Boolean? = null
 
+    /** @see WebChromeClient.onCloseWindow */
+    override var onCloseWindow: ((window: WebView?) -> Unit)? = null
+
+    /** @see WebChromeClient.onConsoleMessage */
+    override var onConsoleMessage: ((consoleMessage: ConsoleMessage?) -> Boolean)? = null
+
+    /** @see WebChromeClient.onCreateWindow */
+    override var onCreateWindow: ((view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?) -> Boolean)? = null
+
+    /** @see WebViewClient.onFormResubmission */
+    override var onFormResubmission: ((view: WebView?, dontResend: Message?, resend: Message?) -> Unit)? = null
+
+    /** @see WebChromeClient.onGeolocationPermissionsHidePrompt */
+    override var onGeolocationPermissionsHidePrompt: (() -> Unit)? = null
+
+    /** @see WebChromeClient.onGeolocationPermissionsShowPrompt */
+    override var onGeolocationPermissionsShowPrompt: ((origin: String?, callback: GeolocationPermissions.Callback?) -> Unit)? = null
+
+    /** @see WebChromeClient.onHideCustomView */
+    override var onHideCustomView: (() -> Unit)? = null
+
+    /** @see WebChromeClient.onJsAlert */
+    override var onJsAlert: ((view: WebView?, url: String?, message: String?, result: JsResult?) -> Boolean)? = null
+
+    /** @see WebChromeClient.onJsBeforeUnload */
+    override var onJsBeforeUnload: ((view: WebView?, url: String?, message: String?, result: JsResult?) -> Boolean)? = null
+
+    /** @see WebChromeClient.onJsConfirm */
+    override var onJsConfirm: ((view: WebView?, url: String?, message: String?, result: JsResult?) -> Boolean)? = null
+
+    /** @see WebChromeClient.onJsPrompt */
+    override var onJsPrompt: ((view: WebView?, url: String?, message: String?, defaultValue: String?, result: JsPromptResult?) -> Boolean)? = null
+
+    /** @see WebViewClient.onLoadResource */
+    override var onLoadResource: ((view: WebView?, url: String?) -> Unit)? = null
+
+    /** @see WebViewClient.onPageCommitVisible */
+    @TargetApi(23)
+    override var onPageCommitVisible: ((view: WebView?, url: String?) -> Unit)? = null
+
+    /** @see WebViewClient.onPageFinished */
+    override var onPageFinished: ((view: WebView?, url: String?) -> Unit)? = null
+
+    /** @see WebViewClient.onPageStarted */
+    override var onPageStarted: ((view: WebView?, url: String?, favicon: Bitmap?) -> Unit)? = null
+
+    /** @see WebChromeClient.onPermissionRequest */
+    override var onPermissionRequest: ((request: PermissionRequest?) -> Unit)? = null
+
+    /** @see WebChromeClient.onPermissionRequestCanceled */
+    override var onPermissionRequestCanceled: ((request: PermissionRequest?) -> Unit)? = null
+
+    /** @see WebChromeClient.onProgressChanged */
+    override var onProgressChanged: ((view: WebView?, newProgress: Int) -> Unit)? = null
+
+    /** @see WebViewClient.onReceivedClientCertRequest */
+    override var onReceivedClientCertRequest: ((view: WebView?, request: ClientCertRequest?) -> Unit)? = null
+
+    /** @see WebViewClient.onReceivedError */
+    @TargetApi(23)
+    override var onReceivedError: ((view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) -> Unit)? = null
+
+    /** @see WebViewClient.onReceivedHttpAuthRequest */
+    override var onReceivedHttpAuthRequest: ((view: WebView?, handler: HttpAuthHandler?, host: String?, realm: String?) -> Unit)? = null
+
+    /** @see WebViewClient.onReceivedHttpError */
+    @TargetApi(23)
+    override var onReceivedHttpError: ((view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) -> Unit)? = null
+
+    /** @see WebChromeClient.onReceivedIcon */
+    override var onReceivedIcon: ((view: WebView?, icon: Bitmap?) -> Unit)? = null
+
+    /** @see WebViewClient.onReceivedLoginRequest */
+    override var onReceivedLoginRequest: ((view: WebView?, realm: String?, account: String?, args: String?) -> Unit)? = null
+
+    /** @see WebViewClient.onReceivedSslError */
+    override var onReceivedSslError: ((view: WebView?, handler: SslErrorHandler?, error: SslError?) -> Unit)? = null
+
+    /** @see WebChromeClient.onReceivedTitle */
+    override var onReceivedTitle: ((view: WebView?, title: String?) -> Unit)? = null
+
+    /** @see WebChromeClient.onReceivedTouchIconUrl */
+    override var onReceivedTouchIconUrl: ((view: WebView?, url: String?, precomposed: Boolean) -> Unit)? = null
+
+    /** @see WebViewClient.onRenderProcessGone */
+    @TargetApi(26)
+    override var onRenderProcessGone: ((view: WebView?, detail: RenderProcessGoneDetail?) -> Boolean)? = null
+
+    /** @see WebChromeClient.onRequestFocus */
+    override var onRequestFocus: ((view: WebView?) -> Unit)? = null
+
+    /** @see WebViewClient.onSafeBrowsingHit */
+    @TargetApi(27)
+    override var onSafeBrowsingHit: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponseCompat) -> Unit)? = null
+
+    /** @see WebViewClient.onScaleChanged */
+    override var onScaleChanged: ((view: WebView?, oldScale: Float, newScale: Float) -> Unit)? = null
+
+    /** @see WebChromeClient.onShowCustomView */
+    override var onShowCustomView: ((view: View?, callback: WebChromeClient.CustomViewCallback?) -> Unit)? = null
+
+    /** @see WebChromeClient.onShowFileChooser */
+    override var onShowFileChooser: ((webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: WebChromeClient.FileChooserParams?) -> Boolean)? = null
+
     /** @see WebSettings.setSafeBrowsingEnabled */
     override var safeBrowsingEnabled: Boolean? = null
 
@@ -121,6 +242,15 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
 
     /** @see WebSettings.setSerifFontFamily */
     override var serifFontFamily: String? = null
+
+    /** @see WebViewClient.shouldInterceptRequest */
+    override var shouldInterceptRequest: ((view: WebView?, request: WebResourceRequest?) -> WebResourceResponse?)? = null
+
+    /** @see WebViewClient.shouldOverrideKeyEvent */
+    override var shouldOverrideKeyEvent: ((view: WebView?, event: KeyEvent?) -> Boolean)? = null
+
+    /** @see WebViewClient.shouldOverrideUrlLoading */
+    override var shouldOverrideUrlLoading: ((view: WebView?, request: WebResourceRequest?) -> Boolean)? = null
 
     /** @see WebSettings.setStandardFontFamily */
     override var standardFontFamily: String? = null
@@ -139,12 +269,6 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
 
     /** @see WebSettings.setUseWideViewPort */
     override var useWideViewPort: Boolean? = null
-
-    /** @see WebView.setWebChromeClient */
-    override var webChromeClient: WebChromeClient? = null
-
-    /** @see WebView.setWebViewClient */
-    override var webViewClient: WebViewClient? = null
 
 
     /** @see WebSettings.setAllowContentAccess */
@@ -201,6 +325,9 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
     /** @see WebSettings.setDomStorageEnabled */
     override fun domStorageEnabled(input: Boolean?) = apply { domStorageEnabled = input }
 
+    /** @see WebViewClient.doUpdateVisitedHistory */
+    override fun doUpdateVisitedHistory(callback: ((view: WebView?, url: String?, isReload: Boolean) -> Unit)?) = apply { doUpdateVisitedHistory = callback }
+
     /** @see WebSettings.setFantasyFontFamily */
     override fun fantasyFontFamily(input: String?) = apply { fantasyFontFamily = input }
 
@@ -212,6 +339,15 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
 
     /** @see WebSettings.setGeolocationEnabled */
     override fun geolocationEnabled(input: Boolean?) = apply { geolocationEnabled = input }
+
+    /** @see WebChromeClient.getDefaultVideoPoster */
+    override fun getDefaultVideoPoster(callback: (() -> Bitmap?)?) = apply { getDefaultVideoPoster = callback }
+
+    /** @see WebChromeClient.getVideoLoadingProgressView */
+    override fun getVideoLoadingProgressView(callback: (() -> View?)?) = apply { getVideoLoadingProgressView = callback }
+
+    /** @see WebChromeClient.getVisitedHistory */
+    override fun getVisitedHistory(callback: ((callback: ValueCallback<Array<String>>?) -> Unit)?) = apply { getVisitedHistory = callback }
 
     /** @see WebSettings.setJavaScriptCanOpenWindowsAutomatically */
     override fun javaScriptCanOpenWindowsAutomatically(input: Boolean?) = apply { javaScriptCanOpenWindowsAutomatically = input }
@@ -246,6 +382,110 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
     /** @see WebSettings.setOffscreenPreRaster */
     override fun offscreenPreRaster(input: Boolean?) = apply { offscreenPreRaster = input }
 
+    /** @see WebChromeClient.onCloseWindow */
+    override fun onCloseWindow(callback: ((window: WebView?) -> Unit)?) = apply { onCloseWindow = callback }
+
+    /** @see WebChromeClient.onConsoleMessage */
+    override fun onConsoleMessage(callback: ((consoleMessage: ConsoleMessage?) -> Boolean)?) = apply { onConsoleMessage = callback }
+
+    /** @see WebChromeClient.onCreateWindow */
+    override fun onCreateWindow(callback: ((view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?) -> Boolean)?) = apply { onCreateWindow = callback }
+
+    /** @see WebChromeClient.onGeolocationPermissionsHidePrompt */
+    override fun onGeolocationPermissionsHidePrompt(callback: (() -> Unit)?) = apply { onGeolocationPermissionsHidePrompt = callback }
+
+    /** @see WebChromeClient.onGeolocationPermissionsShowPrompt */
+    override fun onGeolocationPermissionsShowPrompt(callback: ((origin: String?, callback: GeolocationPermissions.Callback?) -> Unit)?) = apply { onGeolocationPermissionsShowPrompt = callback }
+
+    /** @see WebViewClient.onFormResubmission */
+    override fun onFormResubmission(callback: ((view: WebView?, dontResend: Message?, resend: Message?) -> Unit)?) = apply { onFormResubmission = callback }
+
+    /** @see WebChromeClient.onHideCustomView */
+    override fun onHideCustomView(callback: (() -> Unit)?) = apply { onHideCustomView = callback }
+
+    /** @see WebChromeClient.onJsAlert */
+    override fun onJsAlert(callback: ((view: WebView?, url: String?, message: String?, result: JsResult?) -> Boolean)?) = apply { onJsAlert = callback }
+
+    /** @see WebChromeClient.onJsBeforeUnload */
+    override fun onJsBeforeUnload(callback: ((view: WebView?, url: String?, message: String?, result: JsResult?) -> Boolean)?) = apply { onJsBeforeUnload = callback }
+
+    /** @see WebChromeClient.onJsConfirm */
+    override fun onJsConfirm(callback: ((view: WebView?, url: String?, message: String?, result: JsResult?) -> Boolean)?) = apply { onJsConfirm = callback }
+
+    /** @see WebChromeClient.onJsPrompt */
+    override fun onJsPrompt(callback: ((view: WebView?, url: String?, message: String?, defaultValue: String?, result: JsPromptResult?) -> Boolean)?) = apply { onJsPrompt = callback }
+
+    /** @see WebViewClient.onLoadResource */
+    override fun onLoadResource(callback: ((view: WebView?, url: String?) -> Unit)?) = apply { onLoadResource = callback }
+
+    /** @see WebViewClient.onPageCommitVisible */
+    @TargetApi(23)
+    override fun onPageCommitVisible(callback: ((view: WebView?, url: String?) -> Unit)?) = apply { onPageCommitVisible = callback }
+
+    /** @see WebViewClient.onPageFinished */
+    override fun onPageFinished(callback: ((view: WebView?, url: String?) -> Unit)?) = apply { onPageFinished = callback }
+
+    /** @see WebViewClient.onPageStarted */
+    override fun onPageStarted(callback: ((view: WebView?, url: String?, favicon: Bitmap?) -> Unit)?) = apply { onPageStarted = callback }
+
+    /** @see WebChromeClient.onPermissionRequest */
+    override fun onPermissionRequest(callback: ((request: PermissionRequest?) -> Unit)?) = apply { onPermissionRequest = callback }
+
+    /** @see WebChromeClient.onPermissionRequestCanceled */
+    override fun onPermissionRequestCanceled(callback: ((request: PermissionRequest?) -> Unit)?) = apply { onPermissionRequestCanceled = callback }
+
+    /** @see WebChromeClient.onProgressChanged */
+    override fun onProgressChanged(callback: ((view: WebView?, newProgress: Int) -> Unit)?) = apply { onProgressChanged = callback }
+
+    /** @see WebViewClient.onReceivedClientCertRequest */
+    override fun onReceivedClientCertRequest(callback: ((view: WebView?, request: ClientCertRequest?) -> Unit)?) = apply { onReceivedClientCertRequest = callback }
+
+    /** @see WebViewClient.onReceivedError */
+    @TargetApi(23)
+    override fun onReceivedError(callback: ((view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) -> Unit)?) = apply { onReceivedError = callback }
+
+    /** @see WebViewClient.onReceivedHttpAuthRequest */
+    override fun onReceivedHttpAuthRequest(callback: ((view: WebView?, handler: HttpAuthHandler?, host: String?, realm: String?) -> Unit)?) = apply { onReceivedHttpAuthRequest = callback }
+
+    /** @see WebViewClient.onReceivedHttpError */
+    @TargetApi(23)
+    override fun onReceivedHttpError(callback: ((view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) -> Unit)?) = apply { onReceivedHttpError = callback }
+
+    /** @see WebChromeClient.onReceivedIcon */
+    override fun onReceivedIcon(callback: ((view: WebView?, icon: Bitmap?) -> Unit)?) = apply { onReceivedIcon = callback }
+
+    /** @see WebViewClient.onReceivedLoginRequest */
+    override fun onReceivedLoginRequest(callback: ((view: WebView?, realm: String?, account: String?, args: String?) -> Unit)?) = apply { onReceivedLoginRequest = callback }
+
+    /** @see WebViewClient.onReceivedSslError */
+    override fun onReceivedSslError(callback: ((view: WebView?, handler: SslErrorHandler?, error: SslError?) -> Unit)?) = apply { onReceivedSslError = callback }
+
+    /** @see WebChromeClient.onReceivedTitle */
+    override fun onReceivedTitle(callback: ((view: WebView?, title: String?) -> Unit)?) = apply { onReceivedTitle = callback }
+
+    /** @see WebChromeClient.onReceivedTouchIconUrl */
+    override fun onReceivedTouchIconUrl(callback: ((view: WebView?, url: String?, precomposed: Boolean) -> Unit)?) = apply { onReceivedTouchIconUrl = callback }
+
+    /** @see WebViewClient.onRenderProcessGone */
+    @TargetApi(26)
+    override fun onRenderProcessGone(callback: ((view: WebView?, detail: RenderProcessGoneDetail?) -> Boolean)?) = apply { onRenderProcessGone = callback }
+
+    /** @see WebChromeClient.onRequestFocus */
+    override fun onRequestFocus(callback: ((view: WebView?) -> Unit)?) = apply { onRequestFocus = callback }
+
+    /** @see WebViewClient.onSafeBrowsingHit */
+    @TargetApi(27)
+    override fun onSafeBrowsingHit(callback: ((view: WebView?, request: WebResourceRequest?, threatType: Int, callback: SafeBrowsingResponseCompat) -> Unit)?) = apply { onSafeBrowsingHit = callback }
+
+    /** @see WebViewClient.onScaleChanged */
+    override fun onScaleChanged(callback: ((view: WebView?, oldScale: Float, newScale: Float) -> Unit)?) = apply { onScaleChanged = callback }
+
+    /** @see WebChromeClient.onShowCustomView */
+    override fun onShowCustomView(callback: ((view: View?, callback: WebChromeClient.CustomViewCallback?) -> Unit)?) = apply { onShowCustomView = callback }
+
+    /** @see WebChromeClient.onShowFileChooser */
+    override fun onShowFileChooser(callback: ((webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: WebChromeClient.FileChooserParams?) -> Boolean)?) = apply { onShowFileChooser = callback }
+
     /** @see WebSettings.setSafeBrowsingEnabled */
     override fun safeBrowsingEnabled(input: Boolean?) = apply { safeBrowsingEnabled = input }
 
@@ -254,6 +494,15 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
 
     /** @see WebSettings.setSerifFontFamily */
     override fun serifFontFamily(input: String?) = apply { serifFontFamily = input }
+
+    /** @see WebViewClient.shouldInterceptRequest */
+    override fun shouldInterceptRequest(callback: ((view: WebView?, request: WebResourceRequest?) -> WebResourceResponse?)?) = apply { shouldInterceptRequest = callback }
+
+    /** @see WebViewClient.shouldOverrideKeyEvent */
+    override fun shouldOverrideKeyEvent(callback: ((view: WebView?, event: KeyEvent?) -> Boolean)?) = apply { shouldOverrideKeyEvent = callback }
+
+    /** @see WebViewClient.shouldOverrideUrlLoading */
+    override fun shouldOverrideUrlLoading(callback: ((view: WebView?, request: WebResourceRequest?) -> Boolean)?) = apply { shouldOverrideUrlLoading = callback }
 
     /** @see WebSettings.setStandardFontFamily */
     override fun standardFontFamily(input: String?) = apply { standardFontFamily = input }
@@ -272,12 +521,6 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
 
     /** @see WebSettings.setUseWideViewPort */
     override fun useWideViewPort(input: Boolean?) = apply { useWideViewPort = input }
-
-    /** @see WebView.setWebChromeClient */
-    override fun webChromeClient(input: WebChromeClient?) = apply { webChromeClient = input }
-
-    /** @see WebView.setWebViewClient */
-    override fun webViewClient(input: WebViewClient?) = apply { webViewClient = input }
 
 
     /**
@@ -342,9 +585,132 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
         textZoom?.also { target.settings.textZoom = it }
         userAgentString?.also { target.settings.userAgentString = it }
         useWideViewPort?.also { target.settings.useWideViewPort = it }
+        target.webChromeClient = buildChromeClient()
+        target.webViewClient = buildViewClient()
+    }
 
 
-        webChromeClient?.also { target.webChromeClient = it }
-        webViewClient?.also { target.webViewClient = it }
+    private fun buildChromeClient() = object : WebChromeClient() {
+        override fun getDefaultVideoPoster() = getDefaultVideoPoster?.invoke()
+                ?: super.getDefaultVideoPoster()
+
+        override fun getVideoLoadingProgressView() = getVideoLoadingProgressView?.invoke()
+                ?: super.getVideoLoadingProgressView()
+
+        override fun getVisitedHistory(callback: ValueCallback<Array<String>>?) = getVisitedHistory?.invoke(callback)
+                ?: super.getVisitedHistory(callback)
+
+        override fun onCloseWindow(window: WebView?) = onCloseWindow?.invoke(window)
+                ?: super.onCloseWindow(window)
+
+        override fun onConsoleMessage(consoleMessage: ConsoleMessage?) = onConsoleMessage?.invoke(consoleMessage)
+                ?: super.onConsoleMessage(consoleMessage)
+
+        override fun onCreateWindow(view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?) = onCreateWindow?.invoke(view, isDialog, isUserGesture, resultMsg)
+                ?: super.onCreateWindow(view, isDialog, isUserGesture, resultMsg)
+
+        override fun onGeolocationPermissionsHidePrompt() = onGeolocationPermissionsHidePrompt?.invoke()
+                ?: super.onGeolocationPermissionsHidePrompt()
+
+        override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) = onGeolocationPermissionsShowPrompt?.invoke(origin, callback)
+                ?: super.onGeolocationPermissionsShowPrompt(origin, callback)
+
+        override fun onHideCustomView() = onHideCustomView?.invoke()
+                ?: super.onHideCustomView()
+
+        override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?) = onJsAlert?.invoke(view, url, message, result)
+                ?: super.onJsAlert(view, url, message, result)
+
+        override fun onJsBeforeUnload(view: WebView?, url: String?, message: String?, result: JsResult?) = onJsBeforeUnload?.invoke(view, url, message, result)
+                ?: super.onJsBeforeUnload(view, url, message, result)
+
+        override fun onJsConfirm(view: WebView?, url: String?, message: String?, result: JsResult?) = onJsConfirm?.invoke(view, url, message, result)
+                ?: super.onJsConfirm(view, url, message, result)
+
+        override fun onJsPrompt(view: WebView?, url: String?, message: String?, defaultValue: String?, result: JsPromptResult?) = onJsPrompt?.invoke(view, url, message, defaultValue, result)
+                ?: super.onJsPrompt(view, url, message, defaultValue, result)
+
+        override fun onPermissionRequest(request: PermissionRequest?) = onPermissionRequest?.invoke(request)
+                ?: super.onPermissionRequest(request)
+
+        override fun onPermissionRequestCanceled(request: PermissionRequest?) = onPermissionRequestCanceled?.invoke(request)
+                ?: super.onPermissionRequestCanceled(request)
+
+        override fun onProgressChanged(view: WebView?, newProgress: Int) = onProgressChanged?.invoke(view, newProgress)
+                ?: super.onProgressChanged(view, newProgress)
+
+        override fun onReceivedIcon(view: WebView?, icon: Bitmap?) = onReceivedIcon?.invoke(view, icon)
+                ?: super.onReceivedIcon(view, icon)
+
+        override fun onReceivedTitle(view: WebView?, title: String?) = onReceivedTitle?.invoke(view, title)
+                ?: super.onReceivedTitle(view, title)
+
+        override fun onReceivedTouchIconUrl(view: WebView?, url: String?, precomposed: Boolean) = onReceivedTouchIconUrl?.invoke(view, url, precomposed)
+                ?: super.onReceivedTouchIconUrl(view, url, precomposed)
+
+        override fun onRequestFocus(view: WebView?) = onRequestFocus?.invoke(view)
+                ?: super.onRequestFocus(view)
+
+        override fun onShowCustomView(view: View?, callback: CustomViewCallback?) = onShowCustomView?.invoke(view, callback)
+                ?: super.onShowCustomView(view, callback)
+
+        override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?) = onShowFileChooser?.invoke(webView, filePathCallback, fileChooserParams)
+                ?: super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
+    }
+
+    private fun buildViewClient() = object : WebViewClientCompat() {
+        override fun doUpdateVisitedHistory(view: WebView?, url: String?, isReload: Boolean) = doUpdateVisitedHistory?.invoke(view, url, isReload)
+                ?: super.doUpdateVisitedHistory(view, url, isReload)
+
+        override fun onFormResubmission(view: WebView?, dontResend: Message?, resend: Message?) = onFormResubmission?.invoke(view, dontResend, resend)
+                ?: super.onFormResubmission(view, dontResend, resend)
+
+        override fun onLoadResource(view: WebView?, url: String?) = onLoadResource?.invoke(view, url)
+                ?: super.onLoadResource(view, url)
+
+        override fun onPageCommitVisible(view: WebView, url: String) = onPageCommitVisible?.invoke(view, url)
+                ?: super.onPageCommitVisible(view, url)
+
+        override fun onPageFinished(view: WebView?, url: String?) = onPageFinished?.invoke(view, url)
+                ?: super.onPageFinished(view, url)
+
+        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) = onPageStarted?.invoke(view, url, favicon)
+                ?: super.onPageStarted(view, url, favicon)
+
+        override fun onReceivedClientCertRequest(view: WebView?, request: ClientCertRequest?) = onReceivedClientCertRequest?.invoke(view, request)
+                ?: super.onReceivedClientCertRequest(view, request)
+
+        override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceErrorCompat) = onReceivedError?.invoke(view, request, error)
+                ?: super.onReceivedError(view, request, error)
+
+        override fun onReceivedHttpAuthRequest(view: WebView?, handler: HttpAuthHandler?, host: String?, realm: String?) = onReceivedHttpAuthRequest?.invoke(view, handler, host, realm)
+                ?: super.onReceivedHttpAuthRequest(view, handler, host, realm)
+
+        override fun onReceivedHttpError(view: WebView, request: WebResourceRequest, errorResponse: WebResourceResponse) = onReceivedHttpError?.invoke(view, request, errorResponse)
+                ?: super.onReceivedHttpError(view, request, errorResponse)
+
+        override fun onReceivedLoginRequest(view: WebView?, realm: String?, account: String?, args: String?) = onReceivedLoginRequest?.invoke(view, realm, account, args)
+                ?: super.onReceivedLoginRequest(view, realm, account, args)
+
+        override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) = onReceivedSslError?.invoke(view, handler, error)
+                ?: super.onReceivedSslError(view, handler, error)
+
+        override fun onRenderProcessGone(view: WebView?, detail: RenderProcessGoneDetail?) = onRenderProcessGone?.invoke(view, detail)
+                ?: super.onRenderProcessGone(view, detail)
+
+        override fun onSafeBrowsingHit(view: WebView, request: WebResourceRequest, threatType: Int, callback: SafeBrowsingResponseCompat) = onSafeBrowsingHit?.invoke(view, request, threatType, callback)
+                ?: super.onSafeBrowsingHit(view, request, threatType, callback)
+
+        override fun onScaleChanged(view: WebView?, oldScale: Float, newScale: Float) = onScaleChanged?.invoke(view, oldScale, newScale)
+                ?: super.onScaleChanged(view, oldScale, newScale)
+
+        override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?) = shouldInterceptRequest?.invoke(view, request)
+                ?: super.shouldInterceptRequest(view, request)
+
+        override fun shouldOverrideKeyEvent(view: WebView?, event: KeyEvent?) = shouldOverrideKeyEvent?.invoke(view, event)
+                ?: super.shouldOverrideKeyEvent(view, event)
+
+        override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest) = shouldOverrideUrlLoading?.invoke(view, request)
+                ?: super.shouldOverrideUrlLoading(view, request)
     }
 }
