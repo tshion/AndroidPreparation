@@ -1,429 +1,350 @@
 package work.shion.androidpreparation.webviewbuilder
 
-import android.annotation.TargetApi
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
-import android.webkit.WebSettings.*
 import android.webkit.WebView
-import androidx.annotation.IntDef
-import androidx.annotation.RequiresApi
+import android.webkit.WebViewClient
 import androidx.webkit.WebSettingsCompat
-import androidx.webkit.WebViewClientCompat
 import androidx.webkit.WebViewFeature
-
+import work.shion.androidpreparation.webviewbuilder.basis.WebSettingsContract
+import work.shion.androidpreparation.webviewbuilder.basis.WebViewContract
 
 /**
- * WebView 設定ビルダー
+ * Builder for WebView
  */
-class WebViewBuilder {
-    @IntDef(LOAD_CACHE_ELSE_NETWORK, LOAD_CACHE_ONLY, LOAD_DEFAULT, LOAD_NO_CACHE)
-    annotation class CacheModeType
+class WebViewBuilder : WebSettingsContract, WebViewContract {
 
-    @IntDef(FORCE_DARK_AUTO, FORCE_DARK_OFF, FORCE_DARK_ON)
-    @TargetApi(29)
-    annotation class ForceDarkType
+    /** @see WebSettings.getAllowContentAccess */
+    override var allowContentAccess: Boolean? = null
 
-    @IntDef(MENU_ITEM_NONE, MENU_ITEM_PROCESS_TEXT, MENU_ITEM_SHARE, MENU_ITEM_WEB_SEARCH)
-    @TargetApi(24)
-    annotation class MenuItemsType
+    /** @see WebSettings.getAllowFileAccess */
+    override var allowFileAccess: Boolean? = null
 
-    @IntDef(MIXED_CONTENT_ALWAYS_ALLOW, MIXED_CONTENT_COMPATIBILITY_MODE, MIXED_CONTENT_NEVER_ALLOW)
-    annotation class MixedContentModeType
+    /** @see WebSettings.getAllowFileAccessFromFileURLs */
+    override var allowFileAccessFromFileURLs: Boolean? = null
+
+    /** @see WebSettings.getAllowUniversalAccessFromFileURLs */
+    override var allowUniversalAccessFromFileURLs: Boolean? = null
+
+    /** @see WebSettings.setAppCacheEnabled */
+    override var appCacheEnabled: Boolean? = null
+
+    /** @see WebSettings.setAppCachePath */
+    override var appCachePath: String? = null
+
+    /** @see WebSettings.getBlockNetworkImage */
+    override var blockNetworkImage: Boolean? = null
+
+    /** @see WebSettings.getBlockNetworkLoads */
+    override var blockNetworkLoads: Boolean? = null
+
+    /** @see WebSettings.getBuiltInZoomControls */
+    override var builtInZoomControls: Boolean? = null
+
+    /** @see WebSettings.getCacheMode */
+    override var cacheMode: Int? = null
+
+    /** @see WebSettings.getCursiveFontFamily */
+    override var cursiveFontFamily: String? = null
+
+    /** @see WebSettings.getDatabaseEnabled */
+    override var databaseEnabled: Boolean? = null
+
+    /** @see WebSettings.getDefaultFixedFontSize */
+    override var defaultFixedFontSize: Int? = null
+
+    /** @see WebSettings.getDefaultFontSize */
+    override var defaultFontSize: Int? = null
+
+    /** @see WebSettings.getDefaultTextEncodingName */
+    override var defaultTextEncodingName: String? = null
+
+    /** @see WebSettings.getDisabledActionModeMenuItems */
+    override var disabledActionModeMenuItems: Int? = null
+
+    /** @see WebSettings.getDisplayZoomControls */
+    override var displayZoomControls: Boolean? = null
+
+    /** @see WebSettings.getDomStorageEnabled */
+    override var domStorageEnabled: Boolean? = null
+
+    /** @see WebSettings.getFantasyFontFamily */
+    override var fantasyFontFamily: String? = null
+
+    /** @see WebSettings.getFixedFontFamily */
+    override var fixedFontFamily: String? = null
+
+    /** @see WebSettings.getForceDark */
+    override var forceDark: Int? = null
+
+    /** @see WebSettings.setGeolocationEnabled */
+    override var geolocationEnabled: Boolean? = null
+
+    /** @see WebSettings.getJavaScriptCanOpenWindowsAutomatically */
+    override var javaScriptCanOpenWindowsAutomatically: Boolean? = null
+
+    /** @see WebSettings.getJavaScriptEnabled */
+    override var javaScriptEnabled: Boolean? = null
+
+    /** @see WebSettings.getLayoutAlgorithm */
+    override var layoutAlgorithm: WebSettings.LayoutAlgorithm? = null
+
+    /** @see WebSettings.getLoadWithOverviewMode */
+    override var loadWithOverviewMode: Boolean? = null
+
+    /** @see WebSettings.getLoadsImagesAutomatically */
+    override var loadsImagesAutomatically: Boolean? = null
+
+    /** @see WebSettings.getMediaPlaybackRequiresUserGesture */
+    override var mediaPlaybackRequiresUserGesture: Boolean? = null
+
+    /** @see WebSettings.getMinimumFontSize */
+    override var minimumFontSize: Int? = null
+
+    /** @see WebSettings.getMinimumLogicalFontSize */
+    override var minimumLogicalFontSize: Int? = null
+
+    /** @see WebSettings.getMixedContentMode */
+    override var mixedContentMode: Int? = null
+
+    /** @see WebSettings.setNeedInitialFocus */
+    override var needInitialFocus: Boolean? = null
+
+    /** @see WebSettings.getOffscreenPreRaster */
+    override var offscreenPreRaster: Boolean? = null
+
+    /** @see WebSettings.getSafeBrowsingEnabled */
+    override var safeBrowsingEnabled: Boolean? = null
+
+    /** @see WebSettings.getSansSerifFontFamily */
+    override var sansSerifFontFamily: String? = null
+
+    /** @see WebSettings.getSerifFontFamily */
+    override var serifFontFamily: String? = null
+
+    /** @see WebSettings.getStandardFontFamily */
+    override var standardFontFamily: String? = null
+
+    /** @see WebSettings.supportMultipleWindows */
+    override var supportMultipleWindows: Boolean? = null
+
+    /** @see WebSettings.supportZoom */
+    override var supportZoom: Boolean? = null
+
+    /** @see WebSettings.getTextZoom */
+    override var textZoom: Int? = null
+
+    /** @see WebSettings.getUserAgentString */
+    override var userAgentString: String? = null
+
+    /** @see WebSettings.getUseWideViewPort */
+    override var useWideViewPort: Boolean? = null
+
+    /** @see WebView.setWebChromeClient */
+    override var webChromeClient: WebChromeClient? = null
+
+    /** @see WebView.setWebViewClient */
+    override var webViewClient: WebViewClient? = null
 
 
-    private var mAllowContentAccess: Boolean? = null
-    private var mAllowFileAccess: Boolean? = null
-    private var mAllowFileAccessFromFileURLs: Boolean? = null
-    private var mAllowUniversalAccessFromFileURLs: Boolean? = null
-    private var mAppCacheEnabled: Boolean? = null
-    private var mAppCachePath: String? = null
-    private var mBlockNetworkImage: Boolean? = null
-    private var mBlockNetworkLoads: Boolean? = null
-    private var mBuiltInZoomControls: Boolean? = null
-    private var mCacheMode: Int? = null
-    private var mCursiveFontFamily: String? = null
-    private var mDatabaseEnabled: Boolean? = null
-    private var mDefaultFixedFontSize: Int? = null
-    private var mDefaultFontSize: Int? = null
-    private var mDefaultTextEncodingName: String? = null
-    private var mDisabledActionModeMenuItems: Int? = null
-    private var mDisplayZoomControls: Boolean? = null
-    private var mDomStorageEnabled: Boolean? = null
-    private var mFantasyFontFamily: String? = null
-    private var mFixedFontFamily: String? = null
-    private var mForceDark: Int? = null
-    private var mGeolocationEnabled: Boolean? = null
-    private var mJavaScriptCanOpenWindowsAutomatically: Boolean? = null
-    private var mJavaScriptEnabled: Boolean? = null
-    private var mLayoutAlgorithm: WebSettings.LayoutAlgorithm? = null
-    private var mLoadWithOverviewMode: Boolean? = null
-    private var mLoadsImagesAutomatically: Boolean? = null
-    private var mMediaPlaybackRequiresUserGesture: Boolean? = null
-    private var mMinimumFontSize: Int? = null
-    private var mMinimumLogicalFontSize: Int? = null
-    private var mMixedContentMode: Int? = null
-    private var mNeedInitialFocus: Boolean? = null
-    private var mOffscreenPreRaster: Boolean? = null
-    private var mSafeBrowsingEnabled: Boolean? = null
-    private var mSansSerifFontFamily: String? = null
-    private var mSerifFontFamily: String? = null
-    private var mStandardFontFamily: String? = null
-    private var mSupportMultipleWindows: Boolean? = null
-    private var mSupportZoom: Boolean? = null
-    private var mTextZoom: Int? = null
-    private var mUserAgentString: String? = null
-    private var mUseWideViewPort: Boolean? = null
-    private var mWebChromeClient: WebChromeClient? = null
-    private var mWebViewClient: WebViewClientCompat? = null
+    /** @see WebSettings.setAllowContentAccess */
+    override fun allowContentAccess(input: Boolean?) = apply { allowContentAccess = input }
+
+    /** @see WebSettings.setAllowFileAccess */
+    override fun allowFileAccess(input: Boolean?) = apply { allowFileAccess = input }
+
+    /** @see WebSettings.setAllowFileAccessFromFileURLs */
+    override fun allowFileAccessFromFileURLs(input: Boolean?) = apply { allowFileAccessFromFileURLs = input }
+
+    /** @see WebSettings.setAllowUniversalAccessFromFileURLs */
+    override fun allowUniversalAccessFromFileURLs(input: Boolean?) = apply { allowUniversalAccessFromFileURLs = input }
+
+    /** @see WebSettings.setAppCacheEnabled */
+    override fun appCacheEnabled(input: Boolean?) = apply { appCacheEnabled = input }
+
+    /** @see WebSettings.setAppCachePath */
+    override fun appCachePath(input: String?) = apply { appCachePath = input }
+
+    /** @see WebSettings.setBlockNetworkImage */
+    override fun blockNetworkImage(input: Boolean?) = apply { blockNetworkImage = input }
+
+    /** @see WebSettings.setBlockNetworkLoads */
+    override fun blockNetworkLoads(input: Boolean?) = apply { blockNetworkLoads = input }
+
+    /** @see WebSettings.setBuiltInZoomControls */
+    override fun builtInZoomControls(input: Boolean?) = apply { builtInZoomControls = input }
+
+    /** @see WebSettings.setCacheMode */
+    override fun cacheMode(input: Int?) = apply { cacheMode = input }
+
+    /** @see WebSettings.setCursiveFontFamily */
+    override fun cursiveFontFamily(input: String?) = apply { cursiveFontFamily = input }
+
+    /** @see WebSettings.setDatabaseEnabled */
+    override fun databaseEnabled(input: Boolean?) = apply { databaseEnabled = input }
+
+    /** @see WebSettings.setDefaultFixedFontSize */
+    override fun defaultFixedFontSize(input: Int?) = apply { defaultFixedFontSize = input }
+
+    /** @see WebSettings.setDefaultFontSize */
+    override fun defaultFontSize(input: Int?) = apply { defaultFontSize = input }
+
+    /** @see WebSettings.setDefaultTextEncodingName */
+    override fun defaultTextEncodingName(input: String?) = apply { defaultTextEncodingName = input }
+
+    /** @see WebSettings.setDisabledActionModeMenuItems */
+    override fun disabledActionModeMenuItems(input: Int?) = apply { disabledActionModeMenuItems = input }
+
+    /** @see WebSettings.setDisplayZoomControls */
+    override fun displayZoomControls(input: Boolean?) = apply { displayZoomControls = input }
+
+    /** @see WebSettings.setDomStorageEnabled */
+    override fun domStorageEnabled(input: Boolean?) = apply { domStorageEnabled = input }
+
+    /** @see WebSettings.setFantasyFontFamily */
+    override fun fantasyFontFamily(input: String?) = apply { fantasyFontFamily = input }
+
+    /** @see WebSettings.setFixedFontFamily */
+    override fun fixedFontFamily(input: String?) = apply { fixedFontFamily = input }
+
+    /** @see WebSettings.setForceDark */
+    override fun forceDark(input: Int?) = apply { forceDark = input }
+
+    /** @see WebSettings.setGeolocationEnabled */
+    override fun geolocationEnabled(input: Boolean?) = apply { geolocationEnabled = input }
+
+    /** @see WebSettings.setJavaScriptCanOpenWindowsAutomatically */
+    override fun javaScriptCanOpenWindowsAutomatically(input: Boolean?) = apply { javaScriptCanOpenWindowsAutomatically = input }
+
+    /** @see WebSettings.setJavaScriptEnabled */
+    override fun javaScriptEnabled(input: Boolean?) = apply { javaScriptEnabled = input }
+
+    /** @see WebSettings.setLayoutAlgorithm */
+    override fun layoutAlgorithm(input: WebSettings.LayoutAlgorithm?) = apply { layoutAlgorithm = input }
+
+    /** @see WebSettings.setLoadsImagesAutomatically */
+    override fun loadsImagesAutomatically(input: Boolean?) = apply { loadsImagesAutomatically = input }
+
+    /** @see WebSettings.setLoadWithOverviewMode */
+    override fun loadWithOverviewMode(input: Boolean?) = apply { loadWithOverviewMode = input }
+
+    /** @see WebSettings.setMediaPlaybackRequiresUserGesture */
+    override fun mediaPlaybackRequiresUserGesture(input: Boolean?) = apply { mediaPlaybackRequiresUserGesture = input }
+
+    /** @see WebSettings.setMinimumFontSize */
+    override fun minimumFontSize(input: Int?) = apply { minimumFontSize = input }
+
+    /** @see WebSettings.setMinimumLogicalFontSize */
+    override fun minimumLogicalFontSize(input: Int?) = apply { minimumLogicalFontSize = input }
+
+    /** @see WebSettings.setMixedContentMode */
+    override fun mixedContentMode(input: Int?) = apply { mixedContentMode = input }
+
+    /** @see WebSettings.setNeedInitialFocus */
+    override fun needInitialFocus(input: Boolean?) = apply { needInitialFocus = input }
+
+    /** @see WebSettings.setOffscreenPreRaster */
+    override fun offscreenPreRaster(input: Boolean?) = apply { offscreenPreRaster = input }
+
+    /** @see WebSettings.setSafeBrowsingEnabled */
+    override fun safeBrowsingEnabled(input: Boolean?) = apply { safeBrowsingEnabled = input }
+
+    /** @see WebSettings.setSansSerifFontFamily */
+    override fun sansSerifFontFamily(input: String?) = apply { sansSerifFontFamily = input }
+
+    /** @see WebSettings.setSerifFontFamily */
+    override fun serifFontFamily(input: String?) = apply { serifFontFamily = input }
+
+    /** @see WebSettings.setStandardFontFamily */
+    override fun standardFontFamily(input: String?) = apply { standardFontFamily = input }
+
+    /** @see WebSettings.supportMultipleWindows */
+    override fun supportMultipleWindows(input: Boolean?) = apply { supportMultipleWindows = input }
+
+    /** @see WebSettings.supportZoom */
+    override fun supportZoom(input: Boolean?) = apply { supportZoom = input }
+
+    /** @see WebSettings.setTextZoom */
+    override fun textZoom(input: Int?) = apply { textZoom = input }
+
+    /** @see WebSettings.setUserAgentString */
+    override fun userAgentString(input: String?) = apply { userAgentString = input }
+
+    /** @see WebSettings.setUseWideViewPort */
+    override fun useWideViewPort(input: Boolean?) = apply { useWideViewPort = input }
+
+    /** @see WebView.setWebChromeClient */
+    override fun webChromeClient(input: WebChromeClient?) = apply { webChromeClient = input }
+
+    /** @see WebView.setWebViewClient */
+    override fun webViewClient(input: WebViewClient?) = apply { webViewClient = input }
 
 
     /**
-     * 指定のWebView に設定を反映する
+     * Reflect builder's settings.
      */
-    fun into(target: WebView) = target.apply {
-        if (mWebChromeClient != null) webChromeClient = mWebChromeClient
-        if (mWebViewClient != null) webViewClient = mWebViewClient
-
-        with(settings) {
-            allowContentAccess = mAllowContentAccess ?: allowContentAccess
-            allowFileAccess = mAllowFileAccess ?: allowFileAccess
-            allowFileAccessFromFileURLs =
-                    mAllowFileAccessFromFileURLs ?: allowFileAccessFromFileURLs
-            allowUniversalAccessFromFileURLs =
-                    mAllowUniversalAccessFromFileURLs ?: allowUniversalAccessFromFileURLs
-            if (mAppCacheEnabled != null) setAppCacheEnabled(mAppCacheEnabled!!)
-            if (mAppCachePath != null) setAppCachePath(mAppCachePath)
-            blockNetworkImage = mBlockNetworkImage ?: blockNetworkImage
-            blockNetworkLoads = mBlockNetworkLoads ?: blockNetworkLoads
-            builtInZoomControls = mBuiltInZoomControls ?: builtInZoomControls
-            cacheMode = mCacheMode ?: cacheMode
-            cursiveFontFamily = mCursiveFontFamily ?: cursiveFontFamily
-            databaseEnabled = mDatabaseEnabled ?: databaseEnabled
-            defaultFixedFontSize = mDefaultFixedFontSize ?: defaultFontSize
-            defaultFontSize = mDefaultFontSize ?: defaultFontSize
-            defaultTextEncodingName = mDefaultTextEncodingName ?: defaultTextEncodingName
+    fun into(target: WebView) {
+        allowContentAccess?.also { target.settings.allowContentAccess = it }
+        allowFileAccess?.also { target.settings.allowFileAccess = it }
+        allowFileAccessFromFileURLs?.also { target.settings.allowFileAccessFromFileURLs = it }
+        allowUniversalAccessFromFileURLs?.also { target.settings.allowUniversalAccessFromFileURLs = it }
+        appCacheEnabled?.also { target.settings.setAppCacheEnabled(it) }
+        appCachePath?.also { target.settings.setAppCachePath(it) }
+        blockNetworkImage?.also { target.settings.blockNetworkImage = it }
+        blockNetworkLoads?.also { target.settings.blockNetworkLoads = it }
+        builtInZoomControls?.also { target.settings.builtInZoomControls = it }
+        cacheMode?.also { target.settings.cacheMode = it }
+        cursiveFontFamily?.also { target.settings.cursiveFontFamily = it }
+        databaseEnabled?.also { target.settings.databaseEnabled = it }
+        defaultFixedFontSize?.also { target.settings.defaultFixedFontSize = it }
+        defaultFontSize?.also { target.settings.defaultFontSize = it }
+        defaultTextEncodingName?.also { target.settings.defaultTextEncodingName = it }
+        disabledActionModeMenuItems?.also {
             if (WebViewFeature.isFeatureSupported(WebViewFeature.DISABLED_ACTION_MODE_MENU_ITEMS)) {
-                val defaultValue = WebSettingsCompat.getDisabledActionModeMenuItems(settings)
-                WebSettingsCompat.setDisabledActionModeMenuItems(
-                        settings,
-                        mDisabledActionModeMenuItems ?: defaultValue
-                )
+                WebSettingsCompat.setDisabledActionModeMenuItems(target.settings, it)
             }
-            displayZoomControls = mDisplayZoomControls ?: displayZoomControls
-            domStorageEnabled = mDomStorageEnabled ?: domStorageEnabled
-            fantasyFontFamily = mFantasyFontFamily ?: fantasyFontFamily
-            fixedFontFamily = mFixedFontFamily ?: fixedFontFamily
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
-                val defaultValue = WebSettingsCompat.getForceDark(settings)
-                WebSettingsCompat.setForceDark(
-                        settings,
-                        mForceDark ?: defaultValue
-                )
-            }
-            if (mGeolocationEnabled != null) setGeolocationEnabled(mGeolocationEnabled!!)
-            javaScriptCanOpenWindowsAutomatically =
-                    mJavaScriptCanOpenWindowsAutomatically ?: javaScriptCanOpenWindowsAutomatically
-            javaScriptEnabled = mJavaScriptEnabled ?: javaScriptEnabled
-            layoutAlgorithm = mLayoutAlgorithm ?: layoutAlgorithm
-            loadWithOverviewMode = mLoadWithOverviewMode ?: loadWithOverviewMode
-            loadsImagesAutomatically = mLoadsImagesAutomatically ?: loadsImagesAutomatically
-            mediaPlaybackRequiresUserGesture =
-                    mMediaPlaybackRequiresUserGesture ?: mediaPlaybackRequiresUserGesture
-            minimumFontSize = mMinimumFontSize ?: minimumFontSize
-            minimumLogicalFontSize = mMinimumLogicalFontSize ?: minimumLogicalFontSize
-            mixedContentMode = mMixedContentMode ?: mixedContentMode
-            if (mNeedInitialFocus != null) setNeedInitialFocus(mNeedInitialFocus!!)
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.OFF_SCREEN_PRERASTER)) {
-                val defaultValue = WebSettingsCompat.getOffscreenPreRaster(settings)
-                WebSettingsCompat.setOffscreenPreRaster(
-                        settings,
-                        mOffscreenPreRaster ?: defaultValue
-                )
-            }
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
-                val defaultValue = WebSettingsCompat.getSafeBrowsingEnabled(settings)
-                WebSettingsCompat.setSafeBrowsingEnabled(
-                        settings,
-                        mSafeBrowsingEnabled ?: defaultValue
-                )
-            }
-            sansSerifFontFamily = mSansSerifFontFamily ?: sansSerifFontFamily
-            serifFontFamily = mSerifFontFamily ?: serifFontFamily
-            standardFontFamily = mStandardFontFamily ?: standardFontFamily
-            setSupportMultipleWindows(mSupportMultipleWindows ?: supportMultipleWindows())
-            setSupportZoom(mSupportZoom ?: supportZoom())
-            textZoom = mTextZoom ?: textZoom
-            userAgentString = mUserAgentString ?: userAgentString
-            useWideViewPort = mUseWideViewPort ?: useWideViewPort
         }
+        displayZoomControls?.also { target.settings.displayZoomControls = it }
+        domStorageEnabled?.also { target.settings.domStorageEnabled = it }
+        fantasyFontFamily?.also { target.settings.fantasyFontFamily = it }
+        fixedFontFamily?.also { target.settings.fixedFontFamily = it }
+        forceDark?.also {
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                WebSettingsCompat.setForceDark(target.settings, it)
+            }
+        }
+        geolocationEnabled?.also { target.settings.setGeolocationEnabled(it) }
+        javaScriptCanOpenWindowsAutomatically?.also { target.settings.javaScriptCanOpenWindowsAutomatically = it }
+        javaScriptEnabled?.also { target.settings.javaScriptEnabled = it }
+        layoutAlgorithm?.also { target.settings.layoutAlgorithm = it }
+        loadsImagesAutomatically?.also { target.settings.loadsImagesAutomatically = it }
+        loadWithOverviewMode?.also { target.settings.loadWithOverviewMode = it }
+        mediaPlaybackRequiresUserGesture?.also { target.settings.mediaPlaybackRequiresUserGesture = it }
+        minimumFontSize?.also { target.settings.minimumFontSize = it }
+        minimumLogicalFontSize?.also { target.settings.minimumLogicalFontSize = it }
+        mixedContentMode?.also { target.settings.mixedContentMode = it }
+        needInitialFocus?.also { target.settings.setNeedInitialFocus(it) }
+        offscreenPreRaster?.also {
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.OFF_SCREEN_PRERASTER)) {
+                WebSettingsCompat.setOffscreenPreRaster(target.settings, it)
+            }
+        }
+        safeBrowsingEnabled?.also {
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
+                WebSettingsCompat.setSafeBrowsingEnabled(target.settings, it)
+            }
+        }
+        sansSerifFontFamily?.also { target.settings.sansSerifFontFamily = it }
+        serifFontFamily?.also { target.settings.serifFontFamily = it }
+        standardFontFamily?.also { target.settings.standardFontFamily = it }
+        supportMultipleWindows?.also { target.settings.setSupportMultipleWindows(it) }
+        supportZoom?.also { target.settings.setSupportZoom(it) }
+        textZoom?.also { target.settings.textZoom = it }
+        userAgentString?.also { target.settings.userAgentString = it }
+        useWideViewPort?.also { target.settings.useWideViewPort = it }
+
+
+        webChromeClient?.also { target.webChromeClient = it }
+        webViewClient?.also { target.webViewClient = it }
     }
-
-
-    /**
-     * @see android.webkit.WebSettings.setAllowContentAccess
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setAllowContentAccess">Android Developers</a>
-     */
-    fun setAllowContentAccess(value: Boolean?) = this.apply { mAllowContentAccess = value }
-
-    /**
-     * @see android.webkit.WebSettings.setAllowFileAccess
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setAllowFileAccess">Android Developers</a>
-     */
-    fun setAllowFileAccess(value: Boolean?) = this.apply { mAllowFileAccess = value }
-
-    /**
-     * @see android.webkit.WebSettings.setAllowFileAccessFromFileURLs
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setAllowFileAccessFromFileURLs">Android Developers</a>
-     */
-    fun setAllowFileAccessFromFileURLs(value: Boolean?) = this.apply { mAllowFileAccessFromFileURLs = value }
-
-    /**
-     * @see android.webkit.WebSettings.setAllowUniversalAccessFromFileURLs
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setAllowUniversalAccessFromFileURLs">Android Developers</a>
-     */
-    fun setAllowUniversalAccessFromFileURLs(value: Boolean?) = this.apply { mAllowUniversalAccessFromFileURLs = value }
-
-    /**
-     * @see android.webkit.WebSettings.setAppCacheEnabled
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setAppCacheEnabled">Android Developers</a>
-     */
-    fun setAppCacheEnabled(value: Boolean?) = this.apply { mAppCacheEnabled = value }
-
-    /**
-     * @see android.webkit.WebSettings.setAppCachePath
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setAppCachePath">Android Developers</a>
-     */
-    fun setAppCachePath(value: String?) = this.apply { mAppCachePath = value }
-
-    /**
-     * @see android.webkit.WebSettings.setBlockNetworkImage
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setBlockNetworkImage">Android Developers</a>
-     */
-    fun setBlockNetworkImage(value: Boolean?) = this.apply { mBlockNetworkImage = value }
-
-    /**
-     * @see android.webkit.WebSettings.setBlockNetworkLoads
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setBlockNetworkLoads">Android Developers</a>
-     */
-    fun setBlockNetworkLoads(value: Boolean?) = this.apply { mBlockNetworkLoads = value }
-
-    /**
-     * @see android.webkit.WebSettings.setBuiltInZoomControls
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setBuiltInZoomControls">Android Developers</a>
-     */
-    fun setBuiltInZoomControls(value: Boolean?) = this.apply { mBuiltInZoomControls = value }
-
-    /**
-     * @see android.webkit.WebSettings.setCacheMode
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setCacheMode">Android Developers</a>
-     */
-    fun setCacheMode(@CacheModeType value: Int?) = this.apply { mCacheMode = value }
-
-    /**
-     * @see android.webkit.WebSettings.setCursiveFontFamily
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setCursiveFontFamily">Android Developers</a>
-     */
-    fun setCursiveFontFamily(value: String?) = this.apply { mCursiveFontFamily = value }
-
-    /**
-     * @see android.webkit.WebSettings.setDatabaseEnabled
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setDatabaseEnabled">Android Developers</a>
-     */
-    fun setDatabaseEnabled(value: Boolean?) = this.apply { mDatabaseEnabled = value }
-
-    /**
-     * @see android.webkit.WebSettings.setDefaultFixedFontSize
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setDefaultFixedFontSize">Android Developers</a>
-     */
-    fun setDefaultFixedFontSize(value: Int?) = this.apply { mDefaultFixedFontSize = value }
-
-    /**
-     * @see android.webkit.WebSettings.setDefaultFontSize
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setDefaultFontSize">Android Developers</a>
-     */
-    fun setDefaultFontSize(value: Int?) = this.apply { mDefaultFontSize = value }
-
-    /**
-     * @see android.webkit.WebSettings.setDefaultTextEncodingName
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setDefaultTextEncodingName">Android Developers</a>
-     */
-    fun setDefaultTextEncodingName(value: String?) = this.apply { mDefaultTextEncodingName = value }
-
-    /**
-     * @see android.webkit.WebSettings.setDisabledActionModeMenuItems
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setDisabledActionModeMenuItems">Android Developers</a>
-     */
-    @RequiresApi(24)
-    fun setDisabledActionModeMenuItems(@MenuItemsType value: Int?) = this.apply { mDisabledActionModeMenuItems = value }
-
-    /**
-     * @see android.webkit.WebSettings.setDisplayZoomControls
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setDisplayZoomControls">Android Developers</a>
-     */
-    fun setDisplayZoomControls(value: Boolean?) = this.apply { mDisplayZoomControls = value }
-
-    /**
-     * @see android.webkit.WebSettings.setDomStorageEnabled
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setDomStorageEnabled">Android Developers</a>
-     */
-    fun setDomStorageEnabled(value: Boolean?) = this.apply { mDomStorageEnabled = value }
-
-    /**
-     * @see android.webkit.WebSettings.setFantasyFontFamily
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setFantasyFontFamily">Android Developers</a>
-     */
-    fun setFantasyFontFamily(value: String?) = this.apply { mFantasyFontFamily = value }
-
-    /**
-     * @see android.webkit.WebSettings.setFixedFontFamily
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setFixedFontFamily">Android Developers</a>
-     */
-    fun setFixedFontFamily(value: String?) = this.apply { mFixedFontFamily = value }
-
-    /**
-     * @see android.webkit.WebSettings.setForceDark
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setForceDark">Android Developers</a>
-     */
-    @RequiresApi(29)
-    fun setForceDark(@ForceDarkType value: Int?) = this.apply { mForceDark = value }
-
-    /**
-     * @see android.webkit.WebSettings.setGeolocationEnabled
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setGeolocationEnabled">Android Developers</a>
-     */
-    fun setGeolocationEnabled(value: Boolean?) = this.apply { mGeolocationEnabled = value }
-
-    /**
-     * @see android.webkit.WebSettings.setJavaScriptCanOpenWindowsAutomatically
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setJavaScriptCanOpenWindowsAutomatically">Android Developers</a>
-     */
-    fun setJavaScriptCanOpenWindowsAutomatically(value: Boolean?) = this.apply { mJavaScriptCanOpenWindowsAutomatically = value }
-
-    /**
-     * @see android.webkit.WebSettings.setJavaScriptEnabled
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setJavaScriptEnabled">Android Developers</a>
-     */
-    fun setJavaScriptEnabled(value: Boolean?) = this.apply { mJavaScriptEnabled = value }
-
-    /**
-     * @see android.webkit.WebSettings.setLayoutAlgorithm
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setLayoutAlgorithm">Android Developers</a>
-     */
-    fun setLayoutAlgorithm(value: LayoutAlgorithm?) = this.apply { mLayoutAlgorithm = value }
-
-    /**
-     * @see android.webkit.WebSettings.setLoadWithOverviewMode
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setLoadWithOverviewMode">Android Developers</a>
-     */
-    fun setLoadWithOverviewMode(value: Boolean?) = this.apply { mLoadWithOverviewMode = value }
-
-    /**
-     * @see android.webkit.WebSettings.setLoadsImagesAutomatically
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setLoadsImagesAutomatically">Android Developers</a>
-     */
-    fun setLoadsImagesAutomatically(value: Boolean?) = this.apply { mLoadsImagesAutomatically = value }
-
-    /**
-     * @see android.webkit.WebSettings.setMediaPlaybackRequiresUserGesture
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setMediaPlaybackRequiresUserGesture">Android Developers</a>
-     */
-    fun setMediaPlaybackRequiresUserGesture(value: Boolean?) = this.apply { mMediaPlaybackRequiresUserGesture = value }
-
-    /**
-     * @see android.webkit.WebSettings.setMinimumFontSize
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setMinimumFontSize">Android Developers</a>
-     */
-    fun setMinimumFontSize(value: Int?) = this.apply { mMinimumFontSize = value }
-
-    /**
-     * @see android.webkit.WebSettings.setMinimumLogicalFontSize
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setMinimumLogicalFontSize">Android Developers</a>
-     */
-    fun setMinimumLogicalFontSize(value: Int?) = this.apply { mMinimumLogicalFontSize = value }
-
-    /**
-     * @see android.webkit.WebSettings.setMixedContentMode
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setMixedContentMode">Android Developers</a>
-     */
-    fun setMixedContentMode(@MixedContentModeType value: Int?) = this.apply { mMixedContentMode = value }
-
-    /**
-     * @see android.webkit.WebSettings.setNeedInitialFocus
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setNeedInitialFocus">Android Developers</a>
-     */
-    fun setNeedInitialFocus(value: Boolean?) = this.apply { mNeedInitialFocus = value }
-
-    /**
-     * @see android.webkit.WebSettings.setOffscreenPreRaster
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setOffscreenPreRaster">Android Developers</a>
-     */
-    @RequiresApi(23)
-    fun setOffscreenPreRaster(value: Boolean?) = this.apply { mOffscreenPreRaster = value }
-
-    /**
-     * @see android.webkit.WebSettings.setSafeBrowsingEnabled
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setSafeBrowsingEnabled">Android Developers</a>
-     */
-    @RequiresApi(26)
-    fun setSafeBrowsingEnabled(value: Boolean?) = this.apply { mSafeBrowsingEnabled = value }
-
-    /**
-     * @see android.webkit.WebSettings.setSansSerifFontFamily
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setSansSerifFontFamily">Android Developers</a>
-     */
-    fun setSansSerifFontFamily(value: String?) = this.apply { mSansSerifFontFamily = value }
-
-    /**
-     * @see android.webkit.WebSettings.setSerifFontFamily
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setSerifFontFamily">Android Developers</a>
-     */
-    fun setSerifFontFamily(value: String?) = this.apply { mSerifFontFamily = value }
-
-    /**
-     * @see android.webkit.WebSettings.setStandardFontFamily
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setStandardFontFamily">Android Developers</a>
-     */
-    fun setStandardFontFamily(value: String?) = this.apply { mStandardFontFamily = value }
-
-    /**
-     * @see android.webkit.WebSettings.setSupportMultipleWindows
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setSupportMultipleWindows">Android Developers</a>
-     */
-    fun setSupportMultipleWindows(value: Boolean?) = this.apply { mSupportMultipleWindows = value }
-
-    /**
-     * @see android.webkit.WebSettings.setSupportZoom
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setSupportZoom">Android Developers</a>
-     */
-    fun setSupportZoom(value: Boolean?) = this.apply { mSupportZoom = value }
-
-    /**
-     * @see android.webkit.WebSettings.setTextZoom
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setTextZoom">Android Developers</a>
-     */
-    fun setTextZoom(value: Int?) = this.apply { mTextZoom = value }
-
-    /**
-     * @see android.webkit.WebSettings.setUserAgentString
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setUserAgentString">Android Developers</a>
-     */
-    fun setUserAgentString(value: String?) = this.apply { mUserAgentString = value }
-
-    /**
-     * @see android.webkit.WebSettings.setUseWideViewPort
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebSettings#setUseWideViewPort">Android Developers</a>
-     */
-    fun setUseWideViewPort(value: Boolean?) = this.apply { mUseWideViewPort = value }
-
-    /**
-     * @see android.webkit.WebView.setWebChromeClient
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebView#setWebChromeClient">Android Developers</a>
-     */
-    fun setWebChromeClient(client: WebChromeClient?) = this.apply { mWebChromeClient = client }
-
-    /**
-     * @see android.webkit.WebView.setWebViewClient
-     * @see <a href="https://developer.android.com/reference/kotlin/android/webkit/WebView#setWebViewClient">Android Developers</a>
-     */
-    fun setWebViewClient(client: WebViewClientCompat?) = this.apply { mWebViewClient = client }
 }

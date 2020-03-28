@@ -9,13 +9,13 @@ interface WebViewContract {
     /** @see WebView.setWebChromeClient */
     val webChromeClient: WebChromeClient?
 
-    /** * @see WebView.setWebViewClient */
+    /** @see WebView.setWebViewClient */
     val webViewClient: WebViewClient?
 
 
     /** @see WebView.setWebChromeClient */
     fun webChromeClient(input: WebChromeClient?): WebViewContract
 
-    /** * @see WebView.setWebViewClient */
+    /** @see WebView.setWebViewClient */
     fun webViewClient(input: WebViewClient?): WebViewContract
 }
