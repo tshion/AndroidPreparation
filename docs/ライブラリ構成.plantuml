@@ -2,9 +2,15 @@
 
 actor "Your App" as apps
 
-node "Templates(Lv4)" as lv4
-note bottom of lv4
-    * Baser
+node "Atoms(Lv1)" as lv1
+note bottom of lv1
+    * IntentBuilder
+    * WebViewBuilder
+end note
+
+node "Molecules(Lv2)" as lv2
+note bottom of lv2
+    (Now thinking)
 end note
 
 node "Organisms(Lv3)" as lv3
@@ -13,22 +19,16 @@ note bottom of lv3
     * Views
 end note
 
-node "Molecules(Lv2)" as lv2
-note bottom of lv2
-    (Now thinking)
-end note
-
-node "Atoms(Lv1)" as lv1
-note bottom of lv1
-    * IntentBuilder
-    * WebViewBuilder
+node "Templates(Lv4)" as lv4
+note bottom of lv4
+    * Baser
 end note
 
 
 
-lv4 -> lv3
-lv3 -> lv2
-lv2 -> lv1
+lv3 <- lv4
+lv2 <- lv3
+lv1 <- lv2
 
 apps --> lv4
 apps --> lv3
