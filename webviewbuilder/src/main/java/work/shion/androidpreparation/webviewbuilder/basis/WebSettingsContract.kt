@@ -22,16 +22,16 @@ interface WebSettingsContract {
     annotation class MixedContentModeType
 
 
-    /** @see WebSettings.getAllowContentAccess */
+    /** @see WebSettings.setAllowContentAccess */
     val allowContentAccess: Boolean?
 
-    /** @see WebSettings.getAllowFileAccess */
+    /** @see WebSettings.setAllowFileAccess */
     val allowFileAccess: Boolean?
 
-    /** @see WebSettings.getAllowFileAccessFromFileURLs */
+    /** @see WebSettings.setAllowFileAccessFromFileURLs */
     val allowFileAccessFromFileURLs: Boolean?
 
-    /** @see WebSettings.getAllowUniversalAccessFromFileURLs */
+    /** @see WebSettings.setAllowUniversalAccessFromFileURLs */
     val allowUniversalAccessFromFileURLs: Boolean?
 
     /** @see WebSettings.setAppCacheEnabled */
@@ -40,101 +40,101 @@ interface WebSettingsContract {
     /** @see WebSettings.setAppCachePath */
     val appCachePath: String?
 
-    /** @see WebSettings.getBlockNetworkImage */
+    /** @see WebSettings.setBlockNetworkImage */
     val blockNetworkImage: Boolean?
 
-    /** @see WebSettings.getBlockNetworkLoads */
+    /** @see WebSettings.setBlockNetworkLoads */
     val blockNetworkLoads: Boolean?
 
-    /** @see WebSettings.getBuiltInZoomControls */
+    /** @see WebSettings.setBuiltInZoomControls */
     val builtInZoomControls: Boolean?
 
-    /** @see WebSettings.getCacheMode */
+    /** @see WebSettings.setCacheMode */
     @CacheModeType
     val cacheMode: Int?
 
-    /** @see WebSettings.getCursiveFontFamily */
+    /** @see WebSettings.setCursiveFontFamily */
     val cursiveFontFamily: String?
 
-    /** @see WebSettings.getDatabaseEnabled */
+    /** @see WebSettings.setDatabaseEnabled */
     val databaseEnabled: Boolean?
 
-    /** @see WebSettings.getDefaultFixedFontSize */
+    /** @see WebSettings.setDefaultFixedFontSize */
     val defaultFixedFontSize: Int?
 
-    /** @see WebSettings.getDefaultFontSize */
+    /** @see WebSettings.setDefaultFontSize */
     val defaultFontSize: Int?
 
-    /** @see WebSettings.getDefaultTextEncodingName */
+    /** @see WebSettings.setDefaultTextEncodingName */
     val defaultTextEncodingName: String?
 
-    /** @see WebSettings.getDisabledActionModeMenuItems */
+    /** @see WebSettings.setDisabledActionModeMenuItems */
     @MenuItemsType
     val disabledActionModeMenuItems: Int?
 
-    /** @see WebSettings.getDisplayZoomControls */
+    /** @see WebSettings.setDisplayZoomControls */
     val displayZoomControls: Boolean?
 
-    /** @see WebSettings.getDomStorageEnabled */
+    /** @see WebSettings.setDomStorageEnabled */
     val domStorageEnabled: Boolean?
 
-    /** @see WebSettings.getFantasyFontFamily */
+    /** @see WebSettings.setFantasyFontFamily */
     val fantasyFontFamily: String?
 
-    /** @see WebSettings.getFixedFontFamily */
+    /** @see WebSettings.setFixedFontFamily */
     val fixedFontFamily: String?
 
-    /** @see WebSettings.getForceDark */
+    /** @see WebSettings.setForceDark */
     @ForceDarkType
     val forceDark: Int?
 
     /** @see WebSettings.setGeolocationEnabled */
     val geolocationEnabled: Boolean?
 
-    /** @see WebSettings.getJavaScriptCanOpenWindowsAutomatically */
+    /** @see WebSettings.setJavaScriptCanOpenWindowsAutomatically */
     val javaScriptCanOpenWindowsAutomatically: Boolean?
 
-    /** @see WebSettings.getJavaScriptEnabled */
+    /** @see WebSettings.setJavaScriptEnabled */
     val javaScriptEnabled: Boolean?
 
-    /** @see WebSettings.getLayoutAlgorithm */
+    /** @see WebSettings.setLayoutAlgorithm */
     val layoutAlgorithm: LayoutAlgorithm?
 
-    /** @see WebSettings.getLoadWithOverviewMode */
+    /** @see WebSettings.setLoadWithOverviewMode */
     val loadWithOverviewMode: Boolean?
 
-    /** @see WebSettings.getLoadsImagesAutomatically */
+    /** @see WebSettings.setLoadsImagesAutomatically */
     val loadsImagesAutomatically: Boolean?
 
-    /** @see WebSettings.getMediaPlaybackRequiresUserGesture */
+    /** @see WebSettings.setMediaPlaybackRequiresUserGesture */
     val mediaPlaybackRequiresUserGesture: Boolean?
 
-    /** @see WebSettings.getMinimumFontSize */
+    /** @see WebSettings.setMinimumFontSize */
     val minimumFontSize: Int?
 
-    /** @see WebSettings.getMinimumLogicalFontSize */
+    /** @see WebSettings.setMinimumLogicalFontSize */
     val minimumLogicalFontSize: Int?
 
-    /** @see WebSettings.getMixedContentMode */
+    /** @see WebSettings.setMixedContentMode */
     @MixedContentModeType
     val mixedContentMode: Int?
 
     /** @see WebSettings.setNeedInitialFocus */
     val needInitialFocus: Boolean?
 
-    /** @see WebSettings.getOffscreenPreRaster */
+    /** @see WebSettings.setOffscreenPreRaster */
     val offscreenPreRaster: Boolean?
 
-    /** @see WebSettings.getSafeBrowsingEnabled */
+    /** @see WebSettings.setSafeBrowsingEnabled */
     val safeBrowsingEnabled: Boolean?
 
-    /** @see WebSettings.getSansSerifFontFamily */
+    /** @see WebSettings.setSansSerifFontFamily */
     val sansSerifFontFamily: String?
 
-    /** @see WebSettings.getSerifFontFamily */
+    /** @see WebSettings.setSerifFontFamily */
     val serifFontFamily: String?
 
-    /** @see WebSettings.getStandardFontFamily */
+    /** @see WebSettings.setStandardFontFamily */
     val standardFontFamily: String?
 
     /** @see WebSettings.supportMultipleWindows */
@@ -143,13 +143,13 @@ interface WebSettingsContract {
     /** @see WebSettings.supportZoom */
     val supportZoom: Boolean?
 
-    /** @see WebSettings.getTextZoom */
+    /** @see WebSettings.setTextZoom */
     val textZoom: Int?
 
-    /** @see WebSettings.getUserAgentString */
+    /** @see WebSettings.setUserAgentString */
     val userAgentString: String?
 
-    /** @see WebSettings.getUseWideViewPort */
+    /** @see WebSettings.setUseWideViewPort */
     val useWideViewPort: Boolean?
 
 

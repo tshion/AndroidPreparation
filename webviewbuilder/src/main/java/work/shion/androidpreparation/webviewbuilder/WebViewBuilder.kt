@@ -14,16 +14,16 @@ import work.shion.androidpreparation.webviewbuilder.basis.WebViewContract
  */
 class WebViewBuilder : WebSettingsContract, WebViewContract {
 
-    /** @see WebSettings.getAllowContentAccess */
+    /** @see WebSettings.setAllowContentAccess */
     override var allowContentAccess: Boolean? = null
 
-    /** @see WebSettings.getAllowFileAccess */
+    /** @see WebSettings.setAllowFileAccess */
     override var allowFileAccess: Boolean? = null
 
-    /** @see WebSettings.getAllowFileAccessFromFileURLs */
+    /** @see WebSettings.setAllowFileAccessFromFileURLs */
     override var allowFileAccessFromFileURLs: Boolean? = null
 
-    /** @see WebSettings.getAllowUniversalAccessFromFileURLs */
+    /** @see WebSettings.setAllowUniversalAccessFromFileURLs */
     override var allowUniversalAccessFromFileURLs: Boolean? = null
 
     /** @see WebSettings.setAppCacheEnabled */
@@ -32,97 +32,97 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
     /** @see WebSettings.setAppCachePath */
     override var appCachePath: String? = null
 
-    /** @see WebSettings.getBlockNetworkImage */
+    /** @see WebSettings.setBlockNetworkImage */
     override var blockNetworkImage: Boolean? = null
 
-    /** @see WebSettings.getBlockNetworkLoads */
+    /** @see WebSettings.setBlockNetworkLoads */
     override var blockNetworkLoads: Boolean? = null
 
-    /** @see WebSettings.getBuiltInZoomControls */
+    /** @see WebSettings.setBuiltInZoomControls */
     override var builtInZoomControls: Boolean? = null
 
-    /** @see WebSettings.getCacheMode */
+    /** @see WebSettings.setCacheMode */
     override var cacheMode: Int? = null
 
-    /** @see WebSettings.getCursiveFontFamily */
+    /** @see WebSettings.setCursiveFontFamily */
     override var cursiveFontFamily: String? = null
 
-    /** @see WebSettings.getDatabaseEnabled */
+    /** @see WebSettings.setDatabaseEnabled */
     override var databaseEnabled: Boolean? = null
 
-    /** @see WebSettings.getDefaultFixedFontSize */
+    /** @see WebSettings.setDefaultFixedFontSize */
     override var defaultFixedFontSize: Int? = null
 
-    /** @see WebSettings.getDefaultFontSize */
+    /** @see WebSettings.setDefaultFontSize */
     override var defaultFontSize: Int? = null
 
-    /** @see WebSettings.getDefaultTextEncodingName */
+    /** @see WebSettings.setDefaultTextEncodingName */
     override var defaultTextEncodingName: String? = null
 
-    /** @see WebSettings.getDisabledActionModeMenuItems */
+    /** @see WebSettings.setDisabledActionModeMenuItems */
     override var disabledActionModeMenuItems: Int? = null
 
-    /** @see WebSettings.getDisplayZoomControls */
+    /** @see WebSettings.setDisplayZoomControls */
     override var displayZoomControls: Boolean? = null
 
-    /** @see WebSettings.getDomStorageEnabled */
+    /** @see WebSettings.setDomStorageEnabled */
     override var domStorageEnabled: Boolean? = null
 
-    /** @see WebSettings.getFantasyFontFamily */
+    /** @see WebSettings.setFantasyFontFamily */
     override var fantasyFontFamily: String? = null
 
-    /** @see WebSettings.getFixedFontFamily */
+    /** @see WebSettings.setFixedFontFamily */
     override var fixedFontFamily: String? = null
 
-    /** @see WebSettings.getForceDark */
+    /** @see WebSettings.setForceDark */
     override var forceDark: Int? = null
 
     /** @see WebSettings.setGeolocationEnabled */
     override var geolocationEnabled: Boolean? = null
 
-    /** @see WebSettings.getJavaScriptCanOpenWindowsAutomatically */
+    /** @see WebSettings.setJavaScriptCanOpenWindowsAutomatically */
     override var javaScriptCanOpenWindowsAutomatically: Boolean? = null
 
-    /** @see WebSettings.getJavaScriptEnabled */
+    /** @see WebSettings.setJavaScriptEnabled */
     override var javaScriptEnabled: Boolean? = null
 
-    /** @see WebSettings.getLayoutAlgorithm */
+    /** @see WebSettings.setLayoutAlgorithm */
     override var layoutAlgorithm: WebSettings.LayoutAlgorithm? = null
 
-    /** @see WebSettings.getLoadWithOverviewMode */
+    /** @see WebSettings.setLoadWithOverviewMode */
     override var loadWithOverviewMode: Boolean? = null
 
-    /** @see WebSettings.getLoadsImagesAutomatically */
+    /** @see WebSettings.setLoadsImagesAutomatically */
     override var loadsImagesAutomatically: Boolean? = null
 
-    /** @see WebSettings.getMediaPlaybackRequiresUserGesture */
+    /** @see WebSettings.setMediaPlaybackRequiresUserGesture */
     override var mediaPlaybackRequiresUserGesture: Boolean? = null
 
-    /** @see WebSettings.getMinimumFontSize */
+    /** @see WebSettings.setMinimumFontSize */
     override var minimumFontSize: Int? = null
 
-    /** @see WebSettings.getMinimumLogicalFontSize */
+    /** @see WebSettings.setMinimumLogicalFontSize */
     override var minimumLogicalFontSize: Int? = null
 
-    /** @see WebSettings.getMixedContentMode */
+    /** @see WebSettings.setMixedContentMode */
     override var mixedContentMode: Int? = null
 
     /** @see WebSettings.setNeedInitialFocus */
     override var needInitialFocus: Boolean? = null
 
-    /** @see WebSettings.getOffscreenPreRaster */
+    /** @see WebSettings.setOffscreenPreRaster */
     override var offscreenPreRaster: Boolean? = null
 
-    /** @see WebSettings.getSafeBrowsingEnabled */
+    /** @see WebSettings.setSafeBrowsingEnabled */
     override var safeBrowsingEnabled: Boolean? = null
 
-    /** @see WebSettings.getSansSerifFontFamily */
+    /** @see WebSettings.setSansSerifFontFamily */
     override var sansSerifFontFamily: String? = null
 
-    /** @see WebSettings.getSerifFontFamily */
+    /** @see WebSettings.setSerifFontFamily */
     override var serifFontFamily: String? = null
 
-    /** @see WebSettings.getStandardFontFamily */
+    /** @see WebSettings.setStandardFontFamily */
     override var standardFontFamily: String? = null
 
     /** @see WebSettings.supportMultipleWindows */
@@ -131,13 +131,13 @@ class WebViewBuilder : WebSettingsContract, WebViewContract {
     /** @see WebSettings.supportZoom */
     override var supportZoom: Boolean? = null
 
-    /** @see WebSettings.getTextZoom */
+    /** @see WebSettings.setTextZoom */
     override var textZoom: Int? = null
 
-    /** @see WebSettings.getUserAgentString */
+    /** @see WebSettings.setUserAgentString */
     override var userAgentString: String? = null
 
-    /** @see WebSettings.getUseWideViewPort */
+    /** @see WebSettings.setUseWideViewPort */
     override var useWideViewPort: Boolean? = null
 
     /** @see WebView.setWebChromeClient */
