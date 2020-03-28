@@ -147,7 +147,7 @@ interface WebChromeClientContract {
     /**
      * Was set at least one
      */
-    fun wasSet() = (getDefaultVideoPoster
+    fun wasSetChromeClient() = (getDefaultVideoPoster
             ?: getVideoLoadingProgressView
             ?: getVisitedHistory
             ?: onCloseWindow

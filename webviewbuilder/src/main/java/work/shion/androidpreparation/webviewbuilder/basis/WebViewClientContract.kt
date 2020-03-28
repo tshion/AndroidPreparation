@@ -123,7 +123,7 @@ interface WebViewClientContract {
     /**
      * Was set at least one
      */
-    fun wasSet() = (doUpdateVisitedHistory
+    fun wasSetViewClient() = (doUpdateVisitedHistory
             ?: onFormResubmission
             ?: onLoadResource
             ?: onPageCommitVisible
