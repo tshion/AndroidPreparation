@@ -3,6 +3,8 @@ package work.shion.androidpreparation.intentbuilder
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.IntRange
+import androidx.collection.ArraySet
+import androidx.collection.arraySetOf
 import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 import java.net.URLEncoder
@@ -50,7 +52,7 @@ class OpenMapIntentBuilder : IntentBuilder<ConsumerIntent>() {
     }
 
 
-    val label: MutableSet<String> = mutableSetOf()
+    val label: ArraySet<String> = arraySetOf()
     var latitude: Double? = null
     var longitude: Double? = null
 

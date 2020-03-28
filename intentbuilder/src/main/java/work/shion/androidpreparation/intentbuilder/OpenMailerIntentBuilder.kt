@@ -2,6 +2,8 @@ package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
 import android.net.Uri
+import androidx.collection.ArraySet
+import androidx.collection.arraySetOf
 import work.shion.androidpreparation.intentbuilder.basis.ConsumerIntent
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 
@@ -39,13 +41,13 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
 class OpenMailerIntentBuilder : IntentBuilder<ConsumerIntent>() {
 
     @Deprecated("In development")
-    val attachmentUris: MutableSet<Uri> = mutableSetOf()
+    val attachmentUris: ArraySet<Uri> = arraySetOf()
 
-    val bcc: MutableSet<String> = mutableSetOf()
-    val cc: MutableSet<String> = mutableSetOf()
+    val bcc: ArraySet<String> = arraySetOf()
+    val cc: ArraySet<String> = arraySetOf()
     var subject: String? = null
     var text: String? = null
-    val to: MutableSet<String> = mutableSetOf()
+    val to: ArraySet<String> = arraySetOf()
 
 
     fun appendAttachmentUris(input: Uri) = apply { attachmentUris.add(input) }
