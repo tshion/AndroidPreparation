@@ -10,17 +10,21 @@ import androidx.webkit.WebViewFeature
 interface WebSettingsContract {
 
     @IntDef(LOAD_CACHE_ELSE_NETWORK, LOAD_CACHE_ONLY, LOAD_DEFAULT, LOAD_NO_CACHE)
+    @Retention(AnnotationRetention.SOURCE)
     annotation class CacheModeType
 
     @IntDef(FORCE_DARK_AUTO, FORCE_DARK_OFF, FORCE_DARK_ON)
+    @Retention(AnnotationRetention.SOURCE)
     @TargetApi(29)
     annotation class ForceDarkType
 
     @IntDef(MENU_ITEM_NONE, MENU_ITEM_PROCESS_TEXT, MENU_ITEM_SHARE, MENU_ITEM_WEB_SEARCH)
+    @Retention(AnnotationRetention.SOURCE)
     @TargetApi(24)
     annotation class MenuItemsType
 
     @IntDef(MIXED_CONTENT_ALWAYS_ALLOW, MIXED_CONTENT_COMPATIBILITY_MODE, MIXED_CONTENT_NEVER_ALLOW)
+    @Retention(AnnotationRetention.SOURCE)
     annotation class MixedContentModeType
 
 
@@ -52,7 +56,7 @@ interface WebSettingsContract {
     val builtInZoomControls: Boolean?
 
     /** @see WebSettings.setCacheMode */
-    @CacheModeType
+    @get:CacheModeType
     val cacheMode: Int?
 
     /** @see WebSettings.setCursiveFontFamily */
@@ -71,7 +75,7 @@ interface WebSettingsContract {
     val defaultTextEncodingName: String?
 
     /** @see WebSettings.setDisabledActionModeMenuItems */
-    @MenuItemsType
+    @get:MenuItemsType
     val disabledActionModeMenuItems: Int?
 
     /** @see WebSettings.setDisplayZoomControls */
@@ -87,7 +91,7 @@ interface WebSettingsContract {
     val fixedFontFamily: String?
 
     /** @see WebSettings.setForceDark */
-    @ForceDarkType
+    @get:ForceDarkType
     val forceDark: Int?
 
     /** @see WebSettings.setGeolocationEnabled */
@@ -118,7 +122,7 @@ interface WebSettingsContract {
     val minimumLogicalFontSize: Int?
 
     /** @see WebSettings.setMixedContentMode */
-    @MixedContentModeType
+    @get:MixedContentModeType
     val mixedContentMode: Int?
 
     /** @see WebSettings.setNeedInitialFocus */

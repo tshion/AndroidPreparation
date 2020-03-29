@@ -12,6 +12,7 @@ import androidx.webkit.SafeBrowsingResponseCompat
 import androidx.webkit.WebResourceErrorCompat
 import work.shion.androidpreparation.webviewbuilder.basis.WebChromeClientContract
 import work.shion.androidpreparation.webviewbuilder.basis.WebSettingsContract
+import work.shion.androidpreparation.webviewbuilder.basis.WebSettingsContract.*
 import work.shion.androidpreparation.webviewbuilder.basis.WebViewClientContract
 import work.shion.androidpreparation.webviewbuilder.basis.WebViewContract
 
@@ -48,6 +49,8 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override var builtInZoomControls: Boolean? = null
 
     /** @see WebSettings.setCacheMode */
+    @get:CacheModeType
+    @setparam:CacheModeType
     override var cacheMode: Int? = null
 
     /** @see WebSettings.setCursiveFontFamily */
@@ -66,6 +69,8 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override var defaultTextEncodingName: String? = null
 
     /** @see WebSettings.setDisabledActionModeMenuItems */
+    @get:MenuItemsType
+    @setparam:MenuItemsType
     override var disabledActionModeMenuItems: Int? = null
 
     /** @see WebSettings.setDisplayZoomControls */
@@ -84,6 +89,8 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override var fixedFontFamily: String? = null
 
     /** @see WebSettings.setForceDark */
+    @get:ForceDarkType
+    @setparam:ForceDarkType
     override var forceDark: Int? = null
 
     /** @see WebSettings.setGeolocationEnabled */
@@ -120,6 +127,8 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override var minimumFontSize: Int? = null
 
     /** @see WebSettings.setMinimumLogicalFontSize */
+    @get:MixedContentModeType
+    @setparam:MixedContentModeType
     override var minimumLogicalFontSize: Int? = null
 
     /** @see WebSettings.setMixedContentMode */
@@ -300,7 +309,7 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override fun builtInZoomControls(input: Boolean?) = apply { builtInZoomControls = input }
 
     /** @see WebSettings.setCacheMode */
-    override fun cacheMode(input: Int?) = apply { cacheMode = input }
+    override fun cacheMode(@CacheModeType input: Int?) = apply { cacheMode = input }
 
     /** @see WebSettings.setCursiveFontFamily */
     override fun cursiveFontFamily(input: String?) = apply { cursiveFontFamily = input }
@@ -318,7 +327,7 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override fun defaultTextEncodingName(input: String?) = apply { defaultTextEncodingName = input }
 
     /** @see WebSettings.setDisabledActionModeMenuItems */
-    override fun disabledActionModeMenuItems(input: Int?) = apply { disabledActionModeMenuItems = input }
+    override fun disabledActionModeMenuItems(@MenuItemsType input: Int?) = apply { disabledActionModeMenuItems = input }
 
     /** @see WebSettings.setDisplayZoomControls */
     override fun displayZoomControls(input: Boolean?) = apply { displayZoomControls = input }
@@ -336,7 +345,7 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override fun fixedFontFamily(input: String?) = apply { fixedFontFamily = input }
 
     /** @see WebSettings.setForceDark */
-    override fun forceDark(input: Int?) = apply { forceDark = input }
+    override fun forceDark(@ForceDarkType input: Int?) = apply { forceDark = input }
 
     /** @see WebSettings.setGeolocationEnabled */
     override fun geolocationEnabled(input: Boolean?) = apply { geolocationEnabled = input }
@@ -375,7 +384,7 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     override fun minimumLogicalFontSize(input: Int?) = apply { minimumLogicalFontSize = input }
 
     /** @see WebSettings.setMixedContentMode */
-    override fun mixedContentMode(input: Int?) = apply { mixedContentMode = input }
+    override fun mixedContentMode(@MixedContentModeType input: Int?) = apply { mixedContentMode = input }
 
     /** @see WebSettings.setNeedInitialFocus */
     override fun needInitialFocus(input: Boolean?) = apply { needInitialFocus = input }
