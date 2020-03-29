@@ -179,27 +179,4 @@ interface WebViewClientContract {
         override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest) = shouldOverrideUrlLoading?.invoke(view, request)
                 ?: super.shouldOverrideUrlLoading(view, request)
     }
-
-    /**
-     * Was set at least one
-     */
-    fun wasSetViewClient() = (doUpdateVisitedHistory
-            ?: onFormResubmission
-            ?: onLoadResource
-            ?: onPageCommitVisible
-            ?: onPageFinished
-            ?: onPageStarted
-            ?: onReceivedClientCertRequest
-            ?: onReceivedError
-            ?: onReceivedHttpAuthRequest
-            ?: onReceivedHttpError
-            ?: onReceivedLoginRequest
-            ?: onReceivedSslError
-            ?: onRenderProcessGone
-            ?: onSafeBrowsingHit
-            ?: onScaleChanged
-            ?: shouldInterceptRequest
-            ?: shouldOverrideKeyEvent
-            ?: shouldOverrideUrlLoading
-            ) != null
 }

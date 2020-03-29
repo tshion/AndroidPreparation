@@ -214,31 +214,4 @@ interface WebChromeClientContract {
         override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?) = onShowFileChooser?.invoke(webView, filePathCallback, fileChooserParams)
                 ?: super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
     }
-
-    /**
-     * Was set at least one
-     */
-    fun wasSetChromeClient() = (getDefaultVideoPoster
-            ?: getVideoLoadingProgressView
-            ?: getVisitedHistory
-            ?: onCloseWindow
-            ?: onConsoleMessage
-            ?: onCreateWindow
-            ?: onGeolocationPermissionsHidePrompt
-            ?: onGeolocationPermissionsShowPrompt
-            ?: onHideCustomView
-            ?: onJsAlert
-            ?: onJsBeforeUnload
-            ?: onJsConfirm
-            ?: onJsPrompt
-            ?: onPermissionRequest
-            ?: onPermissionRequestCanceled
-            ?: onProgressChanged
-            ?: onReceivedIcon
-            ?: onReceivedTitle
-            ?: onReceivedTouchIconUrl
-            ?: onRequestFocus
-            ?: onShowCustomView
-            ?: onShowFileChooser
-            ) != null
 }
