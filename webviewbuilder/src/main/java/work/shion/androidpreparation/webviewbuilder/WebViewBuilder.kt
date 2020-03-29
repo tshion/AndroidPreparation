@@ -10,8 +10,6 @@ import android.view.View
 import android.webkit.*
 import androidx.webkit.SafeBrowsingResponseCompat
 import androidx.webkit.WebResourceErrorCompat
-import androidx.webkit.WebSettingsCompat
-import androidx.webkit.WebViewFeature
 import work.shion.androidpreparation.webviewbuilder.basis.WebChromeClientContract
 import work.shion.androidpreparation.webviewbuilder.basis.WebSettingsContract
 import work.shion.androidpreparation.webviewbuilder.basis.WebViewClientContract
@@ -530,64 +528,7 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
      * Reflect builder's settings.
      */
     fun into(target: WebView) {
-        allowContentAccess?.also { target.settings.allowContentAccess = it }
-        allowFileAccess?.also { target.settings.allowFileAccess = it }
-        allowFileAccessFromFileURLs?.also { target.settings.allowFileAccessFromFileURLs = it }
-        allowUniversalAccessFromFileURLs?.also { target.settings.allowUniversalAccessFromFileURLs = it }
-        appCacheEnabled?.also { target.settings.setAppCacheEnabled(it) }
-        appCachePath?.also { target.settings.setAppCachePath(it) }
-        blockNetworkImage?.also { target.settings.blockNetworkImage = it }
-        blockNetworkLoads?.also { target.settings.blockNetworkLoads = it }
-        builtInZoomControls?.also { target.settings.builtInZoomControls = it }
-        cacheMode?.also { target.settings.cacheMode = it }
-        cursiveFontFamily?.also { target.settings.cursiveFontFamily = it }
-        databaseEnabled?.also { target.settings.databaseEnabled = it }
-        defaultFixedFontSize?.also { target.settings.defaultFixedFontSize = it }
-        defaultFontSize?.also { target.settings.defaultFontSize = it }
-        defaultTextEncodingName?.also { target.settings.defaultTextEncodingName = it }
-        disabledActionModeMenuItems?.also {
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.DISABLED_ACTION_MODE_MENU_ITEMS)) {
-                WebSettingsCompat.setDisabledActionModeMenuItems(target.settings, it)
-            }
-        }
-        displayZoomControls?.also { target.settings.displayZoomControls = it }
-        domStorageEnabled?.also { target.settings.domStorageEnabled = it }
-        fantasyFontFamily?.also { target.settings.fantasyFontFamily = it }
-        fixedFontFamily?.also { target.settings.fixedFontFamily = it }
-        forceDark?.also {
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
-                WebSettingsCompat.setForceDark(target.settings, it)
-            }
-        }
-        geolocationEnabled?.also { target.settings.setGeolocationEnabled(it) }
-        javaScriptCanOpenWindowsAutomatically?.also { target.settings.javaScriptCanOpenWindowsAutomatically = it }
-        javaScriptEnabled?.also { target.settings.javaScriptEnabled = it }
-        layoutAlgorithm?.also { target.settings.layoutAlgorithm = it }
-        loadsImagesAutomatically?.also { target.settings.loadsImagesAutomatically = it }
-        loadWithOverviewMode?.also { target.settings.loadWithOverviewMode = it }
-        mediaPlaybackRequiresUserGesture?.also { target.settings.mediaPlaybackRequiresUserGesture = it }
-        minimumFontSize?.also { target.settings.minimumFontSize = it }
-        minimumLogicalFontSize?.also { target.settings.minimumLogicalFontSize = it }
-        mixedContentMode?.also { target.settings.mixedContentMode = it }
-        needInitialFocus?.also { target.settings.setNeedInitialFocus(it) }
-        offscreenPreRaster?.also {
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.OFF_SCREEN_PRERASTER)) {
-                WebSettingsCompat.setOffscreenPreRaster(target.settings, it)
-            }
-        }
-        safeBrowsingEnabled?.also {
-            if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
-                WebSettingsCompat.setSafeBrowsingEnabled(target.settings, it)
-            }
-        }
-        sansSerifFontFamily?.also { target.settings.sansSerifFontFamily = it }
-        serifFontFamily?.also { target.settings.serifFontFamily = it }
-        standardFontFamily?.also { target.settings.standardFontFamily = it }
-        supportMultipleWindows?.also { target.settings.setSupportMultipleWindows(it) }
-        supportZoom?.also { target.settings.setSupportZoom(it) }
-        textZoom?.also { target.settings.textZoom = it }
-        userAgentString?.also { target.settings.userAgentString = it }
-        useWideViewPort?.also { target.settings.useWideViewPort = it }
+        into(target.settings)
         target.webChromeClient = buildChromeClient()
         target.webViewClient = buildViewClient()
     }
