@@ -536,9 +536,9 @@ class WebViewBuilder : WebChromeClientContract, WebSettingsContract, WebViewCont
     /**
      * Reflect builder's settings.
      */
-    fun into(target: WebView) {
-        into(target.settings)
-        target.webChromeClient = buildChromeClient()
-        target.webViewClient = buildViewClient()
+    fun into(target: WebView) = target.apply {
+        into(settings)
+        webChromeClient = buildChromeClient()
+        webViewClient = buildViewClient()
     }
 }
