@@ -4,21 +4,27 @@ import android.annotation.TargetApi
 import android.webkit.WebSettings
 import android.webkit.WebSettings.*
 import androidx.annotation.IntDef
+import androidx.webkit.WebSettingsCompat
+import androidx.webkit.WebViewFeature
 
 interface WebSettingsContract {
 
     @IntDef(LOAD_CACHE_ELSE_NETWORK, LOAD_CACHE_ONLY, LOAD_DEFAULT, LOAD_NO_CACHE)
+    @Retention(AnnotationRetention.SOURCE)
     annotation class CacheModeType
 
     @IntDef(FORCE_DARK_AUTO, FORCE_DARK_OFF, FORCE_DARK_ON)
+    @Retention(AnnotationRetention.SOURCE)
     @TargetApi(29)
     annotation class ForceDarkType
 
     @IntDef(MENU_ITEM_NONE, MENU_ITEM_PROCESS_TEXT, MENU_ITEM_SHARE, MENU_ITEM_WEB_SEARCH)
+    @Retention(AnnotationRetention.SOURCE)
     @TargetApi(24)
     annotation class MenuItemsType
 
     @IntDef(MIXED_CONTENT_ALWAYS_ALLOW, MIXED_CONTENT_COMPATIBILITY_MODE, MIXED_CONTENT_NEVER_ALLOW)
+    @Retention(AnnotationRetention.SOURCE)
     annotation class MixedContentModeType
 
 
@@ -50,7 +56,7 @@ interface WebSettingsContract {
     val builtInZoomControls: Boolean?
 
     /** @see WebSettings.setCacheMode */
-    @CacheModeType
+    @get:CacheModeType
     val cacheMode: Int?
 
     /** @see WebSettings.setCursiveFontFamily */
@@ -69,7 +75,7 @@ interface WebSettingsContract {
     val defaultTextEncodingName: String?
 
     /** @see WebSettings.setDisabledActionModeMenuItems */
-    @MenuItemsType
+    @get:MenuItemsType
     val disabledActionModeMenuItems: Int?
 
     /** @see WebSettings.setDisplayZoomControls */
@@ -85,7 +91,7 @@ interface WebSettingsContract {
     val fixedFontFamily: String?
 
     /** @see WebSettings.setForceDark */
-    @ForceDarkType
+    @get:ForceDarkType
     val forceDark: Int?
 
     /** @see WebSettings.setGeolocationEnabled */
@@ -116,7 +122,7 @@ interface WebSettingsContract {
     val minimumLogicalFontSize: Int?
 
     /** @see WebSettings.setMixedContentMode */
-    @MixedContentModeType
+    @get:MixedContentModeType
     val mixedContentMode: Int?
 
     /** @see WebSettings.setNeedInitialFocus */
@@ -278,4 +284,69 @@ interface WebSettingsContract {
 
     /** @see WebSettings.setUseWideViewPort */
     fun useWideViewPort(input: Boolean?): WebSettingsContract
+
+
+    /**
+     * Reflect builder's settings.
+     */
+    fun into(target: WebSettings) {
+        allowContentAccess?.also { target.allowContentAccess = it }
+        allowFileAccess?.also { target.allowFileAccess = it }
+        allowFileAccessFromFileURLs?.also { target.allowFileAccessFromFileURLs = it }
+        allowUniversalAccessFromFileURLs?.also { target.allowUniversalAccessFromFileURLs = it }
+        appCacheEnabled?.also { target.setAppCacheEnabled(it) }
+        appCachePath?.also { target.setAppCachePath(it) }
+        blockNetworkImage?.also { target.blockNetworkImage = it }
+        blockNetworkLoads?.also { target.blockNetworkLoads = it }
+        builtInZoomControls?.also { target.builtInZoomControls = it }
+        cacheMode?.also { target.cacheMode = it }
+        cursiveFontFamily?.also { target.cursiveFontFamily = it }
+        databaseEnabled?.also { target.databaseEnabled = it }
+        defaultFixedFontSize?.also { target.defaultFixedFontSize = it }
+        defaultFontSize?.also { target.defaultFontSize = it }
+        defaultTextEncodingName?.also { target.defaultTextEncodingName = it }
+        disabledActionModeMenuItems?.also {
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.DISABLED_ACTION_MODE_MENU_ITEMS)) {
+                WebSettingsCompat.setDisabledActionModeMenuItems(target, it)
+            }
+        }
+        displayZoomControls?.also { target.displayZoomControls = it }
+        domStorageEnabled?.also { target.domStorageEnabled = it }
+        fantasyFontFamily?.also { target.fantasyFontFamily = it }
+        fixedFontFamily?.also { target.fixedFontFamily = it }
+        forceDark?.also {
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                WebSettingsCompat.setForceDark(target, it)
+            }
+        }
+        geolocationEnabled?.also { target.setGeolocationEnabled(it) }
+        javaScriptCanOpenWindowsAutomatically?.also { target.javaScriptCanOpenWindowsAutomatically = it }
+        javaScriptEnabled?.also { target.javaScriptEnabled = it }
+        layoutAlgorithm?.also { target.layoutAlgorithm = it }
+        loadsImagesAutomatically?.also { target.loadsImagesAutomatically = it }
+        loadWithOverviewMode?.also { target.loadWithOverviewMode = it }
+        mediaPlaybackRequiresUserGesture?.also { target.mediaPlaybackRequiresUserGesture = it }
+        minimumFontSize?.also { target.minimumFontSize = it }
+        minimumLogicalFontSize?.also { target.minimumLogicalFontSize = it }
+        mixedContentMode?.also { target.mixedContentMode = it }
+        needInitialFocus?.also { target.setNeedInitialFocus(it) }
+        offscreenPreRaster?.also {
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.OFF_SCREEN_PRERASTER)) {
+                WebSettingsCompat.setOffscreenPreRaster(target, it)
+            }
+        }
+        safeBrowsingEnabled?.also {
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
+                WebSettingsCompat.setSafeBrowsingEnabled(target, it)
+            }
+        }
+        sansSerifFontFamily?.also { target.sansSerifFontFamily = it }
+        serifFontFamily?.also { target.serifFontFamily = it }
+        standardFontFamily?.also { target.standardFontFamily = it }
+        supportMultipleWindows?.also { target.setSupportMultipleWindows(it) }
+        supportZoom?.also { target.setSupportZoom(it) }
+        textZoom?.also { target.textZoom = it }
+        userAgentString?.also { target.userAgentString = it }
+        useWideViewPort?.also { target.useWideViewPort = it }
+    }
 }

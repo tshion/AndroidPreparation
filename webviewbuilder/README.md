@@ -48,15 +48,12 @@ If you set these properties, you can write like this.
 * using geolocation(if permitted)
 
 ``` kotlin
-val chromeClient = WebChromeClientBuilder()
-    .setOnGeolocationPermissionsShowPrompt { origin, callback ->
+WebViewBuilder()
+    .geolocationEnabled(true)
+    .javaScriptEnabled(true)
+    .onGeolocationPermissionsShowPrompt { origin, callback ->
         callback?.invoke(origin, true, false)
     }
-    .build()
-WebViewBuilder()
-    .setGeolocationEnabled(true)
-    .setJavaScriptEnabled(true)
-    .setWebChromeClient(chromeClient)
     .into(webview_target)
     .loadUrl("https://mokumokulog.netlify.com/")
 ```
@@ -71,8 +68,11 @@ WebViewBuilder()
 ### References
 * [WebChromeClient | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebChromeClient)
 * [WebSettings | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebSettings)
+* [WebSettingsCompat | Android Developers](https://developer.android.com/reference/androidx/webkit/WebSettingsCompat)
 * [WebView | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebView)
 * [WebViewClient | Android Developers](https://developer.android.com/reference/kotlin/android/webkit/WebViewClient)
+* [WebViewClientCompat | Android Developers](https://developer.android.com/reference/androidx/webkit/WebViewClientCompat)
+* [WebViewFeature | Android Developers](https://developer.android.com/reference/androidx/webkit/WebViewFeature)
 
 
 
