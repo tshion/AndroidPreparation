@@ -33,6 +33,7 @@ android {
         consumerProguardFiles 'consumer-rules.pro'
         minSdkVersion 21
         targetSdkVersion compile_sdk_version
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         versionCode 10000 * appver_major + 100 * appver_minor + appver_revision
         versionName version
     }
@@ -62,11 +63,15 @@ dependencies {
 
     // AndroidX
     implementation "androidx.annotation:annotation:${ver_droidx_annotation}"
+    androidTestImplementation "androidx.test.espresso:espresso-web:${ver_droidx_espresso}"
     implementation "androidx.webkit:webkit:${ver_droidx_webkit}"
 
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+
+    // UI Test
+    androidTestImplementation uiTestLibrary
 }
 
 install {
