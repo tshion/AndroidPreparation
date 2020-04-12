@@ -2,17 +2,14 @@ package work.shion.androidpreparation.debugger.android
 
 import android.os.StrictMode
 
-/**
- * StrictMode の機能付与
- * [StrictMode](https://developer.android.com/reference/android/os/StrictMode)
- */
 interface IStrictModeAttacher {
 
     /**
-     * ThreadPolicy のセットアップ
+     * Setup "[ThreadPolicy](https://developer.android.com/reference/android/os/StrictMode.ThreadPolicy)"
      *
-     * **本番環境では使わないこと**
-     * ### 実装例
+     * **Don't use in production.**
+     *
+     * ### Example
      * ``` kotlin
      * class DebugApplication : Application(), IStrictModeAttacher {
      *     override fun onCreate() {
@@ -26,16 +23,16 @@ interface IStrictModeAttacher {
         StrictMode.ThreadPolicy.Builder()
             .detectAll()
             .penaltyLog()
-            .penaltyDialog()
             .build()
             .also { policy -> StrictMode.setThreadPolicy(policy) }
     }
 
     /**
-     * VmPolicy のセットアップ<br />
+     * Setup "[VmPolicy](https://developer.android.com/reference/android/os/StrictMode.VmPolicy)"
      *
-     * **本番環境では使わないこと**
-     * ### 実装例
+     * **Don't use in production.**
+     *
+     * ### Example
      * ``` kotlin
      * class DebugApplication : Application(), IStrictModeAttacher {
      *     override fun onCreate() {
