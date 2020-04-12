@@ -8,10 +8,11 @@ import work.shion.androidpreparation.debugger.stetho.IStethoAttacher
 interface IDebugger : IStethoAttacher, IStrictModeAttacher, IWebViewAttacher {
 
     /**
-     * Debug 関連ツールのセットアップ
+     * Setup debugging tools
      *
-     * **本番環境では使わないこと**
-     * ### 実装例
+     * **Don't use in production.**
+     *
+     * ### Example
      * ``` kotlin
      * class DebugApplication : Application(), IDebugger {
      *      override fun onCreate() {
@@ -21,7 +22,9 @@ interface IDebugger : IStethoAttacher, IStrictModeAttacher, IWebViewAttacher {
      * }
      * ```
      *
-     * @param appContext アプリケーションコンテキスト
+     * @see IStethoAttacher
+     * @see IStrictModeAttacher
+     * @see IWebViewAttacher
      */
     fun setup(appContext: Context) {
         setupThreadPolicy()
