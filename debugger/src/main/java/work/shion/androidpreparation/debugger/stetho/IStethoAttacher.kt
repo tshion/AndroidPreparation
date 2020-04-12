@@ -3,17 +3,14 @@ package work.shion.androidpreparation.debugger.stetho
 import android.content.Context
 import com.facebook.stetho.Stetho
 
-/**
- * Stetho の機能付与
- * [Stetho](https://github.com/facebook/stetho)
- */
 interface IStethoAttacher {
 
     /**
-     * Stetho のセットアップ
+     * Setup "[Stetho](https://github.com/facebook/stetho)"
      *
-     * **本番環境では使わないこと**
-     * ### 実装例
+     * **Don't use in production.**
+     *
+     * ### Example
      * ``` kotlin
      * class DebugApplication : Application(), IStethoAttacher {
      *      override fun onCreate() {
@@ -22,8 +19,6 @@ interface IStethoAttacher {
      *      }
      * }
      * ```
-     *
-     * @param appContext アプリケーションコンテキスト
      */
     fun setupStetho(appContext: Context) {
         Thread {
