@@ -88,7 +88,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
     // LeakCanary
-    api "com.squareup.leakcanary:leakcanary-android:2.1"
+    implementation "com.squareup.leakcanary:leakcanary-android:2.2"
 
     // Stetho
     def stetho_version = "1.5.1"
