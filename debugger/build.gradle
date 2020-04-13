@@ -10,8 +10,7 @@ apply plugin: 'kotlin-kapt'
 def appver_major = 0
 def appver_minor = 2
 def appver_revision = 2
-def appver_suffix = ".alpha"
-version = "${appver_major}.${appver_minor}.${appver_revision}${appver_suffix}"
+version = "${appver_major}.${appver_minor}.${appver_revision}"
 
 // ライブラリ情報
 archivesBaseName = "debugger"
@@ -69,30 +68,30 @@ dependencies {
     kapt "com.google.auto.service:auto-service:1.0-rc6"
 
     // Hyperion
-    def hyperionVersion = "0.9.27"
-    implementation "com.willowtreeapps.hyperion:hyperion-attr:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-build-config:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-core:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-crash:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-disk:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-geiger-counter:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-measurement:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-phoenix:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-plugin:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-recorder:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-shared-preferences:${hyperionVersion}"
-    implementation "com.willowtreeapps.hyperion:hyperion-timber:${hyperionVersion}"
+    def ver_hyperion = "0.9.27"
+    implementation "com.willowtreeapps.hyperion:hyperion-attr:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-build-config:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-core:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-crash:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-disk:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-geiger-counter:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-measurement:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-phoenix:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-plugin:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-recorder:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-shared-preferences:${ver_hyperion}"
+    implementation "com.willowtreeapps.hyperion:hyperion-timber:${ver_hyperion}"
 
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
     // LeakCanary
-    api "com.squareup.leakcanary:leakcanary-android:2.1"
+    implementation "com.squareup.leakcanary:leakcanary-android:2.2"
 
     // Stetho
-    def stetho_version = "1.5.1"
-    implementation "com.facebook.stetho:stetho:${stetho_version}"
+    def ver_stetho = "1.5.1"
+    implementation "com.facebook.stetho:stetho:${ver_stetho}"
 }
 
 install {

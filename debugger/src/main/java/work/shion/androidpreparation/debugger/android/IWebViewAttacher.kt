@@ -5,16 +5,13 @@ import android.os.Looper
 import android.webkit.WebView
 import work.shion.androidpreparation.debugger.BuildConfig
 
-/**
- * WebView の機能付与
- * [WebView](https://developer.android.com/reference/android/webkit/WebView)
- */
 interface IWebViewAttacher {
 
     /**
-     * WebView のデバッグ設定のセットアップ
+     * Setup debugging settings for WebView
      *
-     * **本番環境では使わないこと**
+     * **Don't use in production.**
+     *
      * ### 実装例
      * ``` kotlin
      * class DebugApplication : Application(), IWebViewAttacher {
