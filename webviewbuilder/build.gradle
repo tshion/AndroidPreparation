@@ -63,6 +63,7 @@ dependencies {
 
     // AndroidX
     implementation "androidx.annotation:annotation:${ver_droidx_annotation}"
+    debugImplementation "androidx.appcompat:appcompat:${ver_droidx_appcompat}"
     androidTestImplementation "androidx.test.espresso:espresso-web:${ver_droidx_espresso}"
     implementation "androidx.webkit:webkit:${ver_droidx_webkit}"
 
