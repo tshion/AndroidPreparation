@@ -71,9 +71,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
     // PermissionsDispathcer
-    def permissions_dispatcher_version = "4.3.0"
-    debugImplementation "org.permissionsdispatcher:permissionsdispatcher:${permissions_dispatcher_version}"
-    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:${permissions_dispatcher_version}"
+    debugImplementation "org.permissionsdispatcher:permissionsdispatcher:${ver_permissions_dispatcher}"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:${ver_permissions_dispatcher}"
 
     // UI Test
     androidTestImplementation uiTestLibrary
