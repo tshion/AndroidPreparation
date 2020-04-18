@@ -49,14 +49,23 @@ If you set these properties, you can write like this.
 
 ``` kotlin
 WebViewBuilder()
-    .geolocationEnabled(true)
-    .javaScriptEnabled(true)
-    .onGeolocationPermissionsShowPrompt { origin, callback ->
-        callback?.invoke(origin, true, false)
-    }
-    .into(webview_target)
-    .loadUrl("https://mokumokulog.netlify.com/")
+        .geolocationEnabled(true)
+        .javaScriptEnabled(true)
+        .onGeolocationPermissionsShowPrompt { origin, callback ->
+            withPermissionsCheck(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    onNeverAskAgain = { callback?.invoke(origin, false, false) },
+                    onPermissionDenied = { callback?.invoke(origin, false, false) },
+                    onShowRationale = { it.proceed() }
+            ) {
+                callback?.invoke(origin, true, false)
+            }
+        }
+        .into(findViewById<WebView>(R.id.webview_target))
+        .loadUrl("https://www.google.co.jp/maps")
 ```
+
+Note: This sample code use [permissionsdispatcher-ktx](https://github.com/permissions-dispatcher/PermissionsDispatcher/tree/master/ktx).
 
 
 

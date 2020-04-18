@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="work.shion.androidpreparation.webviewbuilder">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application android:theme="@style/Theme.AppCompat">
+
+        <activity android:name=".GeoActivity" />
+    </application>
+</manifest>
