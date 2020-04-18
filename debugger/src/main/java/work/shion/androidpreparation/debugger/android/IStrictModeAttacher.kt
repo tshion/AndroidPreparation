@@ -23,6 +23,7 @@ interface IStrictModeAttacher {
         StrictMode.ThreadPolicy.Builder()
             .detectAll()
             .penaltyLog()
+            .penaltyFlashScreen()
             .build()
             .also { policy -> StrictMode.setThreadPolicy(policy) }
     }
