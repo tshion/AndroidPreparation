@@ -70,6 +70,9 @@ Note: This sample code use [permissionsdispatcher-ktx](https://github.com/permis
 
 
 ## Links
+### Blogs
+* [WebViewBuilder 1.0.x のリリースノート](https://mokumokulog.netlify.com/tech/20200418040026)
+
 ### Products
 * [GitHub][gh_webviewbuilder]
 * [Maven][maven_webviewbuilder]
