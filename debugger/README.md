@@ -57,6 +57,9 @@ class DebugApplication : Application(), IDebugger {
 
 
 ## Links
+### Blogs
+* [Debugger 1.0.x のリリースノート](https://mokumokulog.netlify.com/tech/20200418061320)
+
 ### Products
 * [GitHub][gh_debugger]
 * [Maven][maven_debugger]
