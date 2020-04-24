@@ -32,7 +32,7 @@ class LaunchPictureCameraIntentBuilderTest {
 
     @Test
     fun empty() {
-        val data = "Empty".let { it to LaunchPhoneSample.testData[it] }
+        val data = "Empty".let { it to LaunchPictureCameraSample.testData[it] }
         Espresso.onView(ViewMatchers.withText(data.first)).perform(ViewActions.click())
         Intents.intended(CoreMatchers.allOf(
                 hasAction(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA)
