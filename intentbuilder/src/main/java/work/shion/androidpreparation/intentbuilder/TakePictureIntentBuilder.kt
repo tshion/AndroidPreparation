@@ -31,7 +31,7 @@ class TakePictureIntentBuilder : IntentBuilder<SupplierIntent>() {
 
     var outputUri: Uri? = null
         set(value) {
-            if (URLUtil.isContentUrl(value?.toString())) {
+            if (value == null || URLUtil.isContentUrl(value.toString())) {
                 field = value
             }
         }
