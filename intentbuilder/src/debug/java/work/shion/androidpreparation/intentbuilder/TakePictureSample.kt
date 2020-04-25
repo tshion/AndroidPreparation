@@ -1,26 +1,32 @@
 package work.shion.androidpreparation.intentbuilder
 
 import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
 import android.os.Environment
-import android.provider.MediaStore
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.content.FileProvider
+import work.shion.androidpreparation.intentbuilder.basis.TakePictureIntent
 import java.io.File
 
 class TakePictureSample : BaseActivity() {
 
     companion object {
-        private val IMAGE_ID = 1000
+        private val IMAGE_ID_MAIN = 1000
+        private val IMAGE_ID_THUMBNAIL = 2000
         private val REQUEST_CODE = 1000
         val testData = mapOf(
                 "Empty" to ""
         )
     }
 
-    var pictureUri: Uri? = null
+
+    var publishedIntent: TakePictureIntent? = null
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -29,9 +35,12 @@ class TakePictureSample : BaseActivity() {
                 if (resultCode != RESULT_OK) {
                     return
                 }
-                MediaStore.Images.Media.getBitmap(contentResolver, pictureUri).also {
-                    findViewById<ImageView>(IMAGE_ID).setImageBitmap(it)
+
+                TakePictureIntent.parseThumbnail(data)?.also {
+                    findViewById<ImageView>(IMAGE_ID_THUMBNAIL).setImageBitmap(it)
                 }
+                publishedIntent?.parseImage(contentResolver)
+                        ?.also { findViewById<ImageView>(IMAGE_ID_MAIN).setImageBitmap(it) }
             }
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
@@ -48,27 +57,43 @@ class TakePictureSample : BaseActivity() {
                             "${System.currentTimeMillis()}",
                             ".jpg",
                             getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-                    ).also {
-                        pictureUri = FileProvider.getUriForFile(
+                    ).let {
+                        FileProvider.getUriForFile(
                                 from,
                                 "${BuildConfig.LIBRARY_PACKAGE_NAME}.test.fileprovider",
                                 it
                         )
-                    }
-
-                    TakePictureIntentBuilder()
-                            .outputUri(pictureUri)
-                            .build()
-                            ?.start(from, REQUEST_CODE)
+                    }.let {
+                        TakePictureIntentBuilder()
+                                .outputUri(it)
+                                .build()
+                    }?.also {
+                        publishedIntent = it
+                    }?.start(from, REQUEST_CODE)
                 }
                 text = key
-            }, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            }, MATCH_PARENT, WRAP_CONTENT)
         }
 
-        root.addView(ImageView(from).apply {
-            adjustViewBounds = true
-            id = IMAGE_ID
-        }, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        LinearLayout(from).apply {
+            layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+            minimumHeight = 100
+            orientation = LinearLayout.HORIZONTAL
+        }.also { subroot ->
+            ImageView(from).apply {
+                adjustViewBounds = true
+                setBackgroundColor(Color.LTGRAY)
+                id = IMAGE_ID_THUMBNAIL
+                layoutParams = LinearLayout.LayoutParams(0, MATCH_PARENT, 1f)
+            }.also { subroot.addView(it) }
+
+            ImageView(from).apply {
+                adjustViewBounds = true
+                setBackgroundColor(Color.MAGENTA)
+                id = IMAGE_ID_MAIN
+                layoutParams = LinearLayout.LayoutParams(0, MATCH_PARENT, 1f)
+            }.also { subroot.addView(it) }
+        }.also { root.addView(it) }
 
         return root
     }

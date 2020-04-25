@@ -3,7 +3,7 @@ package work.shion.androidpreparation.intentbuilder.basis
 import android.app.Activity
 import androidx.fragment.app.Fragment
 
-class SupplierIntent : ExecutableIntent() {
+open class SupplierIntent : ExecutableIntent() {
 
     /**
      * Start an intent with getting a result from an activity.

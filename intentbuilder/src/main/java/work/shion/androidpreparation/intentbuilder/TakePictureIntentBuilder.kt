@@ -1,33 +1,55 @@
 package work.shion.androidpreparation.intentbuilder
 
 import android.net.Uri
-import android.provider.MediaStore
 import android.webkit.URLUtil
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
-import work.shion.androidpreparation.intentbuilder.basis.SupplierIntent
+import work.shion.androidpreparation.intentbuilder.basis.TakePictureIntent
 
 /**
  * Capture a picture
  *
  * ### Example1
  * ``` kotlin
- * TakePictureIntentBuilder().apply {
- *     outputUri = FileProvider.getUriForFile(context, authority, file)
- * }.build()?.start(from, REQUEST_CODE)
+ * private var publishedIntent: TakePictureIntent? = null
+ *
+ * override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+ *     TakePictureIntent.parseThumbnail(data)
+ *         ?.also { findViewById<ImageView>(ID_FOR_THUMBNAIL).setImageBitmap(it) }
+ *     publishedIntent?.parseImage(contentResolver)
+ *         ?.also { findViewById<ImageView>(ID_FOR_MAIN).setImageBitmap(it) }
+ * }
+ *
+ * fun launch() {
+ *     TakePictureIntentBuilder()
+ *         .apply { outputUri = FileProvider.getUriForFile(context, authority, file)}
+ *         .build()
+ *         ?.also { publishedIntent = it }
+ *         ?.start(from, REQUEST_CODE)
  * ```
  *
  * ### Example2
  * ``` kotlin
- * TakePictureIntentBuilder()
- *     .outputUri(FileProvider.getUriForFile(context, authority, file))
- *     .build()
- *     ?.start(from, REQUEST_CODE)
+ * private var publishedIntent: TakePictureIntent? = null
+ *
+ * override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+ *     TakePictureIntent.parseThumbnail(data)
+ *         ?.also { findViewById<ImageView>(ID_FOR_THUMBNAIL).setImageBitmap(it) }
+ *     publishedIntent?.parseImage(contentResolver)
+ *         ?.also { findViewById<ImageView>(ID_FOR_MAIN).setImageBitmap(it) }
+ * }
+ *
+ * fun launch() {
+ *     TakePictureIntentBuilder()
+ *         .outputUri(FileProvider.getUriForFile(context, authority, file))
+ *         .build()
+ *         ?.also { publishedIntent = it }
+ *         ?.start(from, REQUEST_CODE)
  * ```
  *
  * ### References
  * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#ImageCapture)
  */
-class TakePictureIntentBuilder : IntentBuilder<SupplierIntent>() {
+class TakePictureIntentBuilder : IntentBuilder<TakePictureIntent>() {
 
     var outputUri: Uri? = null
         set(value) {
@@ -43,10 +65,5 @@ class TakePictureIntentBuilder : IntentBuilder<SupplierIntent>() {
     /**
      * Generate an intent by builder's settings.
      */
-    override fun build() = outputUri?.let { uri ->
-        SupplierIntent().apply {
-            action = MediaStore.ACTION_IMAGE_CAPTURE
-            putExtra(MediaStore.EXTRA_OUTPUT, uri)
-        }
-    }
+    override fun build() = outputUri?.let { TakePictureIntent(it) }
 }
