@@ -1,42 +1,44 @@
 package work.shion.androidpreparation.intentbuilder
 
-import android.net.Uri
-import android.provider.MediaStore
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
-import work.shion.androidpreparation.intentbuilder.basis.SupplierIntent
+import work.shion.androidpreparation.intentbuilder.basis.TakeVideoIntent
 
 /**
- * 動画を撮影して返す設定ビルダー
+ * Capture a video
  *
- * ### 実装例
+ * ### Example1
  * ``` kotlin
- * TakeVideoIntentBuilder().apply {
- *     setDestination(uri)
- * }.build()?.launch(activity!!, REQUEST_CODE)
+ * override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+ *     TakeVideoIntent.parseVideoUri(data)
+ *         ?.also { findViewById<VideoView>(ID).setVideoURI(it) }
+ * }
+ *
+ * fun launch() {
+ *     TakeVideoIntentBuilder()
+ *         .build()
+ *         ?.start(from, REQUEST_CODE)
  * ```
  *
- * ### 参考文献
- * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common#ImageCapture)
+ * ### Example2
+ * ``` kotlin
+ * override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+ *     TakeVideoIntent.parseVideoUri(data)
+ *         ?.also { findViewById<VideoView>(ID).setVideoURI(it) }
+ * }
+ *
+ * fun launch() {
+ *     TakeVideoIntentBuilder()
+ *         .build()
+ *         ?.start(from, REQUEST_CODE)
+ * ```
+ *
+ * ### References
+ * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#ImageCapture)
  */
-@Deprecated("In development")
-class TakeVideoIntentBuilder : IntentBuilder<SupplierIntent>() {
-
-    private var uri: Uri? = null
-
-
-    fun setDestination(uri: Uri) {
-        this.uri = uri
-    }
-
+class TakeVideoIntentBuilder : IntentBuilder<TakeVideoIntent>() {
 
     /**
-     * 与えられた設定からIntent を生成する
+     * Generate an intent by builder's settings.
      */
-    override fun build(): SupplierIntent? {
-        val intent = SupplierIntent().apply {
-            action = MediaStore.ACTION_VIDEO_CAPTURE
-        }
-        uri?.also { intent.putExtra(MediaStore.EXTRA_OUTPUT, it) }
-        return intent
-    }
+    override fun build() = TakeVideoIntent()
 }
