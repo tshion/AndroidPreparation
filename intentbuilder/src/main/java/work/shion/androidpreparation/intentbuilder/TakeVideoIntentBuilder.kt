@@ -16,7 +16,7 @@ import work.shion.androidpreparation.intentbuilder.basis.TakeVideoIntent
  * fun launch() {
  *     TakeVideoIntentBuilder()
  *         .build()
- *         ?.start(from, REQUEST_CODE)
+ *         .start(from, REQUEST_CODE)
  * ```
  *
  * ### Example2
@@ -29,7 +29,7 @@ import work.shion.androidpreparation.intentbuilder.basis.TakeVideoIntent
  * fun launch() {
  *     TakeVideoIntentBuilder()
  *         .build()
- *         ?.start(from, REQUEST_CODE)
+ *         .start(from, REQUEST_CODE)
  * ```
  *
  * ### References

@@ -14,5 +14,6 @@
         <activity android:name=".OpenMapSample" />
         <activity android:name=".OpenVoiceMailSample" />
         <activity android:name=".SearchWebSample" />
+        <activity android:name=".TakeVideoSample" />
     </application>
 </manifest>
