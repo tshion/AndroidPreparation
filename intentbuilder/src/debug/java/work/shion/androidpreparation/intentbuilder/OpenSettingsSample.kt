@@ -13,7 +13,8 @@ class OpenSettingsSample : Activity() {
 
     companion object {
         val testData = mapOf(
-                "settings" to OpenSettingsIntentBuilder().build()
+                "settings" to OpenSettingsIntentBuilder().build(),
+                "wirelessSettings" to OpenWirelessSettingsIntentBuilder().build()
         )
     }
 
@@ -21,7 +22,7 @@ class OpenSettingsSample : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            val from = this@OpenSettingsSample
+        val from = this@OpenSettingsSample
         LinearLayout(from).apply {
             layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT)
             orientation = LinearLayout.VERTICAL
