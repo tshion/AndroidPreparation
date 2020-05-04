@@ -10,6 +10,7 @@
         <activity android:name=".CallVoiceMailSample" />
         <activity android:name=".LaunchPhoneSample" />
         <activity android:name=".LaunchPictureCameraSample" />
+        <activity android:name=".LaunchVideoCameraSample" />
         <activity android:name=".OpenBrowserSample" />
         <activity android:name=".OpenMailerSample" />
         <activity android:name=".OpenMapSample" />
