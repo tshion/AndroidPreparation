@@ -1,42 +1,69 @@
 package work.shion.androidpreparation.intentbuilder
 
 import android.net.Uri
-import android.provider.MediaStore
+import android.webkit.URLUtil
 import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
-import work.shion.androidpreparation.intentbuilder.basis.SupplierIntent
+import work.shion.androidpreparation.intentbuilder.basis.TakePictureIntent
 
 /**
- * 写真を撮影して返す設定ビルダー
+ * Capture a picture
  *
- * ### 実装例
+ * ### Example1
  * ``` kotlin
- * TakePictureIntentBuilder().apply {
- *     setDestination(uri)
- * }.build()?.launch(activity!!, REQUEST_CODE)
+ * private var publishedIntent: TakePictureIntent? = null
+ *
+ * override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+ *     TakePictureIntent.parseThumbnail(data)
+ *         ?.also { findViewById<ImageView>(ID_FOR_THUMBNAIL).setImageBitmap(it) }
+ *     publishedIntent?.parseImage(contentResolver)
+ *         ?.also { findViewById<ImageView>(ID_FOR_MAIN).setImageBitmap(it) }
+ * }
+ *
+ * fun launch() {
+ *     TakePictureIntentBuilder()
+ *         .apply { outputUri = FileProvider.getUriForFile(context, authority, file)}
+ *         .build()
+ *         ?.also { publishedIntent = it }
+ *         ?.start(from, REQUEST_CODE)
  * ```
  *
- * ### 参考文献
- * [一般的なインテント | Android デベロッパー](https://developer.android.com/guide/components/intents-common#ImageCapture)
+ * ### Example2
+ * ``` kotlin
+ * private var publishedIntent: TakePictureIntent? = null
+ *
+ * override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+ *     TakePictureIntent.parseThumbnail(data)
+ *         ?.also { findViewById<ImageView>(ID_FOR_THUMBNAIL).setImageBitmap(it) }
+ *     publishedIntent?.parseImage(contentResolver)
+ *         ?.also { findViewById<ImageView>(ID_FOR_MAIN).setImageBitmap(it) }
+ * }
+ *
+ * fun launch() {
+ *     TakePictureIntentBuilder()
+ *         .outputUri(FileProvider.getUriForFile(context, authority, file))
+ *         .build()
+ *         ?.also { publishedIntent = it }
+ *         ?.start(from, REQUEST_CODE)
+ * ```
+ *
+ * ### References
+ * * [Common Intents | Android Developers](https://developer.android.com/guide/components/intents-common#ImageCapture)
  */
-@Deprecated("In development")
-class TakePictureIntentBuilder : IntentBuilder<SupplierIntent>() {
+class TakePictureIntentBuilder : IntentBuilder<TakePictureIntent>() {
 
-    private var uri: Uri? = null
+    var outputUri: Uri? = null
+        set(value) {
+            if (value == null || URLUtil.isContentUrl(value.toString())) {
+                field = value
+            }
+        }
 
 
-    fun setDestination(uri: Uri) {
-        this.uri = uri
-    }
+    fun outputUri(input: Uri?) = apply { outputUri = input }
 
 
     /**
-     * 与えられた設定からIntent を生成する
+     * Generate an intent by builder's settings.
      */
-    override fun build(): SupplierIntent? {
-        val intent = SupplierIntent().apply {
-            action = MediaStore.ACTION_IMAGE_CAPTURE
-        }
-        uri?.also { intent.putExtra(MediaStore.EXTRA_OUTPUT, it) }
-        return intent
-    }
+    override fun build() = outputUri?.let { TakePictureIntent(it) }
 }
