@@ -1,5 +1,6 @@
 package work.shion.androidpreparation.intentbuilder
 
+import android.content.Intent
 import android.content.Intent.EXTRA_ALLOW_MULTIPLE
 import android.content.Intent.EXTRA_MIME_TYPES
 import androidx.collection.ArraySet
@@ -67,10 +68,11 @@ class OpenFileIntentBuilder : IntentBuilder<OpenFileIntent>() {
         return OpenFileIntent().apply {
             putExtra(EXTRA_ALLOW_MULTIPLE, isMultiple)
 
-            if (mimeTypes.size == 1) {
-                type = mimeTypes.elementAt(0)
+            val types = mimeTypes.map { Intent.normalizeMimeType(it) }
+            if (types.size == 1) {
+                type = types[0]
             } else {
-                putExtra(EXTRA_MIME_TYPES, mimeTypes.toArray())
+                putExtra(EXTRA_MIME_TYPES, types.toTypedArray())
                 type = "*/*"
             }
         }
