@@ -60,7 +60,7 @@ class OpenFileIntentBuilder : IntentBuilder<OpenFileIntent>() {
      * Generate an intent by builder's settings.
      */
     override fun build(): OpenFileIntent? {
-        if (mimeTypes.isNullOrEmpty()) {
+        if (!mimeTypes.any()) {
             return null
         }
 
