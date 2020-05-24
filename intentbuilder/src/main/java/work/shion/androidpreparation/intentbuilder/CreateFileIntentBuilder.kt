@@ -19,8 +19,8 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  * fun launch() {
  *     CreateFileIntentBuilder()
  *         .apply {
- *             filename = "image.jpg"
- *             mimeTypes.add("image/\*")
+ *             mimeTypes.add("image/png")
+ *             title = "image"
  *         }
  *         .build()
  *         ?.start(from, REQUEST_CODE)
@@ -35,8 +35,8 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  *
  * fun launch() {
  *     CreateFileIntentBuilder()
- *         .appendMimeType("image/\*")
- *         .filename("image.jpg")
+ *         .appendMimeType("image/png")
+ *         .title("image")
  *         .build()
  *         ?.start(from, REQUEST_CODE)
  * ```
@@ -46,35 +46,35 @@ import work.shion.androidpreparation.intentbuilder.basis.IntentBuilder
  */
 class CreateFileIntentBuilder : IntentBuilder<CreateFileIntent>() {
 
-    var filename: String? = null
-
     @Deprecated("In development")
     var isMultiple = false
 
     val mimeTypes: ArraySet<String> = arraySetOf()
 
+    var title: String? = null
+
 
     fun appendMimeType(input: String) = apply { mimeTypes.add(input) }
 
     @Deprecated("In development")
-    fun filename(input: String?) = apply { filename = input }
-
     fun isMultiple(input: Boolean?) = apply { isMultiple = input ?: false }
 
     fun removeMimeType(input: String) = apply { mimeTypes.remove(input) }
+
+    fun title(input: String?) = apply { title = input }
 
 
     /**
      * Generate an intent by builder's settings.
      */
     override fun build(): CreateFileIntent? {
-        if (!mimeTypes.any() || filename.isNullOrBlank()) {
+        if (!mimeTypes.any()) {
             return null
         }
 
         return CreateFileIntent().apply {
             putExtra(EXTRA_ALLOW_MULTIPLE, isMultiple)
-            putExtra(EXTRA_TITLE, filename)
+            putExtra(EXTRA_TITLE, title)
 
             val types = mimeTypes.map { normalizeMimeType(it) }
             if (types.size == 1) {
