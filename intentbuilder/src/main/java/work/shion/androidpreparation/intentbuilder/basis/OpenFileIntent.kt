@@ -34,7 +34,7 @@ class OpenFileIntent : SupplierIntent() {
         }.getOrNull()
 
         /**
-         * Parse a video uri if exists
+         * Parse a uri if exists
          *
          * ### Example
          * ``` kotlin

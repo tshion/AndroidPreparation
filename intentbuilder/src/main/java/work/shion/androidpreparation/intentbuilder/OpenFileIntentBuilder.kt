@@ -21,7 +21,6 @@ import work.shion.androidpreparation.intentbuilder.basis.OpenFileIntent
  * fun launch() {
  *     OpenFileIntentBuilder()
  *         .apply {
- *             isMultiple = true
  *             mimeTypes.add("image/\*")
  *         }
  *         .build()
@@ -38,7 +37,6 @@ import work.shion.androidpreparation.intentbuilder.basis.OpenFileIntent
  * fun launch() {
  *     OpenFileIntentBuilder()
  *         .appendMimeType("image/\*")
- *         .isMultiple(true)
  *         .build()
  *         ?.start(from, REQUEST_CODE)
  * ```
@@ -48,12 +46,17 @@ import work.shion.androidpreparation.intentbuilder.basis.OpenFileIntent
  */
 class OpenFileIntentBuilder : IntentBuilder<OpenFileIntent>() {
 
+    @Deprecated("In development")
     var isMultiple = false
+
     val mimeTypes: ArraySet<String> = arraySetOf()
 
 
     fun appendMimeType(input: String) = apply { mimeTypes.add(input) }
+
+    @Deprecated("In development")
     fun isMultiple(input: Boolean?) = apply { isMultiple = input ?: false }
+
     fun removeMimeType(input: String) = apply { mimeTypes.remove(input) }
 
 
