@@ -8,10 +8,12 @@
         <activity android:name=".CalendarEventSample" />
         <activity android:name=".CallPhoneSample" />
         <activity android:name=".CallVoiceMailSample" />
+        <activity android:name=".CreateFileSample" />
         <activity android:name=".LaunchPhoneSample" />
         <activity android:name=".LaunchPictureCameraSample" />
         <activity android:name=".LaunchVideoCameraSample" />
         <activity android:name=".OpenBrowserSample" />
+        <activity android:name=".OpenFileSample" />
         <activity android:name=".OpenMailerSample" />
         <activity android:name=".OpenMapSample" />
         <activity android:name=".OpenVoiceMailSample" />
