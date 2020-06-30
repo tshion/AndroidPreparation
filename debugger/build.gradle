@@ -65,7 +65,7 @@ dependencies {
     implementation "androidx.core:core-ktx:${ver_droidx_core}"
 
     // Google
-    kapt "com.google.auto.service:auto-service:1.0-rc6"
+    kapt "com.google.auto.service:auto-service:1.0-rc7"
 
     // Hyperion
     def ver_hyperion = "0.9.27"
