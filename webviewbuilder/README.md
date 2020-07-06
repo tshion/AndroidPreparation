@@ -23,7 +23,7 @@ repositories {
 }
 ```
 
-If you want to know a library version, please check [Bintray site][maven_webviewbuilder].
+If you want to know a library version, please check [Bintray site][maven_webviewbuilder] or [CHANGELOG](./CHANGELOG.md).
 
 ### How to use
 Now, you wrote like this at layout xml file.
