@@ -6,5 +6,6 @@
     <application android:theme="@style/Theme.AppCompat">
 
         <activity android:name=".GeoActivity" />
+        <activity android:name=".GeoActivity2" />
     </application>
 </manifest>

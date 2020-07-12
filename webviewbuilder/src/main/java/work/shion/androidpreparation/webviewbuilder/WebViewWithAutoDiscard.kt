@@ -1,27 +1,28 @@
 package work.shion.androidpreparation.webviewbuilder
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.WebView
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.webview_with_auto_discard.*
 
 /**
  * WebView with lifecycle auto-discard.
  */
-open class WebViewWithAutoDiscard : Fragment(R.layout.webview_with_auto_discard) {
+open class WebViewWithAutoDiscard : Fragment() {
+
     private var isAvailable = false
     var webView: WebView? = null
         get() = if (isAvailable) field else null
         private set
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         webView?.destroy()
-        webView = webview_with_auto_discard
+        webView = newWebView()
         isAvailable = true
+        return webView
     }
 
     override fun onResume() {
@@ -44,4 +45,7 @@ open class WebViewWithAutoDiscard : Fragment(R.layout.webview_with_auto_discard)
         webView = null
         super.onDestroy()
     }
+
+
+    protected fun newWebView() = WebView(requireContext())
 }
