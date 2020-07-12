@@ -23,7 +23,7 @@ repositories {
 }
 ```
 
-If you want to know a library version, please check [Bintray site][maven_debugger].
+If you want to know a library version, please check [Bintray site][maven_debugger] or [CHANGELOG](./CHANGELOG.md).
 
 ### How to use
 Please add like this to a custom application class for debugging.
