@@ -10,15 +10,15 @@ Update library.
 
 ## [WebViewBuilder_1.0.0](https://github.com/TentaShion/AndroidPreparation/releases/tag/WebViewBuilder_1.0.0)
 ### Features
-* #30
-* #32 
-* #47 
-* #48
-* #49
-* #50
-* #51
-* #63
-* #65
+* [#30](https://github.com/TentaShion/AndroidPreparation/pull/30)
+* [#32](https://github.com/TentaShion/AndroidPreparation/pull/32)
+* [#47](https://github.com/TentaShion/AndroidPreparation/pull/47)
+* [#48](https://github.com/TentaShion/AndroidPreparation/pull/48)
+* [#49](https://github.com/TentaShion/AndroidPreparation/pull/49)
+* [#50](https://github.com/TentaShion/AndroidPreparation/pull/50)
+* [#51](https://github.com/TentaShion/AndroidPreparation/pull/51)
+* [#63](https://github.com/TentaShion/AndroidPreparation/pull/63)
+* [#65](https://github.com/TentaShion/AndroidPreparation/pull/65)
 
 ### Fixes
 Nothing because this is first release.
