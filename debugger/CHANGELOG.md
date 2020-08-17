@@ -21,9 +21,9 @@ Update library.
 
 ## [Debugger_1.0.0](https://github.com/TentaShion/AndroidPreparation/releases/tag/Debugger_1.0.0)
 ### Features
-* #52 
-* #53 
-* #68
+* [#52](https://github.com/TentaShion/AndroidPreparation/pull/52)
+* [#53](https://github.com/TentaShion/AndroidPreparation/pull/53)
+* [#68](https://github.com/TentaShion/AndroidPreparation/pull/68)
 
 ### Fixes
 Nothing because this is first release.
