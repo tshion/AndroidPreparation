@@ -9,7 +9,7 @@ apply plugin: 'maven-publish'
 // バージョン
 def appver_major = 1
 def appver_minor = 0
-def appver_revision = 2
+def appver_revision = 3
 version = "${appver_major}.${appver_minor}.${appver_revision}"
 
 // ライブラリ情報
@@ -88,9 +88,9 @@ afterEvaluate {
                 groupId = project.group
                 version = project.version
             }
-                }
-            }
-            }
+        }
+    }
+}
 
 bintray {
     key = project.hasProperty('bintray_key') ? bintray_key : ''
