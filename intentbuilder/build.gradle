@@ -68,7 +68,7 @@ dependencies {
 
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     // PermissionsDispathcer
     debugImplementation "org.permissionsdispatcher:permissionsdispatcher:${ver_permissions_dispatcher}"
