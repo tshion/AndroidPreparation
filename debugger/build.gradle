@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
 
 
 // バージョン
@@ -39,23 +39,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-
-bintray {
-    configurations = ['archives']
-    key = project.hasProperty('bintray_key') ? bintray_key : ''
-    pkg {
-        repo = meta_repository
-        name = "${project.group}.${archivesBaseName}"
-        licenses = ['MIT']
-        websiteUrl = meta_github_url
-        vcsUrl = "${meta_github_url}.git"
-        publicDownloadNumbers = true
-        version {
-            name = project.version
-        }
-    }
-    user = project.hasProperty('bintray_user') ? bintray_user : ''
 }
 
 dependencies {
@@ -94,30 +77,42 @@ dependencies {
     implementation "com.facebook.stetho:stetho:${ver_stetho}"
 }
 
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            artifactId archivesBaseName
-            groupId project.group
-            licenses {
-                license {
-                    name 'The MIT License'
-                    url 'https://opensource.org/licenses/MIT'
-                    distribution 'repo'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                artifactId = archivesBaseName
+                groupId = project.group
+                version = project.version
+            }
                 }
             }
-            name archivesBaseName
-            packaging 'aar'
-            scm {
-                connection "${meta_github_url}.git"
-                url meta_github_url
             }
-            url meta_github_url
-            version version
-        }
-    }
-}
 
+bintray {
+    key = project.hasProperty('bintray_key') ? bintray_key : ''
+    override = true
+    pkg {
+        desc = 'Assemble tools for debugging.'
+        licenses = ['MIT']
+        name = "${project.group}.${archivesBaseName}"
+        publicDownloadNumbers = true
+        repo = meta_repository
+        vcsUrl = "${meta_github_url}.git"
+        version {
+            name = project.version
+            released  = new Date()
+            vcsTag = "Debugger_${project.version}"
+        }
+        websiteUrl = meta_github_url
+    }
+    publications = ['release']
+    publish = true
+    user = project.hasProperty('bintray_user') ? bintray_user : ''
+}
 
 task javadoc(type: Javadoc) {
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
