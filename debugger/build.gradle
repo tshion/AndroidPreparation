@@ -84,6 +84,14 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
 
+                artifact javadocJar {
+                    classifier = 'javadoc'
+                    extension  = 'jar'
+                }
+                artifact sourcesJar {
+                    classifier = 'sources'
+                    extension  = 'jar'
+                }
                 artifactId = archivesBaseName
                 groupId = project.group
                 version = project.version
@@ -126,8 +134,4 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from android.sourceSets.main.java.srcDirs
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
 }
