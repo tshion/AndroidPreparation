@@ -1,4 +1,22 @@
 # Change Log
+## [Debugger_1.0.4](https://github.com/TentaShion/AndroidPreparation/releases/tag/Debugger_1.0.4)
+### Fixes
+Fix gradle plugin.
+
+### Links
+* [Bintray](https://bintray.com/shion/maven/work.shion.androidpreparation.debugger/1.0.4)
+
+
+
+## [Debugger_1.0.3](https://github.com/TentaShion/AndroidPreparation/releases/tag/Debugger_1.0.3)
+### Fixes
+Update library.
+
+### Links
+* [Bintray](https://bintray.com/shion/maven/work.shion.androidpreparation.debugger/1.0.3)
+
+
+
 ## [Debugger_1.0.2](https://github.com/TentaShion/AndroidPreparation/releases/tag/Debugger_1.0.2)
 ### Fixes
 Update library.

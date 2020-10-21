@@ -9,7 +9,7 @@ apply plugin: 'maven-publish'
 // バージョン
 def appver_major = 1
 def appver_minor = 0
-def appver_revision = 3
+def appver_revision = 4
 version = "${appver_major}.${appver_minor}.${appver_revision}"
 
 // ライブラリ情報
