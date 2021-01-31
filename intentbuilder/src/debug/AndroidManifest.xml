@@ -16,6 +16,7 @@
         <activity android:name=".OpenFileSample" />
         <activity android:name=".OpenMailerSample" />
         <activity android:name=".OpenMapSample" />
+        <activity android:name=".OpenSettingsSample" />
         <activity android:name=".OpenVoiceMailSample" />
         <activity android:name=".SearchWebSample" />
         <activity android:name=".TakePictureSample" />
