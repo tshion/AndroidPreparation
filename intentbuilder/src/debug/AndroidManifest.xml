@@ -20,6 +20,7 @@
         <activity android:name=".OpenVoiceMailSample" />
         <activity android:name=".SearchWebSample" />
         <activity android:name=".TakePictureSample" />
+        <activity android:name=".TakeVideoSample" />
 
 
         <provider
