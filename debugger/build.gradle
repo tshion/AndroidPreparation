@@ -1,9 +1,18 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'maven-publish'
+plugins {
+    // Android
+    id 'com.android.library'
+
+    // Bintray
+    id 'com.jfrog.bintray'
+
+    // Kotlin
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+
+    // Maven
+    id 'maven-publish'
+}
 
 
 // バージョン
