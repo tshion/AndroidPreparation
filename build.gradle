@@ -12,7 +12,6 @@ buildscript {
         ver_droidx_espresso = "3.3.0"
         ver_droidx_fragment = "1.2.5"
         ver_droidx_webkit = '1.4.0'
-        ver_permissions_dispatcher = "4.8.0"
         ver_permissions_dispatcher_ktx = "1.0.1"
 
 
