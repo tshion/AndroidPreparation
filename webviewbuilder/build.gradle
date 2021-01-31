@@ -62,8 +62,9 @@ bintray {
 dependencies {
 
     // AndroidX
-    implementation "androidx.annotation:annotation:${ver_droidx_annotation}"
     debugImplementation "androidx.appcompat:appcompat:${ver_droidx_appcompat}"
+    debugImplementation "androidx.core:core-ktx:${ver_droidx_core}"
+    implementation "androidx.fragment:fragment-ktx:${ver_droidx_fragment}"
     androidTestImplementation "androidx.test.espresso:espresso-web:${ver_droidx_espresso}"
     implementation "androidx.webkit:webkit:${ver_droidx_webkit}"
 
