@@ -1,7 +1,7 @@
 buildscript {
     ext {
         build_tools_version = "30.0.3"
-        compile_sdk_version = 29
+        compile_sdk_version = 30
         kotlin_version = '1.4.10'
         meta_github_url = "https://github.com/TentaShion/AndroidPreparation"
         meta_repository = "maven"
