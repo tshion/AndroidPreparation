@@ -8,12 +8,30 @@
         <activity android:name=".CalendarEventSample" />
         <activity android:name=".CallPhoneSample" />
         <activity android:name=".CallVoiceMailSample" />
+        <activity android:name=".CreateFileSample" />
         <activity android:name=".LaunchPhoneSample" />
+        <activity android:name=".LaunchPictureCameraSample" />
+        <activity android:name=".LaunchVideoCameraSample" />
         <activity android:name=".OpenBrowserSample" />
+        <activity android:name=".OpenFileSample" />
         <activity android:name=".OpenMailerSample" />
         <activity android:name=".OpenMapSample" />
+        <activity android:name=".OpenSettingsSample" />
         <activity android:name=".OpenVoiceMailSample" />
         <activity android:name=".SearchWebSample" />
+        <activity android:name=".TakePictureSample" />
         <activity android:name=".TakeVideoSample" />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 </manifest>

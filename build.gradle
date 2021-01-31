@@ -1,28 +1,28 @@
 buildscript {
     ext {
-        build_tools_version = "29.0.3"
+        build_tools_version = "30.0.2"
         compile_sdk_version = 29
-        kotlin_version = '1.3.72'
+        kotlin_version = '1.4.10'
         meta_github_url = "https://github.com/TentaShion/AndroidPreparation"
         meta_repository = "maven"
         ver_droidx_annotation = "1.1.0"
-        ver_droidx_appcompat = "1.1.0"
+        ver_droidx_appcompat = "1.2.0"
         ver_droidx_collection = "1.1.0"
-        ver_droidx_core = "1.2.0"
-        ver_droidx_espresso = "3.2.0"
-        ver_droidx_fragment = "1.2.4"
-        ver_droidx_webkit = "1.2.0"
-        ver_permissions_dispatcher = "4.3.0"
-        ver_permissions_dispatcher_ktx = "1.0.0-alpha2"
+        ver_droidx_core = "1.3.2"
+        ver_droidx_espresso = "3.3.0"
+        ver_droidx_fragment = "1.2.5"
+        ver_droidx_webkit = "1.3.0"
+        ver_permissions_dispatcher = "4.8.0"
+        ver_permissions_dispatcher_ktx = "1.0.1"
 
 
         uiTestLibrary = [
                 // AndroidX
                 "androidx.test.espresso:espresso-core:${ver_droidx_espresso}",
-                "androidx.test.ext:junit-ktx:1.1.1",
-                "androidx.test.ext:truth:1.2.0",
-                "androidx.test:rules:1.2.0",
-                "androidx.test:runner:1.2.0",
+                "androidx.test.ext:junit-ktx:1.1.2",
+                "androidx.test.ext:truth:1.3.0",
+                "androidx.test:rules:1.3.0",
+                "androidx.test:runner:1.3.0",
                 "androidx.test.uiautomator:uiautomator:2.2.0",
 
                 // Hamcrest
@@ -30,9 +30,9 @@ buildscript {
         ]
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:4.1.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
     repositories {

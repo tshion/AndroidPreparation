@@ -23,7 +23,7 @@ repositories {
 }
 ```
 
-If you want to know a library version, please check [Bintray site][maven_intentbuilder].
+If you want to know a library version, please check [Bintray site][maven_intentbuilder] or [CHANGELOG](./CHANGELOG.md).
 
 ### How to use
 Please create a builder you want, and then call ```start()```.

@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 // バージョン
 def appver_major = 1
 def appver_minor = 0
-def appver_revision = 2
+def appver_revision = 3
 version = "${appver_major}.${appver_minor}.${appver_revision}"
 
 // ライブラリ情報
@@ -63,12 +63,12 @@ dependencies {
 
     // AndroidX
     implementation "androidx.collection:collection-ktx:${ver_droidx_collection}"
-    implementation "androidx.fragment:fragment:${ver_droidx_fragment}"
+    implementation "androidx.fragment:fragment-ktx:${ver_droidx_fragment}"
     androidTestImplementation "androidx.test.espresso:espresso-intents:${ver_droidx_espresso}"
 
     // Kotlin
     implementation platform("org.jetbrains.kotlin:kotlin-bom:${kotlin_version}")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     // PermissionsDispathcer
     debugImplementation "org.permissionsdispatcher:permissionsdispatcher:${ver_permissions_dispatcher}"
