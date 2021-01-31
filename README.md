@@ -8,7 +8,6 @@ atoms | [IntentBuilder](./intentbuilder) | [Bintray][maven_intentbuilder] | Help
 atoms | [WebViewBuilder](./webviewbuilder/) | [Bintray][maven_webviewbuilder] | Helper for setting parameters of webview
 organisms | [Debugger](./debugger) | [Bintray][maven_debugger] | Assemble tools for debug
 organisms | [Views](./views) | [Bintray][maven_views] | UI parts
-templates | [Baser](./baser) | [Bintray][maven_baser] | (Now thinking)
 
 ※1: I judge module level by rule like atomic design.<br />
 

@@ -1,2 +1,2 @@
-include ':app', ':baser', ':debugger', ':intentbuilder', ':views', ':webviewbuilder'
+include ':debugger', ':intentbuilder', ':views', ':webviewbuilder'
 rootProject.name='AndroidPreparation'

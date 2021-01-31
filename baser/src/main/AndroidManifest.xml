@@ -1,8 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="work.shion.androidpreparation.baser">
-
-    <application
-        android:name=".MainApplication"
-        tools:replace="android:name" />
-</manifest>
