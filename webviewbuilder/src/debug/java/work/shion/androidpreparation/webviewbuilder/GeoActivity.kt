@@ -1,10 +1,10 @@
 package work.shion.androidpreparation.webviewbuilder
 
-import android.Manifest
 import android.os.Bundle
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
-import permissions.dispatcher.ktx.withPermissionsCheck
+import permissions.dispatcher.ktx.LocationPermission
+import permissions.dispatcher.ktx.constructLocationPermissionRequest
 
 class GeoActivity : AppCompatActivity() {
 
@@ -16,14 +16,14 @@ class GeoActivity : AppCompatActivity() {
                 .geolocationEnabled(true)
                 .javaScriptEnabled(true)
                 .onGeolocationPermissionsShowPrompt { origin, callback ->
-                    withPermissionsCheck(
-                            Manifest.permission.ACCESS_FINE_LOCATION,
+                    constructLocationPermissionRequest(
+                            LocationPermission.FINE,
                             onNeverAskAgain = { callback?.invoke(origin, false, false) },
                             onPermissionDenied = { callback?.invoke(origin, false, false) },
                             onShowRationale = { it.proceed() }
                     ) {
                         callback?.invoke(origin, true, false)
-                    }
+                    }.launch()
                 }
                 .into(findViewById<WebView>(R.id.webview_target))
                 .loadUrl("https://www.google.co.jp/maps")
