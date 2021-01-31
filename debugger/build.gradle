@@ -60,7 +60,7 @@ dependencies {
     kapt "com.google.auto.service:auto-service:1.0-rc7"
 
     // Hyperion
-    def ver_hyperion = "0.9.30"
+    def ver_hyperion = '0.9.31'
     implementation "com.willowtreeapps.hyperion:hyperion-attr:${ver_hyperion}"
     implementation "com.willowtreeapps.hyperion:hyperion-build-config:${ver_hyperion}"
     implementation "com.willowtreeapps.hyperion:hyperion-core:${ver_hyperion}"
