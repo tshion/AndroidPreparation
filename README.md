@@ -20,8 +20,6 @@ organisms | [Views](./views) | [Bintray][maven_views] | UI parts
 * [Bintray](https://bintray.com)
 
 
-
-[maven_baser]: https://bintray.com/shion/maven/work.shion.androidpreparation.baser
 [maven_debugger]: https://bintray.com/shion/maven/work.shion.androidpreparation.debugger
 [maven_intentbuilder]: https://bintray.com/shion/maven/work.shion.androidpreparation.intentbuilder
 [maven_views]: https://bintray.com/shion/maven/work.shion.androidpreparation.views

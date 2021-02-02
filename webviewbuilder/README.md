@@ -88,5 +88,5 @@ Note: This sample code use [permissionsdispatcher-ktx](https://github.com/permis
 
 
 
-[gh_webviewbuilder]: https://github.com/TentaShion/AndroidPreparation/blob/master/webviewbuilder
+[gh_webviewbuilder]: https://github.com/TentaShion/AndroidPreparation/blob/released/webviewbuilder
 [maven_webviewbuilder]: https://bintray.com/shion/maven/work.shion.androidpreparation.webviewbuilder
