@@ -1,10 +1,15 @@
 buildscript {
     ext {
+        bintray_access_key = project.hasProperty('bintray_key') ? bintray_key : System.getenv('bintray_key')
+        bintray_access_user = project.hasProperty('bintray_user') ? bintray_user : System.getenv('bintray_user')
+        bintray_github = "https://github.com/TentaShion/AndroidPreparation"
+        bintray_group_id = "work.shion.androidpreparation"
+        bintray_repository = "maven"
+
         build_tools_version = "30.0.3"
         compile_sdk_version = 30
         kotlin_version = '1.4.21'
-        meta_github_url = "https://github.com/TentaShion/AndroidPreparation"
-        meta_repository = "maven"
+
         ver_droidx_annotation = "1.1.0"
         ver_droidx_appcompat = "1.2.0"
         ver_droidx_collection = "1.1.0"
@@ -13,7 +18,6 @@ buildscript {
         ver_droidx_fragment = "1.2.5"
         ver_droidx_webkit = '1.4.0'
         ver_permissions_dispatcher_ktx = "1.0.1"
-
 
         uiTestLibrary = [
                 // AndroidX
@@ -33,7 +37,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.1.2'
 
         // Bintray
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
 
         // Kotlin
