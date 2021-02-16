@@ -48,14 +48,14 @@ Note: ```from``` is an activity or a fragment instance.
 ## Features
 Want to do | Class Name
 --- | ---
-Call directly | [CallPhoneIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/CallPhoneIntentBuilder.kt)
-Call voice mail directly | [CallVoiceMailIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/CallVoiceMailIntentBuilder.kt)
-Launch a mail app | [OpenMailerIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenMailerIntentBuilder.kt)
-Launch a map app | [OpenMapIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenMapIntentBuilder.kt)
-Launch a phone app | [LaunchPhoneIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/LaunchPhoneIntentBuilder.kt)
-Launch a phone app and show voice mail | [OpenVoiceMailIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenVoiceMailIntentBuilder.kt)
-To initiate a web search | [SearchWebIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/SearchWebIntentBuilder.kt)
-To open a web page | [OpenBrowserIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenBrowserIntentBuilder.kt)
+Call directly | [CallPhoneIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/CallPhoneIntentBuilder.kt)
+Call voice mail directly | [CallVoiceMailIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/CallVoiceMailIntentBuilder.kt)
+Launch a mail app | [OpenMailerIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenMailerIntentBuilder.kt)
+Launch a map app | [OpenMapIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenMapIntentBuilder.kt)
+Launch a phone app | [LaunchPhoneIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/LaunchPhoneIntentBuilder.kt)
+Launch a phone app and show voice mail | [OpenVoiceMailIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenVoiceMailIntentBuilder.kt)
+To initiate a web search | [SearchWebIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/SearchWebIntentBuilder.kt)
+To open a web page | [OpenBrowserIntentBuilder](https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder/src/main/java/work/shion/androidpreparation/intentbuilder/OpenBrowserIntentBuilder.kt)
 
 
 
@@ -72,5 +72,5 @@ To open a web page | [OpenBrowserIntentBuilder](https://github.com/TentaShion/An
 
 
 
-[gh_intentbuilder]: https://github.com/TentaShion/AndroidPreparation/blob/master/intentbuilder
+[gh_intentbuilder]: https://github.com/TentaShion/AndroidPreparation/blob/released/intentbuilder
 [maven_intentbuilder]: https://bintray.com/shion/maven/work.shion.androidpreparation.intentbuilder

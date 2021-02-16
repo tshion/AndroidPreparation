@@ -1,9 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    // Android
+    id 'com.android.library'
+
+    // Bintray
+    id 'com.jfrog.bintray'
+
+    // Kotlin
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+
+    // Maven
+    id 'maven-publish'
+}
 
 
 // バージョン
@@ -14,7 +22,6 @@ version = "${appver_major}.${appver_minor}.${appver_revision}"
 
 // ライブラリ情報
 archivesBaseName = "intentbuilder"
-group "work.shion.androidpreparation"
 
 
 android {
@@ -43,20 +50,22 @@ android {
 }
 
 bintray {
-    configurations = ['archives']
-    key = project.hasProperty('bintray_key') ? bintray_key : ''
+    key = bintray_access_key
     pkg {
-        repo = meta_repository
-        name = "${project.group}.${archivesBaseName}"
         licenses = ['MIT']
-        websiteUrl = meta_github_url
-        vcsUrl = "${meta_github_url}.git"
+        name = "${bintray_group_id}.${archivesBaseName}"
         publicDownloadNumbers = true
+        repo = bintray_repository
+        vcsUrl = "${bintray_github}.git"
         version {
             name = project.version
+            released  = new Date()
+            vcsTag = "IntentBuilder_${project.version}"
         }
+        websiteUrl = bintray_github
     }
-    user = project.hasProperty('bintray_user') ? bintray_user : ''
+    publications = ['release']
+    user = bintray_access_user
 }
 
 dependencies {
@@ -71,52 +80,60 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     // PermissionsDispathcer
-    debugImplementation "org.permissionsdispatcher:permissionsdispatcher:${ver_permissions_dispatcher}"
-    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:${ver_permissions_dispatcher}"
+    debugImplementation "org.permissionsdispatcher:permissionsdispatcher-ktx:${ver_permissions_dispatcher_ktx}"
 
     // UI Test
     androidTestImplementation uiTestLibrary
 }
 
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            artifactId archivesBaseName
-            groupId project.group
-            licenses {
-                license {
-                    name 'The MIT License'
-                    url 'https://opensource.org/licenses/MIT'
-                    distribution 'repo'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId
+                artifactId archivesBaseName
+                version this.version
+
+                artifact javadocJar {
+                    classifier = 'javadoc'
+                    extension = 'jar'
+                }
+                artifact sourcesJar {
+                    classifier = 'sources'
+                    extension = 'jar'
+                }
+
+                pom.withXml {
+                    def dependenciesNode = asNode().getAt('dependencies')[0] ?: asNode().appendNode('dependencies')
+
+                    // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                    configurations.implementation.allDependencies.each {
+                        // Ensure dependencies such as fileTree are not included.
+                        if (it.name != 'unspecified') {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                        }
+                    }
                 }
             }
-            name archivesBaseName
-            packaging 'aar'
-            scm {
-                connection "${meta_github_url}.git"
-                url meta_github_url
-            }
-            url meta_github_url
-            version version
         }
     }
 }
-
 
 task javadoc(type: Javadoc) {
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     excludes = ['**/*.kt']
     source = android.sourceSets.main.java.srcDirs
 }
+
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
 task sourcesJar(type: Jar) {
-    classifier = 'sources'
     from android.sourceSets.main.java.srcDirs
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
 }

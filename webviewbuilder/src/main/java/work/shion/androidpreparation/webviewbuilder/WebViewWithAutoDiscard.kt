@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 /**
  * WebView with lifecycle auto-discard.
  */
+@Deprecated("In development")
 open class WebViewWithAutoDiscard : Fragment() {
 
     private var isAvailable = false

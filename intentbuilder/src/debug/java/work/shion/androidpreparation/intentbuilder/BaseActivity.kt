@@ -1,11 +1,11 @@
 package work.shion.androidpreparation.intentbuilder
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity : Activity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

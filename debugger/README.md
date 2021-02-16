@@ -73,7 +73,7 @@ class DebugApplication : Application(), IDebugger {
 
 
 
-[gh_debugger]: https://github.com/TentaShion/AndroidPreparation/blob/master/debugger
+[gh_debugger]: https://github.com/TentaShion/AndroidPreparation/blob/released/debugger
 [Hyperion]: https://github.com/willowtreeapps/Hyperion-Android
 [LeakCanary]: https://square.github.io/leakcanary/
 [maven_debugger]: https://bintray.com/shion/maven/work.shion.androidpreparation.debugger

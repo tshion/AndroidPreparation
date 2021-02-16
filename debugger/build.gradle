@@ -1,9 +1,18 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'maven-publish'
+plugins {
+    // Android
+    id 'com.android.library'
+
+    // Bintray
+    id 'com.jfrog.bintray'
+
+    // Kotlin
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+
+    // Maven
+    id 'maven-publish'
+}
 
 
 // バージョン
@@ -14,7 +23,6 @@ version = "${appver_major}.${appver_minor}.${appver_revision}"
 
 // ライブラリ情報
 archivesBaseName = "debugger"
-group "work.shion.androidpreparation"
 
 
 android {
@@ -41,6 +49,25 @@ android {
     }
 }
 
+bintray {
+    key = bintray_access_key
+    pkg {
+        licenses = ['MIT']
+        name = "${bintray_group_id}.${archivesBaseName}"
+        publicDownloadNumbers = true
+        repo = bintray_repository
+        vcsUrl = "${bintray_github}.git"
+        version {
+            name = project.version
+            released  = new Date()
+            vcsTag = "Debugger_${project.version}"
+        }
+        websiteUrl = bintray_github
+    }
+    publications = ['release']
+    user = bintray_access_user
+}
+
 dependencies {
 
     // AndroidX
@@ -51,7 +78,7 @@ dependencies {
     kapt "com.google.auto.service:auto-service:1.0-rc7"
 
     // Hyperion
-    def ver_hyperion = "0.9.30"
+    def ver_hyperion = '0.9.31'
     implementation "com.willowtreeapps.hyperion:hyperion-attr:${ver_hyperion}"
     implementation "com.willowtreeapps.hyperion:hyperion-build-config:${ver_hyperion}"
     implementation "com.willowtreeapps.hyperion:hyperion-core:${ver_hyperion}"
@@ -77,49 +104,42 @@ dependencies {
     implementation "com.facebook.stetho:stetho:${ver_stetho}"
 }
 
-
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
 
+                groupId
+                artifactId archivesBaseName
+                version this.version
+
                 artifact javadocJar {
                     classifier = 'javadoc'
-                    extension  = 'jar'
+                    extension = 'jar'
                 }
                 artifact sourcesJar {
                     classifier = 'sources'
-                    extension  = 'jar'
+                    extension = 'jar'
                 }
-                artifactId = archivesBaseName
-                groupId = project.group
-                version = project.version
+
+                pom.withXml {
+                    def dependenciesNode = asNode().getAt('dependencies')[0] ?: asNode().appendNode('dependencies')
+
+                    // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                    configurations.implementation.allDependencies.each {
+                        // Ensure dependencies such as fileTree are not included.
+                        if (it.name != 'unspecified') {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                        }
+                    }
+                }
             }
         }
     }
-}
-
-bintray {
-    key = project.hasProperty('bintray_key') ? bintray_key : ''
-    override = true
-    pkg {
-        desc = 'Assemble tools for debugging.'
-        licenses = ['MIT']
-        name = "${project.group}.${archivesBaseName}"
-        publicDownloadNumbers = true
-        repo = meta_repository
-        vcsUrl = "${meta_github_url}.git"
-        version {
-            name = project.version
-            released  = new Date()
-            vcsTag = "Debugger_${project.version}"
-        }
-        websiteUrl = meta_github_url
-    }
-    publications = ['release']
-    publish = true
-    user = project.hasProperty('bintray_user') ? bintray_user : ''
 }
 
 task javadoc(type: Javadoc) {
@@ -127,11 +147,11 @@ task javadoc(type: Javadoc) {
     excludes = ['**/*.kt']
     source = android.sourceSets.main.java.srcDirs
 }
+
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
 task sourcesJar(type: Jar) {
-    classifier = 'sources'
     from android.sourceSets.main.java.srcDirs
 }
